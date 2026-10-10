@@ -337,19 +337,22 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 }
 .plb:active{transform:scale(.88);background:rgba(255,79,163,.25)}
 
-/* ══════════════ S7 · VIDEO ══════════════ */
-#s7{align-items:center}
+/* ══════════════ S7 · VIDEO STACK ══════════════ */
+#s7{align-items:stretch}
+.vstack{display:flex;flex-direction:column;gap:13px;padding-bottom:12px}
 .vframe{
-  position:relative;width:100%;max-width:440px;border-radius:19px;overflow:hidden;
+  position:relative;margin:0;width:100%;border-radius:17px;overflow:hidden;
   border:1px solid var(--line);background:#000;
-  box-shadow:0 22px 60px -18px rgba(0,0,0,.92),0 0 50px -14px rgba(255,45,143,.3);
+  box-shadow:0 18px 46px -18px rgba(0,0,0,.9),0 0 38px -16px rgba(255,45,143,.28);
 }
-.vframe video{width:100%;height:auto;display:block}
+.vframe video{width:100%;height:auto;display:block;background:#000}
+/* the portrait clip is 9:16 — cap it so it can't eat the whole screen */
+.vframe.tall video{max-height:58vh;width:100%;object-fit:cover}
 .vtag{
-  position:absolute;top:10px;left:10px;z-index:2;display:flex;align-items:center;gap:6px;
-  padding:5px 10px;border-radius:999px;background:rgba(10,3,8,.68);
+  position:absolute;top:9px;left:9px;z-index:2;display:flex;align-items:center;gap:6px;
+  padding:5px 9px;border-radius:999px;background:rgba(10,3,8,.66);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  font:500 9px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--pink3);
+  font:500 8.5px/1 var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--pink3);
 }
 .vtag i{width:5px;height:5px;border-radius:50%;background:var(--pink);animation:pulse 1.4s infinite;display:block}
 
@@ -542,7 +545,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
       <svg class="plline" aria-hidden="true"><path id="plstring" fill="none" stroke="rgba(255,142,196,.45)" stroke-width="1.5" stroke-linecap="round"/></svg>
       <div id="plbar">
         <div id="plcap"><span id="pltitle"></span><span id="plsub"></span></div>
-        <span id="plcount"><b>01</b> / 11</span>
+        <span id="plcount"><b>01</b> / 09</span>
         <button class="plb" id="plprev" aria-label="previous"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></button>
         <button class="plb" id="plnext" aria-label="next"><svg width="14" height="14" viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></button>
       </div>
@@ -553,14 +556,32 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
   <section class="slide" id="s7">
     <p class="kicker rise">on loop. forever. no sound. deal with it.</p>
     <h2 class="h2 rise">exhibit <span class="grad">∞</span></h2>
-    <div class="vframe rise">
-      <span class="vtag"><i></i> looping · muted</span>
-      <video id="vid" muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture>
-        <source src="assets/video/loop.webm" type="video/webm">
-        <source src="assets/video/loop.mp4" type="video/mp4">
-      </video>
+    <div class="scroll rise">
+      <div class="vstack">
+        <figure class="vframe">
+          <span class="vtag"><i></i> i · looping · muted</span>
+          <video class="vid" muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture>
+            <source data-src="assets/video/loop.webm" type="video/webm">
+            <source data-src="assets/video/loop.mp4" type="video/mp4">
+          </video>
+        </figure>
+        <figure class="vframe tall">
+          <span class="vtag"><i></i> ii · looping · muted</span>
+          <video class="vid" muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture>
+            <source data-src="assets/video/loop2.webm" type="video/webm">
+            <source data-src="assets/video/loop2.mp4" type="video/mp4">
+          </video>
+        </figure>
+        <figure class="vframe">
+          <span class="vtag"><i></i> iii · looping · muted</span>
+          <video class="vid" muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture>
+            <source data-src="assets/video/loop3.webm" type="video/webm">
+            <source data-src="assets/video/loop3.mp4" type="video/mp4">
+          </video>
+        </figure>
+        <ul class="rot" style="margin:2px 0 6px"><li>replay value: infinite</li><li class="hot">0 skips</li><li>oscar snub</li></ul>
+      </div>
     </div>
-    <ul class="rot rise" style="margin-top:16px"><li>replay value: infinite</li><li class="hot">0 skips</li><li>oscar snub</li></ul>
   </section>
 
   <!-- ══ 8 · TEXT TWO ══ -->
@@ -748,13 +769,41 @@ paint();
 })();
 
 
-/* ══════════════════ S7 · VIDEO (plays only while on screen) ══════════════════ */
+/* ══════════════════ S7 · VIDEO STACK ══════════════════
+   Three clips, all silent and looping. preload is "none" and the <source>
+   urls sit in data-src until the slide is first opened, so visiting the site
+   does not pull ~5 MB of video over mobile data for a page she may never
+   reach. After that an IntersectionObserver keeps only the clips actually on
+   screen playing — three simultaneous decodes is a real battery and jank cost
+   on a phone.
+───────────────────────────────────────────────────────── */
 (function(){
-  const v = $("#vid"), s = $("#s7");
-  v.muted = true;                   // enforced in JS too — never any audio
-  v.defaultMuted = true;
-  s.addEventListener("slideenter", ()=>{ v.muted = true; v.play().catch(()=>{}); });
-  s.addEventListener("slideleave", ()=> v.pause());
+  const s7 = $("#s7"), vids = $$("#s7 video");
+  let wired = false;
+
+  function wire(){
+    if (wired) return; wired = true;
+    vids.forEach(v=>{
+      $$("source", v).forEach(s=>{ if (s.dataset.src) s.src = s.dataset.src; });
+      v.muted = true; v.defaultMuted = true;   // enforced in JS too — never any audio
+      v.load();
+    });
+    if (!("IntersectionObserver" in window)) { vids.forEach(v=>v.play().catch(()=>{})); return; }
+    const io = new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        const v = e.target;
+        if (e.isIntersecting){ v.muted = true; v.play().catch(()=>{}); }
+        else v.pause();
+      });
+    }, {threshold:0.25});
+    vids.forEach(v=> io.observe(v));
+  }
+
+  s7.addEventListener("slideenter", ()=>{
+    wire();
+    vids.forEach(v=>{ if (v.getBoundingClientRect().top < innerHeight) { v.muted = true; v.play().catch(()=>{}); } });
+  });
+  s7.addEventListener("slideleave", ()=> vids.forEach(v=> v.pause()));
 })();
 
 /* ══════════════════ S4 · CONSTELLATION ══════════════════
@@ -1125,9 +1174,7 @@ paint();
     {e:"6️⃣", t:"SIX SEVEN",              c:"no further questions, your honour", n:"6 7"},
     {e:"🐕", t:"DOGS",                   c:"every single one. yes, that one too.", n:"all of them"},
     {e:"📱", t:"TIKTOK",                 c:"the algorithm knows you better than i do", n:"doomscroll"},
-    {e:"🪔", t:"THE DIYA",               c:"lit, phone on silent, for once", n:"lit"},
     {e:"🍟", t:"A BUNNY CHOW AT 1AM",    c:"a decision, every single time", n:"no regrets"},
-    {e:"🌅", t:"SUNSET & SAMOOSAS",      c:"a complete and balanced food group", n:"a food group"},
     {img:"assets/img/1.jpg", t:"VAISHNAV", c:"the cousin. the best friend. the problem.", n:"the cousin"}
   ];
   const N6 = SLIDES.length;

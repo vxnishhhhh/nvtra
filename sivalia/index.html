@@ -179,11 +179,16 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
   transition:opacity .62s var(--ease),transform .62s var(--ease);
 }
 .slide.on .wall figure{opacity:1;transform:rotate(var(--r,0deg))}
-.wall figure:nth-child(1){transition-delay:.08s}
-.wall figure:nth-child(2){transition-delay:.16s}
-.wall figure:nth-child(3){transition-delay:.24s}
-.wall figure:nth-child(4){transition-delay:.32s}
-.wall figure:nth-child(5){transition-delay:.40s}
+.wall figure:nth-child(1){transition-delay:0.060s}
+.wall figure:nth-child(2){transition-delay:0.115s}
+.wall figure:nth-child(3){transition-delay:0.170s}
+.wall figure:nth-child(4){transition-delay:0.225s}
+.wall figure:nth-child(5){transition-delay:0.280s}
+.wall figure:nth-child(6){transition-delay:0.335s}
+.wall figure:nth-child(7){transition-delay:0.390s}
+.wall figure:nth-child(8){transition-delay:0.445s}
+.wall figure:nth-child(9){transition-delay:0.500s}
+.wall figure:nth-child(10){transition-delay:0.555s}
 .wall figure.wide{grid-column:span 2}
 .wall img{width:100%;height:100%;object-fit:cover;aspect-ratio:3/4;transition:transform .7s var(--ease)}
 .wall figure.wide img{aspect-ratio:16/11}
@@ -205,7 +210,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 .orbit-stage{position:relative;flex:1;width:100%;min-height:0;display:grid;place-items:center;touch-action:pan-y}
 #stars{position:absolute;inset:0;width:100%;height:100%}
 .ring-wrap{position:relative;width:100%;height:100%;display:grid;place-items:center;perspective:900px;perspective-origin:50% 48%}
-.ring{position:relative;width:1px;height:1px;transform-style:preserve-3d;transform:rotateX(-9deg) rotateY(var(--spin,0deg))}
+.ring{position:relative;width:1px;height:1px;transform-style:preserve-3d;transform:rotateX(-14deg) rotateY(var(--spin,0deg))}
 .ring figure{
   position:absolute;margin:0;left:50%;top:50%;
   width:var(--cw,112px);height:var(--cw,112px);margin-left:calc(var(--cw,112px) / -2);margin-top:calc(var(--cw,112px) / -2);
@@ -425,19 +430,39 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
         </figure>
         <figure style="--r:1deg" data-src="assets/img/2.jpg" data-cap="exhibit b · motion blur era">
           <img src="assets/img/2.jpg" alt="both of us, blurry" loading="lazy" decoding="async">
-          <figcaption>b · motion blur era</figcaption>
+          <figcaption>b · motion blur</figcaption>
         </figure>
         <figure style="--r:-1.2deg" data-src="assets/img/3.jpg" data-cap="exhibit c · shaka by the river">
           <img src="assets/img/3.jpg" alt="shaka by the water" loading="lazy" decoding="async">
           <figcaption>c · shaka hands</figcaption>
         </figure>
-        <figure style="--r:.8deg" data-src="assets/img/4.jpg" data-cap="exhibit d · synchronised tongues out">
-          <img src="assets/img/4.jpg" alt="tongues out, both" loading="lazy" decoding="async">
-          <figcaption>d · synchronised</figcaption>
+        <figure class="wide" style="--r:.6deg" data-src="assets/img/7.jpg" data-cap="exhibit d · absolute silence">
+          <img src="assets/img/7.jpg" alt="shushing, both of us" loading="lazy" decoding="async">
+          <figcaption>exhibit d · absolute silence</figcaption>
         </figure>
-        <figure style="--r:-.7deg" data-src="assets/img/5.jpg" data-cap="exhibit e · peak cinematography">
+        <figure style="--r:.8deg" data-src="assets/img/4.jpg" data-cap="exhibit e · synchronised tongues">
+          <img src="assets/img/4.jpg" alt="tongues out, both" loading="lazy" decoding="async">
+          <figcaption>e · synchronised</figcaption>
+        </figure>
+        <figure style="--r:-.7deg" data-src="assets/img/5.jpg" data-cap="exhibit f · peak cinematography">
           <img src="assets/img/5.jpg" alt="by the water, backs turned" loading="lazy" decoding="async">
-          <figcaption>e · peak cinema</figcaption>
+          <figcaption>f · peak cinema</figcaption>
+        </figure>
+        <figure class="wide" style="--r:-.4deg" data-src="assets/img/6.jpg" data-cap="exhibit g · the shush committee">
+          <img src="assets/img/6.jpg" alt="three of us, chaos" loading="lazy" decoding="async">
+          <figcaption>exhibit g · the shush committee</figcaption>
+        </figure>
+        <figure style="--r:1.1deg" data-src="assets/img/8.jpg" data-cap="exhibit h · parrot supervision">
+          <img src="assets/img/8.jpg" alt="sitting by the parrot mural" loading="lazy" decoding="async">
+          <figcaption>h · parrot duty</figcaption>
+        </figure>
+        <figure style="--r:-.9deg" data-src="assets/img/9.jpg" data-cap="exhibit i · unserious behaviour">
+          <img src="assets/img/9.jpg" alt="looking at each other" loading="lazy" decoding="async">
+          <figcaption>i · unserious</figcaption>
+        </figure>
+        <figure class="wide" style="--r:.5deg" data-src="assets/img/10.jpg" data-cap="exhibit j · the bird said no">
+          <img src="assets/img/10.jpg" alt="posing under the parrot" loading="lazy" decoding="async">
+          <figcaption>exhibit j · the bird said no</figcaption>
         </figure>
       </div>
       <div class="marq" style="margin:14px 0 6px"><div>
@@ -715,8 +740,8 @@ paint();
 (function(){
   const stage = $(".orbit-stage"), cv = $("#stars"), ring = $("#ring"), s4 = $("#s4");
   const ctx = cv.getContext("2d");
-  const PHOTOS = ["t1","t2","t3","t4","t5"].map(n=>"assets/img/"+n+".jpg");
-  const CAPS   = ["aura","chaos","shaka","blur","cinema"];
+  const PHOTOS = ["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"].map(n=>"assets/img/"+n+".jpg");
+  const CAPS   = ["aura","chaos","shaka","blur","cinema","shush","silence","parrot","unserious","the bird"];
 
   // --- the orbiting photo ring (CSS 3D) ---
   PHOTOS.forEach((src,i)=>{
@@ -755,15 +780,21 @@ paint();
     cv.style.width = W+"px"; cv.style.height = H+"px";
     radius = Math.min(W, H) * 0.44;
     // photo size + orbit radius scale with the stage so it never overflows
-    const cw = clamp(Math.round(Math.min(W,H) * 0.30), 76, 150);
+    const cw = clamp(Math.round(Math.min(W,H) * 0.27), 70, 132);
     // keep the widest print fully inside the stage, with a little air
-    const orbitR = Math.round(Math.max(60, Math.min(W*0.5 - cw*0.5 - 10, H*0.34, radius*0.92)));
+    const orbitR = Math.round(Math.max(60, Math.min(W*0.5 - cw*0.5 - 8, H*0.34, radius*0.92)));
     ring.style.setProperty("--cw", cw+"px");
+    const perBand = Math.ceil(figs.length / 2);
+    const lift = cw * 0.58;
     figs.forEach((f,i)=>{
       f.style.setProperty("--cw", cw+"px");
-      const a = (i / figs.length) * 360;
-      // each print faces outward from the centre of the ring
-      f.style.transform = "rotateY("+a+"deg) translateZ("+orbitR+"px)";
+      const band = i % 2;                       // alternate bands so neighbours never touch
+      const slot = Math.floor(i / 2);
+      // half a slot of yaw between the bands puts each print over the other band's gap
+      const a = (slot / perBand) * 360 + band * (180 / perBand);
+      const y = band ? lift : -lift;            // upper and lower orbit
+      const r = orbitR * (band ? 0.9 : 1);      // slightly different radii adds depth
+      f.style.transform = "rotateY("+a.toFixed(2)+"deg) translateZ("+r.toFixed(1)+"px) translateY("+y.toFixed(1)+"px)";
     });
   }
 

@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#1a0a14">
+<title>happy birthday sivalia 🎀</title>
+<meta name="description" content="a website. for sivalia. because she's 16 (probably).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════ TOKENS ══════════════ */
+:root{
+  --bg:#140711; --bg2:#1d0a19; --bg3:#260d22;
+  --pink:#ff4fa3; --pink2:#ff8ec4; --pink3:#ffc2e0; --pink4:#ff2d8f;
+  --lilac:#c08cff; --gold:#ffd27a; --mint:#7ce7c4;
+  --ink:#fff2f8; --muted:rgba(255,242,248,.52); --faint:rgba(255,242,248,.13);
+  --line:rgba(255,120,185,.22);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Space Grotesk',system-ui,-apple-system,sans-serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --ease:cubic-bezier(.22,.9,.26,1);
+}
+*,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;height:100%;overflow:hidden;overscroll-behavior:none}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--sans);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  user-select:none; -webkit-user-select:none;
+  position:fixed; inset:0; width:100%;
+}
+img,video{max-width:100%;display:block}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+
+/* ══════════════ BACKDROP ══════════════ */
+#aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#aurora i{
+  position:absolute;display:block;border-radius:50%;filter:blur(64px);opacity:.5;
+  animation:drift 22s ease-in-out infinite alternate;
+}
+#aurora i:nth-child(1){width:70vw;height:70vw;left:-22vw;top:-18vh;background:radial-gradient(circle,#ff2d8f,transparent 68%)}
+#aurora i:nth-child(2){width:64vw;height:64vw;right:-20vw;top:22vh;background:radial-gradient(circle,#9b5cff,transparent 68%);animation-delay:-7s}
+#aurora i:nth-child(3){width:58vw;height:58vw;left:8vw;bottom:-20vh;background:radial-gradient(circle,#ff7ab8,transparent 68%);animation-delay:-13s}
+@keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(6vw,-7vh,0) scale(1.22)}}
+#grain{
+  position:fixed;inset:-50%;z-index:1;pointer-events:none;opacity:.055;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grainmove 1s steps(3) infinite;
+}
+@keyframes grainmove{0%{transform:translate(0,0)}33%{transform:translate(-3%,2%)}66%{transform:translate(2%,-3%)}100%{transform:translate(0,0)}}
+
+/* ══════════════ DECK ══════════════ */
+#deck{position:fixed;inset:0;z-index:2}
+.slide{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  padding:calc(var(--safe-t) + 60px) 20px calc(var(--safe-b) + 104px);
+  opacity:0;visibility:hidden;transform:scale(.975) translateY(14px);
+  transition:opacity .52s var(--ease),transform .52s var(--ease),visibility 0s .52s;
+  overflow:hidden;
+}
+.slide.on{opacity:1;visibility:visible;transform:none;transition:opacity .52s var(--ease),transform .52s var(--ease),visibility 0s}
+.slide.prev{transform:scale(.975) translateY(-14px)}
+.slide-pad-0{padding-left:0;padding-right:0}
+
+/* staggered entrance for children */
+.slide .rise{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.slide.on .rise{opacity:1;transform:none}
+.slide.on .rise:nth-child(1){transition-delay:.10s}
+.slide.on .rise:nth-child(2){transition-delay:.18s}
+.slide.on .rise:nth-child(3){transition-delay:.26s}
+.slide.on .rise:nth-child(4){transition-delay:.34s}
+.slide.on .rise:nth-child(5){transition-delay:.42s}
+.slide.on .rise:nth-child(6){transition-delay:.50s}
+
+/* ══════════════ CHROME ══════════════ */
+#topbar{
+  position:fixed;z-index:30;top:calc(var(--safe-t) + 10px);left:0;right:0;
+  display:flex;align-items:center;gap:10px;padding:0 16px;pointer-events:none;
+}
+#dots{display:flex;gap:5px;flex:1;align-items:center}
+#dots b{
+  display:block;height:3px;flex:1;border-radius:2px;background:var(--faint);
+  transition:background .4s var(--ease),transform .4s var(--ease);transform-origin:left;
+}
+#dots b.done{background:rgba(255,120,185,.4)}
+#dots b.now{background:var(--pink);box-shadow:0 0 10px rgba(255,79,163,.7)}
+.chip{
+  pointer-events:auto;display:grid;place-items:center;flex:0 0 auto;
+  height:30px;min-width:30px;padding:0 9px;border-radius:999px;
+  background:rgba(255,255,255,.07);border:1px solid var(--line);
+  font:500 11px/1 var(--mono);letter-spacing:.06em;color:var(--ink);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  transition:background .25s,transform .18s;
+}
+.chip:active{transform:scale(.9)}
+.chip.off{opacity:.42}
+
+#navbar{
+  position:fixed;z-index:30;left:0;right:0;bottom:0;
+  padding:14px 18px calc(var(--safe-b) + 16px);
+  display:flex;align-items:center;gap:10px;
+  background:linear-gradient(to top,rgba(20,7,17,.93) 38%,rgba(20,7,17,0));
+}
+#navbar.hide{opacity:0;pointer-events:none;transition:opacity .4s}
+#back{
+  width:46px;height:46px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;
+  border:1px solid var(--line);background:rgba(255,255,255,.055);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  transition:opacity .3s,transform .16s;
+}
+#back:active{transform:scale(.9)}
+#back[disabled]{opacity:.22;pointer-events:none}
+#next{
+  flex:1;height:46px;border-radius:999px;position:relative;overflow:hidden;
+  background:linear-gradient(100deg,var(--pink4),var(--pink),var(--lilac));
+  background-size:220% 100%;animation:shimmer 5s linear infinite;
+  color:#2a0418;font:700 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+  box-shadow:0 8px 28px -8px rgba(255,45,143,.65);
+  transition:transform .16s var(--ease);
+}
+#next:active{transform:scale(.965)}
+@keyframes shimmer{to{background-position:220% 0}}
+#counter{
+  position:fixed;z-index:30;right:16px;bottom:calc(var(--safe-b) + 74px);
+  font:400 10px/1 var(--mono);letter-spacing:.2em;color:var(--muted);pointer-events:none;
+}
+
+/* ══════════════ TYPE ══════════════ */
+.kicker{font:400 10px/1 var(--mono);letter-spacing:.34em;text-transform:uppercase;color:var(--pink2);margin:0 0 14px}
+.h1{font:900 clamp(40px,14.5vw,76px)/.88 var(--serif);letter-spacing:-.03em;margin:0}
+.h2{font:700 clamp(27px,8.4vw,44px)/1.02 var(--serif);letter-spacing:-.02em;margin:0 0 14px}
+.h3{font:600 clamp(18px,5.2vw,26px)/1.14 var(--serif);margin:0 0 10px}
+.body{font:300 clamp(14.5px,4.1vw,17px)/1.62 var(--sans);color:rgba(255,242,248,.8);margin:0 0 14px}
+.body em{font-family:var(--serif);font-style:italic;color:var(--pink2);font-weight:500}
+.body strong{color:var(--ink);font-weight:600}
+.grad{background:linear-gradient(92deg,var(--pink3),var(--pink),var(--lilac));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sig{font:italic 600 clamp(17px,5vw,22px)/1 var(--serif);color:var(--pink2)}
+
+.scroll{overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;flex:1;min-height:0;overscroll-behavior:contain}
+.scroll::-webkit-scrollbar{width:0}
+
+/* brainrot ticker chips */
+.rot{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.rot li{
+  font:400 9.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  padding:6px 9px;border-radius:999px;border:1px solid var(--line);
+  background:rgba(255,79,163,.07);color:var(--pink3);white-space:nowrap;
+}
+.rot li.hot{background:rgba(255,45,143,.2);color:#fff;border-color:rgba(255,120,185,.5)}
+
+/* marquee */
+.marq{overflow:hidden;position:relative;mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.marq div{display:flex;gap:22px;width:max-content;animation:slide-l 19s linear infinite}
+.marq span{font:700 11px/1 var(--mono);letter-spacing:.26em;text-transform:uppercase;color:rgba(255,194,224,.42);white-space:nowrap}
+@keyframes slide-l{to{transform:translateX(-50%)}}
+
+/* ══════════════ S1 · LANDING ══════════════ */
+#s1{justify-content:center;align-items:center;text-align:center}
+#s1 .h1{position:relative}
+.bday-em{display:block;font-size:clamp(50px,20vw,96px);line-height:1;margin-bottom:6px;animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-13px) rotate(6deg)}}
+#s1 .tap{margin-top:26px;font:400 10px/1 var(--mono);letter-spacing:.3em;text-transform:uppercase;color:var(--muted);animation:pulse 2.1s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+#floaters{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#s1>*:not(#floaters){position:relative;z-index:1}
+#floaters span{position:absolute;font-size:22px;opacity:0;animation:floatup linear infinite}
+@keyframes floatup{0%{opacity:0;transform:translateY(0) rotate(0)}12%{opacity:.75}88%{opacity:.75}100%{opacity:0;transform:translateY(-104vh) rotate(300deg)}}
+
+/* ══════════════ S3 · PHOTO WALL ══════════════ */
+.wall{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding-bottom:18px}
+.wall figure{
+  margin:0;position:relative;overflow:hidden;border-radius:15px;
+  border:1px solid var(--line);background:#2a0d20;
+  box-shadow:0 14px 34px -14px rgba(0,0,0,.8);
+  opacity:0;transform:translateY(26px) scale(.95) rotate(var(--r,0deg));
+  transition:opacity .62s var(--ease),transform .62s var(--ease);
+}
+.slide.on .wall figure{opacity:1;transform:rotate(var(--r,0deg))}
+.wall figure:nth-child(1){transition-delay:.08s}
+.wall figure:nth-child(2){transition-delay:.16s}
+.wall figure:nth-child(3){transition-delay:.24s}
+.wall figure:nth-child(4){transition-delay:.32s}
+.wall figure:nth-child(5){transition-delay:.40s}
+.wall figure.wide{grid-column:span 2}
+.wall img{width:100%;height:100%;object-fit:cover;aspect-ratio:3/4;transition:transform .7s var(--ease)}
+.wall figure.wide img{aspect-ratio:16/11}
+.wall figure:active img{transform:scale(1.07)}
+.wall figcaption{
+  position:absolute;left:9px;bottom:8px;right:9px;
+  font:400 9px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.95);pointer-events:none;
+}
+/* lightbox */
+#lb{position:fixed;inset:0;z-index:60;background:rgba(10,3,8,.96);display:none;place-items:center;padding:20px;backdrop-filter:blur(8px)}
+#lb.on{display:grid;animation:fade .3s}
+@keyframes fade{from{opacity:0}}
+#lb img{max-width:100%;max-height:82vh;border-radius:13px;box-shadow:0 24px 70px rgba(0,0,0,.9)}
+#lb p{margin:14px 0 0;font:400 10px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--muted);text-align:center}
+
+/* ══════════════ S4 · CONSTELLATION ══════════════ */
+#s4{align-items:center;justify-content:flex-start}
+.orbit-stage{position:relative;flex:1;width:100%;min-height:0;display:grid;place-items:center;touch-action:pan-y}
+#stars{position:absolute;inset:0;width:100%;height:100%}
+.ring-wrap{position:relative;width:100%;height:100%;display:grid;place-items:center;perspective:900px;perspective-origin:50% 48%}
+.ring{position:relative;width:1px;height:1px;transform-style:preserve-3d;transform:rotateX(-9deg) rotateY(var(--spin,0deg))}
+.ring figure{
+  position:absolute;margin:0;left:50%;top:50%;
+  width:var(--cw,112px);height:var(--cw,112px);margin-left:calc(var(--cw,112px) / -2);margin-top:calc(var(--cw,112px) / -2);
+  transform-style:preserve-3d;border-radius:11px;overflow:hidden;
+  border:1.5px solid rgba(255,142,196,.5);background:#2a0d20;
+  box-shadow:0 0 28px rgba(255,45,143,.3),0 14px 30px -10px rgba(0,0,0,.8);
+}
+.ring figure img{width:100%;height:100%;object-fit:cover}
+.ring figure::after{content:"";position:absolute;inset:0;background:linear-gradient(170deg,rgba(255,142,196,.16),transparent 55%)}
+.orbit-hint{position:absolute;bottom:4px;left:0;right:0;text-align:center;font:400 9.5px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--muted);pointer-events:none}
+
+/* ══════════════ S5 · SKYLINE ══════════════ */
+#s5 .sky-head{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:3px}
+#skycount{font:900 clamp(46px,16vw,82px)/.84 var(--serif);letter-spacing:-.035em;color:var(--pink)}
+#s5 .sky-sub{font:600 clamp(15px,4.4vw,19px)/1.2 var(--sans)}
+#skywrap{position:relative;width:100%;margin:12px 0 4px;overflow:hidden}
+#sky{width:100%;display:block}
+#receipts{list-style:none;margin:0;padding:0 0 10px;display:flex;flex-direction:column;gap:7px}
+#receipts li{
+  display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;
+  background:rgba(255,79,163,.065);border:1px solid var(--line);
+  font:400 13px/1.42 var(--sans);color:rgba(255,242,248,.86);
+  opacity:0;transform:translateX(-14px);
+  transition:opacity .45s var(--ease),transform .45s var(--ease);
+}
+#receipts li.in{opacity:1;transform:none}
+#receipts li b{flex:0 0 auto;font:500 10px/1.6 var(--mono);color:var(--pink2);letter-spacing:.06em}
+#rbtn{
+  align-self:flex-start;margin:4px 0 12px;padding:10px 18px;border-radius:999px;
+  border:1px solid rgba(255,120,185,.5);background:rgba(255,45,143,.14);
+  font:600 10.5px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--pink3);
+  transition:transform .16s,background .25s;
+}
+#rbtn:active{transform:scale(.94)}
+#rbtn.gone{display:none}
+
+/* ══════════════ S6 · POLAROID LINE ══════════════ */
+#s6{padding-left:0;padding-right:0}
+#pl{position:relative;flex:1;min-height:0;width:100%;overflow:hidden;touch-action:pan-y;cursor:grab}
+#pl[data-drag="1"]{cursor:grabbing}
+#pl>svg.plline{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.pcard{position:absolute;left:0;top:0;width:var(--cw,216px);transform-origin:50% 0;will-change:transform}
+.pprint{
+  margin-top:11px;background:#fdf7f2;padding:9px 9px 0;
+  box-shadow:0 1px 2px rgba(0,0,0,.3),0 20px 36px -16px rgba(0,0,0,.85);
+  transition:transform .5s var(--ease),filter .5s ease;
+}
+.pcard[data-on="0"] .pprint{transform:scale(.88);filter:saturate(.82) brightness(.9)}
+.pshot{
+  position:relative;aspect-ratio:1;overflow:hidden;
+  background:linear-gradient(152deg,#ffd9ec,#ffeaf4 48%,#f6d9ff);
+  display:grid;place-items:center;padding:12px;text-align:center;
+}
+.pshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pshot .pw{font:800 clamp(16px,5.4vw,25px)/1.02 var(--serif);letter-spacing:-.02em;color:#3a0b24;word-break:break-word}
+.pshot .pe{display:block;font-size:30px;margin-bottom:7px;line-height:1}
+.pnote{
+  height:41px;display:flex;align-items:center;justify-content:center;padding:0 6px;
+  font:italic 400 12.5px/1.1 var(--serif);color:#5a3344;text-align:center;
+  overflow:hidden;
+}
+.ppeg{
+  position:absolute;left:50%;top:0;width:9px;height:24px;margin-left:-4.5px;border-radius:2px;
+  background:linear-gradient(90deg,#d79ab8,#ffd4e8 45%,#c47fa0);box-shadow:0 2px 4px rgba(0,0,0,.4);
+}
+#plbar{
+  position:absolute;left:16px;right:16px;bottom:8px;display:flex;align-items:center;gap:12px;
+}
+#plcap{flex:1;min-width:0;overflow:hidden}
+#plcap>*{display:block}
+#plcap.go>*{animation:capin .5s var(--ease) both}
+@keyframes capin{from{transform:translateY(100%);opacity:0}}
+#pltitle{font:600 clamp(16px,4.8vw,21px)/1.12 var(--serif);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#plsub{margin-top:3px;font:300 11.5px/1.36 var(--sans);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#plcount{font:500 10px/1 var(--mono);letter-spacing:.14em;color:var(--muted);flex:0 0 auto}
+#plcount b{color:var(--pink2);font-weight:500}
+.plb{
+  width:34px;height:34px;flex:0 0 auto;border-radius:50%;border:1px solid var(--line);
+  display:grid;place-items:center;transition:background .2s,transform .16s;
+}
+.plb:active{transform:scale(.88);background:rgba(255,79,163,.25)}
+
+/* ══════════════ S7 · VIDEO ══════════════ */
+#s7{align-items:center}
+.vframe{
+  position:relative;width:100%;max-width:440px;border-radius:19px;overflow:hidden;
+  border:1px solid var(--line);background:#000;
+  box-shadow:0 22px 60px -18px rgba(0,0,0,.92),0 0 50px -14px rgba(255,45,143,.3);
+}
+.vframe video{width:100%;height:auto;display:block}
+.vtag{
+  position:absolute;top:10px;left:10px;z-index:2;display:flex;align-items:center;gap:6px;
+  padding:5px 10px;border-radius:999px;background:rgba(10,3,8,.68);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  font:500 9px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--pink3);
+}
+.vtag i{width:5px;height:5px;border-radius:50%;background:var(--pink);animation:pulse 1.4s infinite;display:block}
+
+/* ══════════════ S9 · CALENDAR ══════════════ */
+.cal{
+  width:100%;max-width:400px;margin:0 auto;padding:16px;border-radius:19px;
+  border:1px solid var(--line);background:rgba(255,255,255,.045);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  box-shadow:0 20px 50px -18px rgba(0,0,0,.8);
+}
+.cal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
+.cal-top h4{margin:0;font:700 17px/1 var(--serif);letter-spacing:.01em}
+.cal-top span{font:400 9.5px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-grid u{font:500 9px/1 var(--mono);text-decoration:none;color:var(--muted);text-align:center;padding:5px 0;letter-spacing:.04em}
+.cal-grid button{
+  aspect-ratio:1;border-radius:9px;display:grid;place-items:center;
+  font:400 13px/1 var(--sans);color:rgba(255,242,248,.62);
+  background:rgba(255,255,255,.028);transition:all .22s var(--ease);
+}
+.cal-grid button:active{transform:scale(.86)}
+.cal-grid button.empty{background:none;pointer-events:none}
+.cal-grid button.day13{
+  background:linear-gradient(140deg,var(--pink4),var(--pink));color:#2a0418;font-weight:700;
+  box-shadow:0 0 0 2px rgba(255,120,185,.35),0 6px 20px -5px rgba(255,45,143,.75);
+  animation:beat 1.7s ease-in-out infinite;
+}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.11)}}
+.cal-grid button.poked{background:rgba(255,79,163,.22);color:var(--pink3)}
+#calsay{
+  margin:14px auto 0;max-width:400px;min-height:74px;padding:14px 16px;border-radius:15px;
+  border:1px solid var(--line);background:rgba(255,45,143,.085);
+  font:400 13.5px/1.52 var(--sans);color:rgba(255,242,248,.88);
+}
+#calsay b{color:var(--pink2);font-weight:600}
+#calsay .big{display:block;font:900 clamp(26px,9vw,42px)/1 var(--serif);color:var(--pink);margin-bottom:7px;letter-spacing:-.02em}
+
+/* ══════════════ S10 · FINALE ══════════════ */
+#s10{align-items:center;justify-content:center;text-align:center}
+#boom{position:fixed;inset:0;z-index:50;pointer-events:none}
+#balloonlayer{position:fixed;inset:0;z-index:49;pointer-events:none;overflow:hidden}
+.bln{position:absolute;bottom:-150px;width:46px;height:58px;border-radius:50% 50% 50% 50%/58% 58% 42% 42%;animation:rise linear forwards}
+.bln::after{content:"";position:absolute;top:100%;left:50%;width:1px;height:62px;background:rgba(255,255,255,.3)}
+.bln::before{content:"";position:absolute;top:14%;left:22%;width:30%;height:22%;border-radius:50%;background:rgba(255,255,255,.4);transform:rotate(-24deg)}
+@keyframes rise{to{transform:translateY(-118vh) translateX(var(--dx,0px)) rotate(var(--rz,0deg))}}
+#bigbtn{
+  position:relative;padding:21px 40px;border-radius:999px;
+  background:linear-gradient(104deg,var(--pink4),var(--pink),var(--lilac),var(--pink4));
+  background-size:300% 100%;animation:shimmer 3.2s linear infinite;
+  font:800 15px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#2a0418;
+  box-shadow:0 16px 46px -10px rgba(255,45,143,.85);
+  transition:transform .16s var(--ease);
+}
+#bigbtn:active{transform:scale(.93)}
+#bigbtn::after{
+  content:"";position:absolute;inset:-7px;border-radius:999px;
+  border:1.5px solid rgba(255,142,196,.45);animation:halo 2.1s ease-out infinite;
+}
+@keyframes halo{0%{transform:scale(.95);opacity:.9}100%{transform:scale(1.22);opacity:0}}
+#bcount{margin-top:16px;font:400 10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);min-height:12px}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+@media (min-width:620px){
+  .slide{padding-left:max(20px,calc(50vw - 290px));padding-right:max(20px,calc(50vw - 290px))}
+  #s6,.slide-pad-0{padding-left:0;padding-right:0}
+}
+</style>
+</head>
+<body>
+
+<div id="aurora"><i></i><i></i><i></i></div>
+<div id="grain"></div>
+
+<audio id="bgm" loop preload="auto" playsinline>
+  <source src="assets/audio/solar-eclipse.mp3" type="audio/mpeg">
+  <source src="assets/audio/solar-eclipse.m4a" type="audio/mp4">
+</audio>
+
+<div id="topbar">
+  <div id="dots"></div>
+  <button class="chip" id="sound" aria-label="toggle music">♫</button>
+</div>
+
+<main id="deck">
+
+  <!-- ══ 1 · LANDING ══ -->
+  <section class="slide" id="s1">
+    <div id="floaters"></div>
+    <span class="bday-em rise">🎀</span>
+    <p class="kicker rise">13 · 10 · 2026 — a website, apparently</p>
+    <h1 class="h1 rise">happy<br>birthday<br><span class="grad">sivalia</span></h1>
+    <p class="body rise" style="margin-top:16px;max-width:300px">your cousin built you a whole website instead of buying a card. <em>economically devastating. emotionally elite.</em></p>
+    <ul class="rot rise" style="justify-content:center;max-width:320px">
+      <li class="hot">aura +10000</li><li>6 7</li><li>no cap</li><li>certified</li><li>she's the moment</li>
+    </ul>
+    <p class="tap rise">tap next · turn your volume up</p>
+  </section>
+
+  <!-- ══ 2 · TEXT ONE ══ -->
+  <section class="slide" id="s2">
+    <p class="kicker rise">page one of three with actual words</p>
+    <h2 class="h2 rise">so.<br><span class="grad">you're older.</span></h2>
+    <div class="rise">
+      <p class="body">Another lap around the sun and you're still somehow the loudest person in every room you walk into. Genuinely impressive. Nobody asked for it. We all got it anyway.</p>
+      <p class="body">You are a cousin by paperwork and a best friend by accident, which is the better of the two because one of them you can't return.</p>
+      <p class="body"><strong>So: happy birthday.</strong> <em>Scroll on. It gets weirder.</em></p>
+    </div>
+    <ul class="rot rise"><li>emotionally damaging</li><li class="hot">in a good way</li><li>probably</li></ul>
+  </section>
+
+  <!-- ══ 3 · PHOTO WALL ══ -->
+  <section class="slide" id="s3">
+    <p class="kicker rise">the evidence locker</p>
+    <h2 class="h2 rise">every photo<br><span class="grad">we didn't delete</span></h2>
+    <div class="scroll rise">
+      <div class="wall">
+        <figure class="wide" style="--r:-.5deg" data-src="assets/img/1.jpg" data-cap="exhibit a · the hair incident">
+          <img src="assets/img/1.jpg" alt="wild hair, hallway, chaos" loading="lazy" decoding="async">
+          <figcaption>exhibit a · the hair incident</figcaption>
+        </figure>
+        <figure style="--r:1deg" data-src="assets/img/2.jpg" data-cap="exhibit b · motion blur era">
+          <img src="assets/img/2.jpg" alt="both of us, blurry" loading="lazy" decoding="async">
+          <figcaption>b · motion blur era</figcaption>
+        </figure>
+        <figure style="--r:-1.2deg" data-src="assets/img/3.jpg" data-cap="exhibit c · shaka by the river">
+          <img src="assets/img/3.jpg" alt="shaka by the water" loading="lazy" decoding="async">
+          <figcaption>c · shaka hands</figcaption>
+        </figure>
+        <figure style="--r:.8deg" data-src="assets/img/4.jpg" data-cap="exhibit d · synchronised tongues out">
+          <img src="assets/img/4.jpg" alt="tongues out, both" loading="lazy" decoding="async">
+          <figcaption>d · synchronised</figcaption>
+        </figure>
+        <figure style="--r:-.7deg" data-src="assets/img/5.jpg" data-cap="exhibit e · peak cinematography">
+          <img src="assets/img/5.jpg" alt="by the water, backs turned" loading="lazy" decoding="async">
+          <figcaption>e · peak cinema</figcaption>
+        </figure>
+      </div>
+      <div class="marq" style="margin:14px 0 6px"><div>
+        <span>tap a photo to blow it up</span><span>·</span><span>tung tung tung sahur</span><span>·</span><span>six seven</span><span>·</span>
+        <span>tap a photo to blow it up</span><span>·</span><span>tung tung tung sahur</span><span>·</span><span>six seven</span><span>·</span>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ══ 4 · CONSTELLATION ══ -->
+  <section class="slide" id="s4">
+    <p class="kicker rise" style="text-align:center;width:100%">your own personal solar system</p>
+    <h2 class="h2 rise" style="text-align:center;width:100%;margin-bottom:4px">the <span class="grad">sivalia</span> constellation</h2>
+    <div class="orbit-stage rise">
+      <canvas id="stars"></canvas>
+      <div class="ring-wrap"><div class="ring" id="ring"></div></div>
+      <p class="orbit-hint">drag to spin it · yes it's 3d</p>
+    </div>
+  </section>
+
+  <!-- ══ 5 · SKYLINE / SAVES ══ -->
+  <section class="slide" id="s5">
+    <div class="scroll">
+      <p class="kicker rise">independently audited</p>
+      <div class="sky-head rise">
+        <span id="skycount">0</span>
+      </div>
+      <p class="sky-sub rise">times <span class="grad">Vaishnav (me)</span> saved you</p>
+      <div id="skywrap" class="rise"><canvas id="sky"></canvas></div>
+      <button id="rbtn" class="rise">show me the receipts →</button>
+      <ul id="receipts"></ul>
+    </div>
+  </section>
+
+  <!-- ══ 6 · POLAROID WORDS ══ -->
+  <section class="slide" id="s6">
+    <div id="pl">
+      <svg class="plline" aria-hidden="true"><path id="plstring" fill="none" stroke="rgba(255,142,196,.45)" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div id="plbar">
+        <div id="plcap"><span id="pltitle"></span><span id="plsub"></span></div>
+        <span id="plcount"><b>01</b> / 10</span>
+        <button class="plb" id="plprev" aria-label="previous"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></button>
+        <button class="plb" id="plnext" aria-label="next"><svg width="14" height="14" viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 7 · VIDEO LOOP ══ -->
+  <section class="slide" id="s7">
+    <p class="kicker rise">on loop. forever. no sound. deal with it.</p>
+    <h2 class="h2 rise">exhibit <span class="grad">∞</span></h2>
+    <div class="vframe rise">
+      <span class="vtag"><i></i> looping · muted</span>
+      <video id="vid" src="assets/video/loop.mp4" muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture></video>
+    </div>
+    <ul class="rot rise" style="margin-top:16px"><li>replay value: infinite</li><li class="hot">0 skips</li><li>oscar snub</li></ul>
+  </section>
+
+  <!-- ══ 8 · TEXT TWO ══ -->
+  <section class="slide" id="s8">
+    <p class="kicker rise">page three of three with actual words</p>
+    <h2 class="h2 rise">the <span class="grad">serious bit</span><br>(short, don't worry)</h2>
+    <div class="rise">
+      <p class="body">You're the one person I don't have to explain myself to. That's rarer than people think and I'm not going to pretend otherwise just because it's a birthday page.</p>
+      <p class="body">Keep being too much. The world has enough people being exactly the right amount.</p>
+      <p class="body" style="margin-bottom:22px"><em>Okay that's the whole serious bit. Back to the nonsense.</em></p>
+      <p class="sig">— Vaishnav</p>
+    </div>
+  </section>
+
+  <!-- ══ 9 · CALENDAR ══ -->
+  <section class="slide" id="s9">
+    <div class="scroll">
+      <p class="kicker rise">official age determination ceremony</p>
+      <h2 class="h2 rise">pick the <span class="grad">big day</span></h2>
+      <div class="cal rise">
+        <div class="cal-top"><h4>October 2026</h4><span>tap the 13th</span></div>
+        <div class="cal-grid" id="calgrid"></div>
+      </div>
+      <div id="calsay" class="rise">Tap the 13th. Something embarrassing happens.</div>
+    </div>
+  </section>
+
+  <!-- ══ 10 · FINALE ══ -->
+  <section class="slide" id="s10">
+    <p class="kicker rise">final boss</p>
+    <h2 class="h2 rise" style="margin-bottom:6px">press it.<br><span class="grad">don't be shy.</span></h2>
+    <p class="body rise" style="max-width:290px;margin-bottom:28px">it does exactly what you think it does and it does it <em>extremely hard</em>.</p>
+    <button id="bigbtn" class="rise">🎀 launch 🎀</button>
+    <p id="bcount" class="rise"></p>
+  </section>
+
+</main>
+
+<div id="balloonlayer"></div>
+<canvas id="boom"></canvas>
+
+<nav id="navbar">
+  <button id="back" aria-label="back" disabled><svg width="18" height="18" viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+  <button id="next">next →</button>
+</nav>
+<div id="counter"></div>
+
+<div id="lb"><div><img id="lbimg" alt=""><p id="lbcap"></p></div></div>
+
+<script>
+(function(){
+"use strict";
+const $  = (s,r)=> (r||document).querySelector(s);
+const $$ = (s,r)=> Array.from((r||document).querySelectorAll(s));
+const clamp = (v,a,b)=> v<a?a:(v>b?b:v);
+const lerp  = (a,b,t)=> a+(b-a)*t;
+const easeOutCubic  = x=> 1-Math.pow(1-clamp(x,0,1),3);
+const easeInOutCubic= x=>{const t=clamp(x,0,1);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2};
+const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ══════════════════ DECK ══════════════════ */
+const slides = $$(".slide");
+const N = slides.length;
+let idx = 0;
+
+// progress dots
+const dots = $("#dots");
+slides.forEach(()=> dots.appendChild(document.createElement("b")));
+const dotEls = $$("#dots b");
+
+const nextBtn = $("#next"), backBtn = $("#back"), counter = $("#counter");
+const LABELS = ["next →","next →","next →","next →","next →","next →","next →","next →","next →","again?"];
+
+function go(n, dir){
+  n = clamp(n, 0, N-1);
+  if (n === idx && slides[idx].classList.contains("on")) return;
+  const from = slides[idx];
+  from.classList.remove("on");
+  from.classList.toggle("prev", (dir||1) > 0);
+  from.dispatchEvent(new Event("slideleave"));
+  idx = n;
+  const to = slides[idx];
+  to.classList.remove("prev");
+  // force reflow so the entrance transition always replays
+  void to.offsetWidth;
+  to.classList.add("on");
+  to.dispatchEvent(new Event("slideenter"));
+  dotEls.forEach((d,i)=>{ d.classList.toggle("now", i===idx); d.classList.toggle("done", i<idx); });
+  backBtn.disabled = idx === 0;
+  nextBtn.textContent = LABELS[idx] || "next →";
+  counter.textContent = String(idx+1).padStart(2,"0") + " / " + String(N).padStart(2,"0");
+}
+nextBtn.addEventListener("click", ()=>{ unlock(); idx >= N-1 ? go(0,-1) : go(idx+1, 1); });
+backBtn.addEventListener("click", ()=>{ unlock(); go(idx-1, -1); });
+addEventListener("keydown", e=>{
+  if (e.key === "ArrowRight") { unlock(); go(idx+1,1); }
+  else if (e.key === "ArrowLeft") { unlock(); go(idx-1,-1); }
+});
+
+// horizontal swipe between slides (vertical gestures left alone for scrolling)
+(function(){
+  let sx=0, sy=0, live=false, ok=true;
+  const deck = $("#deck");
+  deck.addEventListener("touchstart", e=>{
+    if (e.touches.length !== 1) { live=false; return; }
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY; live = true;
+    // let draggable widgets own the gesture
+    ok = !e.target.closest("#pl, .orbit-stage, .scroll");
+  }, {passive:true});
+  deck.addEventListener("touchend", e=>{
+    if (!live || !ok) { live=false; return; }
+    live = false;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - sx, dy = t.clientY - sy;
+    if (Math.abs(dx) > 58 && Math.abs(dx) > Math.abs(dy)*1.7){
+      unlock();
+      dx < 0 ? go(idx+1, 1) : go(idx-1, -1);
+    }
+  }, {passive:true});
+})();
+
+/* ══════════════════ MUSIC — fixed, looping, quiet ══════════════════ */
+const bgm = $("#bgm"), soundBtn = $("#sound");
+const VOL = 0.22;
+let wantSound = true, armed = false, hasTrack = true;
+
+bgm.volume = 0;
+bgm.addEventListener("error", ()=>{ hasTrack = false; paint(); }, true);
+// belt-and-braces: the loop attribute should handle it, but if a browser
+// ever fires `ended` anyway, restart immediately.
+bgm.addEventListener("ended", ()=>{ if (wantSound){ bgm.currentTime = 0; bgm.play().catch(()=>{}); } });
+
+function fadeTo(target){
+  const from = bgm.volume, t0 = performance.now();
+  (function step(now){
+    const k = clamp((now - t0) / 900, 0, 1);
+    bgm.volume = clamp(from + (target - from) * k, 0, 1);
+    if (k < 1) requestAnimationFrame(step);
+  })(t0);
+}
+function paint(){
+  soundBtn.textContent = !hasTrack ? "♪?" : (wantSound ? "♫" : "♪̶");
+  soundBtn.classList.toggle("off", !wantSound || !hasTrack);
+  soundBtn.title = !hasTrack ? "drop assets/audio/solar-eclipse.mp3 in to enable music"
+                             : (wantSound ? "music on" : "music off");
+}
+function unlock(){
+  if (armed || !wantSound) return;
+  armed = true;
+  const p = bgm.play();
+  if (p && p.catch) p.catch(()=>{ armed = false; });
+  fadeTo(VOL);
+  paint();
+}
+soundBtn.addEventListener("click", ()=>{
+  wantSound = !wantSound;
+  if (wantSound){ armed = false; unlock(); }
+  else { fadeTo(0); setTimeout(()=>{ if(!wantSound) bgm.pause(); }, 920); }
+  paint();
+});
+// first touch anywhere arms audio (iOS/Android gesture requirement)
+["pointerdown","touchstart","click"].forEach(ev=>
+  addEventListener(ev, function once(){ unlock(); }, {once:true, passive:true}));
+// keep it going when they tab away and come back
+document.addEventListener("visibilitychange", ()=>{
+  if (!document.hidden && wantSound && armed) bgm.play().catch(()=>{});
+});
+paint();
+
+/* ══════════════════ S1 · FLOATING EMOJI ══════════════════ */
+(function(){
+  const host = $("#floaters");
+  const pool = ["🎀","💕","🎂","✨","🩷","🧁","🎈","🪩","🌸","💅","👑","🫧"];
+  const frag = document.createDocumentFragment();
+  for (let i=0;i<16;i++){
+    const s = document.createElement("span");
+    s.textContent = pool[i % pool.length];
+    s.style.left = (Math.random()*96) + "%";
+    s.style.bottom = "-50px";
+    s.style.fontSize = (15 + Math.random()*20) + "px";
+    s.style.animationDuration = (11 + Math.random()*11) + "s";
+    s.style.animationDelay = (-Math.random()*20) + "s";
+    frag.appendChild(s);
+  }
+  host.appendChild(frag);
+})();
+
+/* ══════════════════ S3 · LIGHTBOX ══════════════════ */
+(function(){
+  const lb = $("#lb"), img = $("#lbimg"), cap = $("#lbcap");
+  $$("#s3 .wall figure").forEach(f=>{
+    f.addEventListener("click", ()=>{
+      img.src = f.dataset.src; img.alt = f.querySelector("img").alt;
+      cap.textContent = f.dataset.cap || "";
+      lb.classList.add("on");
+    });
+  });
+  lb.addEventListener("click", ()=> lb.classList.remove("on"));
+})();
+
+/* ══════════════════ S7 · VIDEO (plays only while on screen) ══════════════════ */
+(function(){
+  const v = $("#vid"), s = $("#s7");
+  v.muted = true;                   // enforced in JS too — never any audio
+  v.defaultMuted = true;
+  s.addEventListener("slideenter", ()=>{ v.muted = true; v.play().catch(()=>{}); });
+  s.addEventListener("slideleave", ()=> v.pause());
+})();
+
+/* ══════════════════ S4 · CONSTELLATION ══════════════════
+   A particle sphere (canvas 2D) with her photos orbiting inside it on a
+   CSS-3D ring. Both are driven by ONE yaw value, so they read as a single
+   scene. Deliberately not WebGL: ~3 KB and a rock-solid 60fps on a phone,
+   where a three.js build would be ~600 KB and fights the mobile GPU.
+───────────────────────────────────────────────────────── */
+(function(){
+  const stage = $(".orbit-stage"), cv = $("#stars"), ring = $("#ring"), s4 = $("#s4");
+  const ctx = cv.getContext("2d");
+  const PHOTOS = ["t1","t2","t3","t4","t5"].map(n=>"assets/img/"+n+".jpg");
+  const CAPS   = ["aura","chaos","shaka","blur","cinema"];
+
+  // --- the orbiting photo ring (CSS 3D) ---
+  PHOTOS.forEach((src,i)=>{
+    const f = document.createElement("figure");
+    const im = document.createElement("img");
+    im.src = src; im.alt = CAPS[i]; im.loading = "lazy"; im.decoding = "async"; im.draggable = false;
+    f.appendChild(im);
+    ring.appendChild(f);
+  });
+  const figs = $$("figure", ring);
+
+  // --- particle sphere ---
+  const COUNT = 420, R = 1;
+  const pts = [];
+  for (let i=0;i<COUNT;i++){
+    const phi = Math.acos(-1 + (2*i)/COUNT);
+    const th  = Math.sqrt(COUNT*Math.PI) * phi;
+    const rr  = R + (Math.random()-0.5)*0.26;
+    pts.push({
+      x: rr*Math.cos(th)*Math.sin(phi),
+      y: rr*Math.cos(phi),
+      z: rr*Math.sin(th)*Math.sin(phi),
+      s: 0.5 + Math.random()*1.3,
+      h: Math.random() < 0.3 ? 1 : 0        // 1 = white sparkle, 0 = pink
+    });
+  }
+
+  let spin = 0, vel = 0.14, W = 0, H = 0, dpr = 1, radius = 120, raf = 0, live = false;
+  const faceSign = new Array(PHOTOS.length).fill(1);   // 1 = front, -1 = showing its back
+
+  function size(){
+    const r = stage.getBoundingClientRect();
+    W = Math.max(1, r.width); H = Math.max(1, r.height);
+    dpr = Math.min(2, devicePixelRatio || 1);
+    cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr);
+    cv.style.width = W+"px"; cv.style.height = H+"px";
+    radius = Math.min(W, H) * 0.44;
+    // photo size + orbit radius scale with the stage so it never overflows
+    const cw = clamp(Math.round(Math.min(W,H) * 0.30), 76, 150);
+    // keep the widest print fully inside the stage, with a little air
+    const orbitR = Math.round(Math.max(60, Math.min(W*0.5 - cw*0.5 - 10, H*0.34, radius*0.92)));
+    ring.style.setProperty("--cw", cw+"px");
+    figs.forEach((f,i)=>{
+      f.style.setProperty("--cw", cw+"px");
+      const a = (i / figs.length) * 360;
+      // each print faces outward from the centre of the ring
+      f.style.transform = "rotateY("+a+"deg) translateZ("+orbitR+"px)";
+    });
+  }
+
+  function draw(dt){
+    spin += vel * dt;
+    ring.style.setProperty("--spin", spin.toFixed(2)+"deg");
+
+    // A plane on the far side of the ring is seen from behind, so its photo
+    // renders mirrored. Un-mirror it — but only on the frame the sign flips,
+    // so this isn't a style write every frame.
+    const spDeg = ((spin % 360) + 360) % 360;
+    for (let i=0;i<figs.length;i++){
+      const want = Math.cos(((i/figs.length)*360 + spDeg) * Math.PI/180) < 0 ? -1 : 1;
+      if (want !== faceSign[i]){
+        faceSign[i] = want;
+        const im = figs[i].firstElementChild;
+        if (im) im.style.transform = want < 0 ? "scaleX(-1)" : "none";
+      }
+    }
+
+    const yaw = spin * Math.PI/180, pitch = -9 * Math.PI/180;
+    const cy = Math.cos(yaw), sy = Math.sin(yaw);
+    const cp = Math.cos(pitch), sp = Math.sin(pitch);
+    const cx = W/2, cyc = H/2, FOV = 2.6;
+
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.clearRect(0,0,W,H);
+
+    for (let i=0;i<COUNT;i++){
+      const p = pts[i];
+      // rotate Y then X
+      let x =  p.x*cy + p.z*sy;
+      let z = -p.x*sy + p.z*cy;
+      const y = p.y*cp - z*sp;
+      z = p.y*sp + z*cp;
+      const persp = FOV / (FOV + z);
+      const sx = cx + x*radius*persp;
+      const sv = cyc + y*radius*persp;
+      const sz = p.s * persp;
+      const a  = clamp((persp - 0.62) * 1.5, 0.05, 1);
+      ctx.beginPath();
+      ctx.arc(sx, sv, Math.max(0.35, sz), 0, 6.2832);
+      ctx.fillStyle = p.h ? "rgba(255,245,250,"+a.toFixed(3)+")"
+                          : "rgba(255,"+(90+Math.round(a*70))+","+(170+Math.round(a*40))+","+(a*0.92).toFixed(3)+")";
+      ctx.fill();
+    }
+  }
+
+  let last = 0;
+  function loop(now){
+    raf = live ? requestAnimationFrame(loop) : 0;
+    const dt = Math.min(0.05, (now - last)/1000) || 0.016;
+    last = now;
+    if (!drag) vel += (0.14 - vel) * Math.min(1, dt*1.6);   // ease back to idle drift
+    draw(dt * 60);
+  }
+
+  // drag to spin
+  let drag = null;
+  stage.addEventListener("pointerdown", e=>{
+    drag = { x:e.clientX, t:performance.now(), spin:spin };
+    try{ stage.setPointerCapture(e.pointerId); }catch(_){}
+  });
+  stage.addEventListener("pointermove", e=>{
+    if (!drag) return;
+    const dx = e.clientX - drag.x;
+    const now = performance.now();
+    const dt = Math.max(8, now - drag.t);
+    vel = clamp((dx * 0.42) / dt * 16, -9, 9);
+    spin = drag.spin + dx * 0.42;
+    drag.x = e.clientX; drag.t = now; drag.spin = spin;
+  });
+  const endDrag = ()=>{ drag = null; };
+  stage.addEventListener("pointerup", endDrag);
+  stage.addEventListener("pointercancel", endDrag);
+  stage.addEventListener("pointerleave", endDrag);
+
+  s4.addEventListener("slideenter", ()=>{
+    size();
+    if (!live){ live = true; last = performance.now(); raf = requestAnimationFrame(loop); }
+  });
+  s4.addEventListener("slideleave", ()=>{ live = false; if (raf) cancelAnimationFrame(raf); raf = 0; });
+  addEventListener("resize", ()=>{ if (live) size(); });
+  size();
+})();
+
+/* ══════════════════ S5 · THE SAVE COUNTER ══════════════════
+   Port of the contribution-skyline morph: one grid of boxes, one camera that
+   swings from straight-down (flat heat map) to the isometric corner while each
+   week's bars rise in a wave. Projection / bar-height / wave maths are the
+   originals; the React/canvas chrome (legend, stats, keyboard, orbit) is gone
+   because this is a birthday slide, not a dashboard.
+───────────────────────────────────────────────────────── */
+(function(){
+  const s5 = $("#s5"), cv = $("#sky"), wrap = $("#skywrap");
+  const ctx = cv.getContext("2d");
+  const countEl = $("#skycount"), rbtn = $("#rbtn"), list = $("#receipts");
+
+  const WEEKS = 40, DAYS = 7, WAVE = 0.42;
+  const PAL = ["#5c1538","#a31f5f","#e03187","#ff4fa3","#ff9ecd"]; // empty → heaviest
+
+  // deterministic "year of saves" (mulberry32)
+  function rng(seed){ let a=seed>>>0; return ()=>{ a=(a+0x6d2b79f5)>>>0; let t=a;
+    t=Math.imul(t^(t>>>15),t|1); t^=t+Math.imul(t^(t>>>7),t|61);
+    return ((t^(t>>>14))>>>0)/4294967296; }; }
+
+  const cells = [];
+  let TOTAL = 0, MAXC = 0;
+  (function build(){
+    const r = rng(1310);
+    for (let w=0; w<WEEKS; w++){
+      for (let d=0; d<DAYS; d++){
+        const weekend = d===0 || d===6;
+        const season  = 0.5 + 0.5*Math.sin((w/WEEKS)*Math.PI*2.4 + 1.1);
+        let c = 0;
+        if (r() < (weekend?0.42:0.72) * (0.45 + season*0.75)){
+          c = 1 + Math.floor(-Math.log(1-r()) * (1.1 + season*4.2));
+        }
+        if (r() < 0.012) c += 9 + Math.floor(r()*14);
+        cells.push({w:w, d:d, c:c});
+        TOTAL += c; if (c > MAXC) MAXC = c;
+      }
+    }
+    // level 1-4 by quarters of the 95th percentile, like the original
+    const nz = cells.map(x=>x.c).filter(x=>x>0).sort((a,b)=>a-b);
+    const busy = nz.length ? nz[Math.floor(0.95*(nz.length-1))] : 0;
+    cells.forEach(x=>{ x.l = x.c<=0 ? 0 : (busy<=0 ? 4 : 1+Math.min(3, Math.floor((x.c/busy)*4))); });
+  })();
+
+  const barH = c => c>0 ? 0.4 + Math.pow(c/MAXC, 0.85) * 7.2 : 0.2;
+  const riseAt = (t,w,d) => easeOutCubic((t - ((w/(WEEKS-1))*0.36 + (d/6)*0.06)) / (1-WAVE));
+  const YAW3 = Math.PI/4, ELEV3 = 34*Math.PI/180;
+  function cam(e){
+    const yaw = lerp(0, YAW3, e), el = lerp(Math.PI/2, ELEV3, e);
+    return {cs:Math.cos(yaw), sn:Math.sin(yaw), se:Math.sin(el), ce:Math.cos(el)};
+  }
+  const prj = (c,x,y,z) => [ x*c.cs - y*c.sn, (x*c.sn + y*c.cs)*c.se - z*c.ce ];
+
+  function extent(c, e){
+    const w = lerp(0.78, 0.9, e), off = (1-w)/2;
+    let a=Infinity,b=-Infinity,d=Infinity,f=-Infinity;
+    const add = (x,y,z)=>{ const p = prj(c,x,y,z);
+      if(p[0]<a)a=p[0]; if(p[0]>b)b=p[0]; if(p[1]<d)d=p[1]; if(p[1]>f)f=p[1]; };
+    for (let i=0;i<cells.length;i++){
+      const k = cells[i], x0 = k.w+off, y0 = k.d+off, z = barH(k.c)*e;
+      add(x0,y0,z); add(x0+w,y0,z); add(x0,y0+w,z); add(x0+w,y0+w,0);
+    }
+    return {a:a,b:b,d:d,f:f};
+  }
+
+  let W=0, H2=0, H3=0, Hmax=0, dpr=1, t=0, raf=0, live=false, started=false;
+  const order = cells.map((_,i)=>i);
+
+  function size(){
+    W = Math.max(1, Math.round(wrap.clientWidth));
+    dpr = Math.min(2, devicePixelRatio || 1);
+    const b2 = extent(cam(0), 0);
+    H2 = ((b2.f-b2.d)/(b2.b-b2.a)) * (W-6) + 6;
+    const b3 = extent(cam(1), 1);
+    H3 = clamp(((b3.f-b3.d)/(b3.b-b3.a)) * (W-24) + 24, 150, 300);
+    Hmax = Math.ceil(Math.max(H2, H3));
+    cv.width = Math.round(W*dpr); cv.height = Math.round(Hmax*dpr);
+    cv.style.width = W+"px"; cv.style.height = Hmax+"px";
+  }
+
+  function draw(){
+    if (!W) return;
+    const e = easeInOutCubic(t), c = cam(e);
+    const Hc = lerp(H2, H3, e);
+    wrap.style.height = Hc.toFixed(1)+"px";
+    cv.style.marginTop = "0px";
+
+    const b = extent(c, e), pad = lerp(2, 12, e);
+    const aw = W - pad*2, ah = Hc - pad*2;
+    const bw = Math.max(1e-6, b.b-b.a), bh = Math.max(1e-6, b.f-b.d);
+    const s = Math.min(aw/bw, ah/bh);
+    const ox = pad + (aw-bw*s)/2 - b.a*s;
+    const oy = pad + (ah-bh*s)/2 - b.d*s;
+    const px = (x,y)=> ox + (x*c.cs - y*c.sn)*s;
+    const py = (x,y,z)=> oy + ((x*c.sn + y*c.cs)*c.se - z*c.ce)*s;
+
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.clearRect(0,0,W,Hmax);
+    // painter's order: ascending depth = far to near
+    order.sort((i,j)=> ((cells[i].w+.5)*c.sn + (cells[i].d+.5)*c.cs)
+                     - ((cells[j].w+.5)*c.sn + (cells[j].d+.5)*c.cs));
+
+    const bw2 = lerp(0.78, 0.9, e), off = (1-bw2)/2;
+    for (let k=0;k<order.length;k++){
+      const q = cells[order[k]];
+      const z  = riseAt(t, q.w, q.d) * barH(q.c);
+      const x0 = q.w+off, y0 = q.d+off, x1 = x0+bw2, y1 = y0+bw2;
+      const fill = PAL[q.l];
+      const tall = z*c.ce*s;
+
+      if (tall > 0.35 && bw2*c.cs*s > 0.35){            // +y face
+        ctx.beginPath();
+        ctx.moveTo(px(x0,y1), py(x0,y1,0)); ctx.lineTo(px(x1,y1), py(x1,y1,0));
+        ctx.lineTo(px(x1,y1), py(x1,y1,z)); ctx.lineTo(px(x0,y1), py(x0,y1,z));
+        ctx.closePath(); ctx.fillStyle = shade(fill, 0.68); ctx.fill();
+      }
+      if (tall > 0.35 && bw2*c.sn*s > 0.35){            // +x face
+        ctx.beginPath();
+        ctx.moveTo(px(x1,y0), py(x1,y0,0)); ctx.lineTo(px(x1,y1), py(x1,y1,0));
+        ctx.lineTo(px(x1,y1), py(x1,y1,z)); ctx.lineTo(px(x1,y0), py(x1,y0,z));
+        ctx.closePath(); ctx.fillStyle = shade(fill, 0.5); ctx.fill();
+      }
+      ctx.beginPath();                                   // top
+      ctx.moveTo(px(x0,y0), py(x0,y0,z)); ctx.lineTo(px(x1,y0), py(x1,y0,z));
+      ctx.lineTo(px(x1,y1), py(x1,y1,z)); ctx.lineTo(px(x0,y1), py(x0,y1,z));
+      ctx.closePath(); ctx.fillStyle = fill; ctx.fill();
+    }
+  }
+  function shade(hex, k){
+    const v = parseInt(hex.slice(1),16);
+    return "rgb("+Math.round(((v>>16)&255)*k)+","+Math.round(((v>>8)&255)*k)+","+Math.round((v&255)*k)+")";
+  }
+
+  // count-up + morph, both on slide entry
+  let cStart = 0;
+  function loop(now){
+    raf = live ? requestAnimationFrame(loop) : 0;
+    if (!cStart) cStart = now;
+    const el = now - cStart;
+    if (t < 1) t = clamp(el / (REDUCED ? 1 : 1500) - 0.18, 0, 1);
+    countEl.textContent = Math.round(TOTAL * easeOutCubic(el/(REDUCED?1:1400))).toLocaleString();
+    draw();
+    if (t >= 1 && el > 1700){ live = false; countEl.textContent = TOTAL.toLocaleString(); }
+  }
+
+  s5.addEventListener("slideenter", ()=>{
+    size();
+    if (started) { draw(); return; }
+    started = true; t = 0; cStart = 0; live = true;
+    raf = requestAnimationFrame(loop);
+  });
+  s5.addEventListener("slideleave", ()=>{ live = false; if (raf) cancelAnimationFrame(raf); raf = 0; });
+  addEventListener("resize", ()=>{ size(); draw(); });
+
+  /* the receipts */
+  const RECEIPTS = [
+    ["01","wifi died mid-scroll. i was the hotspot."],
+    ["02","that outfit you were 'definitely' wearing out. you weren't."],
+    ["03","told you the guy was weird. he was weird."],
+    ["04","got you food at an hour food should not exist."],
+    ["05","deleted the post. nobody saw it. nobody."],
+    ["06","phone at 1%. me: charger. you: silence."],
+    ["07","covered for you. not saying what for."],
+    ["08","talked you out of the fringe. twice."],
+    ["09","sat through the whole tiktok. all of it."],
+    ["10","found your charger. it was under you."],
+    ["11","answered at 2am like a 24h call centre."],
+    ["12","and roughly "+(TOTAL-12).toLocaleString()+" more. the archive is extensive."]
+  ];
+  rbtn.addEventListener("click", ()=>{
+    rbtn.classList.add("gone");
+    RECEIPTS.forEach((r,i)=>{
+      const li = document.createElement("li");
+      const b = document.createElement("b"); b.textContent = r[0];
+      const sp = document.createElement("span"); sp.textContent = r[1];
+      li.appendChild(b); li.appendChild(sp);
+      list.appendChild(li);
+      setTimeout(()=> li.classList.add("in"), 60 + i*70);
+    });
+    setTimeout(()=>{ list.lastChild.scrollIntoView({behavior:"smooth", block:"nearest"}); }, 1100);
+  });
+})();
+
+/* ══════════════════ S6 · POLAROID LINE (words, not photos) ══════════════════
+   Port of polaroid-line-carousel: prints pegged to a sagging string, swinging
+   on their pegs with the speed you give them. stringY / springStep / swingStep
+   / nearestAt are the original maths. Photos swapped for words — except the
+   last card, which is him.
+───────────────────────────────────────────────────────── */
+(function(){
+  const s6 = $("#s6"), root = $("#pl"), path = $("#plstring");
+  const titleEl = $("#pltitle"), subEl = $("#plsub"), countEl = $("#plcount"), capEl = $("#plcap");
+
+  const SLIDES = [
+    {e:"🎀", t:"ALL THE STUFF YOU LIKE", c:"a scientifically accurate list", n:"the list"},
+    {e:"🦉", t:"DRAKE",                  c:"certified lover girl behaviour",  n:"on repeat"},
+    {e:"🪵", t:"TUNG TUNG TUNG SAHUR",   c:"the wooden one. we don't talk about it.", n:"brainrot core"},
+    {e:"6️⃣", t:"SIX SEVEN",              c:"no further questions, your honour", n:"6 7"},
+    {e:"🐕", t:"DOGS",                   c:"every single one. yes, that one too.", n:"all of them"},
+    {e:"📱", t:"TIKTOK",                 c:"the algorithm knows you better than i do", n:"doomscroll"},
+    {e:"🪔", t:"THE DIYA",               c:"lit, phone on silent, for once",   n:"lit"},
+    {e:"🌊", t:"THAT ACCENT",            c:"you say it funny and you know it", n:"shame man"},
+    {e:"🌅", t:"SUNSET & SAMOOSAS",      c:"a complete and balanced food group", n:"a food group"},
+    {img:"assets/img/1.jpg", t:"VAISHNAV", c:"the cousin. the best friend. the problem.", n:"the cousin"}
+  ];
+  const N6 = SLIDES.length;
+
+  const cards = SLIDES.map((s,i)=>{
+    const card = document.createElement("div");
+    card.className = "pcard"; card.dataset.i = i; card.dataset.on = i===0 ? "1" : "0";
+    const print = document.createElement("div"); print.className = "pprint";
+    const shot  = document.createElement("div"); shot.className  = "pshot";
+    if (s.img){
+      const im = document.createElement("img");
+      im.src = s.img; im.alt = s.t; im.loading = "lazy"; im.decoding = "async"; im.draggable = false;
+      shot.appendChild(im);
+    } else {
+      const inner = document.createElement("div");
+      const em = document.createElement("span"); em.className = "pe"; em.textContent = s.e;
+      const wd = document.createElement("span"); wd.className = "pw"; wd.textContent = s.t;
+      inner.appendChild(em); inner.appendChild(wd);
+      shot.appendChild(inner);
+    }
+    const note = document.createElement("div"); note.className = "pnote"; note.textContent = s.n || s.t;
+    print.appendChild(shot); print.appendChild(note);
+    const peg = document.createElement("div"); peg.className = "ppeg";
+    card.appendChild(print); card.appendChild(peg);
+    root.insertBefore(card, $("#plbar"));
+    return card;
+  });
+
+  const stringY   = (x,w,y0,sag)=>{ const t = clamp(x/w,0,1); return y0 + 4*sag*t*(1-t); };
+  const springStep= (x,v,tg,dt,k)=>{ k=k||70; const c=2*Math.sqrt(k); const nv=v+(k*(tg-x)-c*v)*dt; return [x+nv*dt, nv]; };
+  const swingStep = (a,w,lv,dt,g)=>{ const nw = w + (-38*a - 4.2*w + lv*0.0034*g)*dt; return [clamp(a+nw*dt,-0.6,0.6), nw]; };
+  const nearestAt = (off,sp,n)=> clamp(Math.round(off/sp), 0, n-1);
+  const pad2 = n=> n<10 ? "0"+n : ""+n;
+
+  let W=0, H=0, CW=216, spacing=233, SAG=42;
+  const sim = {off:0, vel:0, target:0, a:new Array(N6).fill(0), w:new Array(N6).fill(0)};
+  let active = 0, drag = null, raf = 0, live = false, lastTouch = 0, prevT = 0;
+
+  function size(){
+    const r = root.getBoundingClientRect();
+    W = Math.max(1, r.width); H = Math.max(1, r.height);
+    CW = Math.round(clamp(Math.min(286, W*0.60, H*0.44), 136, 286));
+    spacing = CW * 1.10;
+    SAG = clamp(H*0.065, 24, 52);
+    cards.forEach(c=> c.style.setProperty("--cw", CW+"px"));
+    sim.off = sim.target = active * spacing;
+  }
+  function goTo(i){ sim.target = clamp(i,0,N6-1) * spacing; lastTouch = performance.now(); }
+
+  function paintBar(){
+    const s = SLIDES[active] || {};
+    titleEl.textContent = s.t || "";
+    subEl.textContent   = s.c || "";
+    countEl.innerHTML   = "";
+    const b = document.createElement("b"); b.textContent = pad2(active+1);
+    countEl.appendChild(b); countEl.appendChild(document.createTextNode(" / " + pad2(N6)));
+    // replay the caption slide-up without detaching titleEl/subEl
+    capEl.classList.remove("go"); void capEl.offsetWidth; capEl.classList.add("go");
+  }
+
+  function frame(now){
+    raf = live ? requestAnimationFrame(frame) : 0;
+    const dt = Math.min(0.033, (now - prevT)/1000) || 0.016;
+    prevT = now;
+    const y0 = Math.max(34, H*0.15);
+    let lineVel;
+    if (drag && drag.moved) lineVel = drag.v * 1000;
+    else { const before = sim.off;
+           const r = springStep(sim.off, sim.vel, sim.target, dt);
+           sim.off = r[0]; sim.vel = r[1];
+           lineVel = -(sim.off - before)/Math.max(dt,1e-3); }
+
+    const g = REDUCED ? 0 : 1;
+    const near = nearestAt(sim.off, spacing, N6);
+    for (let i=0;i<N6;i++){
+      const el = cards[i];
+      const x = W/2 + i*spacing - sim.off;
+      if (x < -CW*1.5 || x > W + CW*1.5){ el.style.visibility = "hidden"; continue; }
+      el.style.visibility = "visible";
+      const r = swingStep(sim.a[i]||0, sim.w[i]||0, lineVel, dt, g);
+      let a = r[0]; sim.w[i] = r[1];
+      if (g) a += Math.sin(now/1300 + i*1.7) * 0.0009 * g;
+      sim.a[i] = a;
+      const y = stringY(x, W, y0, SAG) - 6;
+      el.style.transform = "translate("+(x - CW/2).toFixed(1)+"px,"+y.toFixed(1)+"px) rotate("+a.toFixed(4)+"rad)";
+      el.style.zIndex = String(i === near ? N6+1 : N6 - Math.abs(i-near));
+      el.dataset.on = i === near ? "1" : "0";
+    }
+    path.setAttribute("d", "M0 "+y0+" Q"+(W/2)+" "+(y0 + 2*SAG)+" "+W+" "+y0);
+    if (near !== active){ active = near; paintBar(); }
+  }
+
+  // drag
+  root.addEventListener("pointerdown", e=>{
+    if (e.target.closest("#plbar")) return;
+    lastTouch = performance.now();
+    drag = {x:e.clientX, off:sim.off, lx:e.clientX, lt:e.timeStamp, v:0, moved:false};
+  });
+  root.addEventListener("pointermove", e=>{
+    if (!drag) return;
+    const dx = e.clientX - drag.x;
+    if (!drag.moved && Math.abs(dx) > 5){
+      drag.moved = true; root.dataset.drag = "1";
+      try{ root.setPointerCapture(e.pointerId); }catch(_){}
+    }
+    if (!drag.moved) return;
+    const dt = Math.max(1, e.timeStamp - drag.lt);
+    drag.v = 0.7*((e.clientX - drag.lx)/dt) + 0.3*drag.v;
+    drag.lx = e.clientX; drag.lt = e.timeStamp;
+    const max = (N6-1)*spacing;
+    let off = drag.off - dx;
+    if (off < 0) off *= 0.35;
+    if (off > max) off = max + (off-max)*0.35;
+    sim.off = off;
+  });
+  function up(e){
+    const d = drag; drag = null; root.dataset.drag = "0"; lastTouch = performance.now();
+    if (!d) return;
+    if (d.moved){ sim.vel = -d.v*1000; goTo(nearestAt(sim.off - d.v*180, spacing, N6)); return; }
+    const card = e.target.closest("[data-i]");
+    if (card) goTo(Number(card.dataset.i));
+  }
+  root.addEventListener("pointerup", up);
+  root.addEventListener("pointercancel", ()=>{ drag = null; root.dataset.drag = "0"; });
+  $("#plprev").addEventListener("click", ()=> goTo(active-1));
+  $("#plnext").addEventListener("click", ()=> goTo(active+1));
+
+  // gentle autoplay, pauses while she's touching it
+  setInterval(()=>{
+    if (!live || drag || document.hidden) return;
+    if (performance.now() - lastTouch < 4600) return;
+    goTo(active >= N6-1 ? 0 : active+1);
+  }, 4600);
+
+  s6.addEventListener("slideenter", ()=>{
+    size(); paintBar();
+    if (!live){ live = true; prevT = performance.now(); raf = requestAnimationFrame(frame); }
+  });
+  s6.addEventListener("slideleave", ()=>{ live = false; if (raf) cancelAnimationFrame(raf); raf = 0; });
+  addEventListener("resize", ()=>{ if (live) size(); });
+  size(); paintBar();
+})();
+
+/* ══════════════════ S9 · THE AGE CEREMONY ══════════════════ */
+(function(){
+  const grid = $("#calgrid"), say = $("#calsay");
+  const DOW = ["S","M","T","W","T","F","S"];
+  DOW.forEach(d=>{ const u = document.createElement("u"); u.textContent = d; grid.appendChild(u); });
+  // 1 Oct 2026 is a Thursday → 4 leading blanks on a Sunday-start grid
+  for (let i=0;i<4;i++){ const b = document.createElement("button"); b.className="empty"; b.disabled=true; grid.appendChild(b); }
+
+  const DUDS = [
+    "that's not it. keep looking.",
+    "wrong day. this is a birthday, not a lucky dip.",
+    "nope. you were literally told which one.",
+    "incorrect. embarrassing, honestly.",
+    "bro. the glowing one. the one that's glowing."
+  ];
+  let duds = 0, popped = false;
+
+  for (let d=1; d<=31; d++){
+    const b = document.createElement("button");
+    b.textContent = d;
+    if (d === 13) b.classList.add("day13");
+    b.addEventListener("click", ()=>{
+      if (d === 13){
+        popped = true;
+        say.innerHTML = '<span class="big">HAPPY 16TH 🎂</span>'
+          + 'Tuesday, 13 October 2026. <b>Vaishnav did not actually know your age.</b> '
+          + 'He thought about it for a while, did some maths, gave up, and went with <b>16</b>. '
+          + 'If that is wrong, this website legally self-destructs and he denies everything. '
+          + '<br><br>Either way — happy birthday. 🩷';
+        say.scrollIntoView({behavior:"smooth", block:"nearest"});
+      } else {
+        b.classList.add("poked");
+        if (!popped){ say.textContent = DUDS[duds % DUDS.length]; duds++; }
+      }
+    });
+    grid.appendChild(b);
+  }
+})();
+
+/* ══════════════════ S10 · THE BUTTON ══════════════════ */
+(function(){
+  const btn = $("#bigbtn"), cv = $("#boom"), layer = $("#balloonlayer"), tally = $("#bcount");
+  const ctx = cv.getContext("2d");
+  const EMO = ["🎀","🎂","🎈","🩷","💕","✨","🦄","🧁","🍰","🎉","🪩","💖","🌸","🫧","👑","💅","🎊","💝","🌷","🪅"];
+  const BCOL = ["#ff4fa3","#ff8ec4","#ffc2e0","#c08cff","#ffd27a","#ff2d8f","#ff6fb5"];
+
+  let parts = [], raf = 0, W = 0, H = 0, dpr = 1, presses = 0;
+
+  function size(){
+    W = innerWidth; H = innerHeight; dpr = Math.min(2, devicePixelRatio || 1);
+    cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr);
+    cv.style.width = W+"px"; cv.style.height = H+"px";
+  }
+  size(); addEventListener("resize", size);
+
+  function loop(){
+    raf = requestAnimationFrame(loop);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.clearRect(0,0,W,H);
+    for (let i=parts.length-1; i>=0; i--){
+      const p = parts[i];
+      p.vy += 0.34; p.vx *= 0.995; p.x += p.vx; p.y += p.vy; p.r += p.vr; p.life -= 1;
+      if (p.life <= 0 || p.y > H + 90){ parts.splice(i,1); continue; }
+      ctx.save();
+      ctx.globalAlpha = clamp(p.life/34, 0, 1);
+      ctx.translate(p.x, p.y); ctx.rotate(p.r);
+      ctx.font = p.s + "px serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText(p.e, 0, 0);
+      ctx.restore();
+    }
+    if (!parts.length){ cancelAnimationFrame(raf); raf = 0; ctx.clearRect(0,0,W,H); }
+  }
+
+  function burst(cx, cy, n){
+    for (let i=0;i<n;i++){
+      const ang = (-Math.PI/2) + (Math.random()-0.5) * 2.5;
+      const sp  = 9 + Math.random()*21;
+      parts.push({
+        x:cx, y:cy,
+        vx: Math.cos(ang)*sp * (0.75 + Math.random()*0.7),
+        vy: Math.sin(ang)*sp - Math.random()*9,
+        r: Math.random()*6.28, vr: (Math.random()-0.5)*0.34,
+        s: 19 + Math.random()*26,
+        e: EMO[(Math.random()*EMO.length)|0],
+        life: 120 + Math.random()*90
+      });
+    }
+    if (parts.length > 560) parts = parts.slice(-560);
+    if (!raf) raf = requestAnimationFrame(loop);
+  }
+
+  function balloons(n){
+    for (let i=0;i<n;i++){
+      const b = document.createElement("div");
+      b.className = "bln";
+      const sc = 0.58 + Math.random()*0.95;
+      b.style.left = (Math.random()*94) + "%";
+      b.style.background = BCOL[(Math.random()*BCOL.length)|0];
+      b.style.transform = "scale("+sc.toFixed(2)+")";
+      b.style.setProperty("--dx", ((Math.random()-0.5)*150).toFixed(0)+"px");
+      b.style.setProperty("--rz", ((Math.random()-0.5)*44).toFixed(0)+"deg");
+      b.style.animationDuration = (4.4 + Math.random()*4.4) + "s";
+      b.style.animationDelay = (Math.random()*0.9) + "s";
+      b.style.opacity = "0.94";
+      layer.appendChild(b);
+      setTimeout(()=> b.remove(), 10500);
+    }
+  }
+
+  const QUIPS = ["again.","AGAIN.","okay she's going feral","the server is fine. probably.","aura: immeasurable","stop. (don't)"];
+  btn.addEventListener("click", ()=>{
+    presses++;
+    const r = btn.getBoundingClientRect();
+    const cx = r.left + r.width/2, cy = r.top + r.height/2;
+    burst(cx, cy, 90);
+    setTimeout(()=> burst(cx - r.width*0.4, cy, 48), 110);
+    setTimeout(()=> burst(cx + r.width*0.4, cy, 48), 215);
+    setTimeout(()=> burst(W*0.5, H*0.82, 60), 330);
+    balloons(16);
+    tally.textContent = presses === 1 ? "🎀 happy birthday sivalia 🎀"
+                                      : presses + " presses · " + QUIPS[Math.min(presses-2, QUIPS.length-1)];
+    if (navigator.vibrate) { try { navigator.vibrate([18, 36, 18]); } catch(_){} }
+  });
+
+  $("#s10").addEventListener("slideleave", ()=>{
+    parts = []; if (raf){ cancelAnimationFrame(raf); raf = 0; }
+    ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+  });
+})();
+
+/* ══════════════════ GO ══════════════════ */
+slides[0].classList.add("on");
+slides[0].dispatchEvent(new Event("slideenter"));
+dotEls[0].classList.add("now");
+counter.textContent = "01 / " + String(N).padStart(2,"0");
+nextBtn.textContent = LABELS[0];
+
+})();
+</script>
+</body>
+</html>

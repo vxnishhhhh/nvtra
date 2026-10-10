@@ -491,7 +491,10 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
     <h2 class="h2 rise">exhibit <span class="grad">∞</span></h2>
     <div class="vframe rise">
       <span class="vtag"><i></i> looping · muted</span>
-      <video id="vid" src="assets/video/loop.mp4" muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture></video>
+      <video id="vid" muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture>
+        <source src="assets/video/loop.webm" type="video/webm">
+        <source src="assets/video/loop.mp4" type="video/mp4">
+      </video>
     </div>
     <ul class="rot rise" style="margin-top:16px"><li>replay value: infinite</li><li class="hot">0 skips</li><li>oscar snub</li></ul>
   </section>

@@ -36,15 +36,91 @@ img,video{max-width:100%;display:block}
 button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 
 /* ══════════════ BACKDROP ══════════════ */
-#aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-#aurora i{
-  position:absolute;display:block;border-radius:50%;filter:blur(64px);opacity:.5;
-  animation:drift 22s ease-in-out infinite alternate;
+#aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  background:
+    radial-gradient(130% 80% at 50% -10%, #3b0d2c 0%, transparent 60%),
+    radial-gradient(110% 70% at 50% 110%, #230a2e 0%, transparent 62%),
+    linear-gradient(170deg, #150514 0%, #0d0310 48%, #130417 100%);
 }
-#aurora i:nth-child(1){width:70vw;height:70vw;left:-22vw;top:-18vh;background:radial-gradient(circle,#ff2d8f,transparent 68%)}
-#aurora i:nth-child(2){width:64vw;height:64vw;right:-20vw;top:22vh;background:radial-gradient(circle,#9b5cff,transparent 68%);animation-delay:-7s}
-#aurora i:nth-child(3){width:58vw;height:58vw;left:8vw;bottom:-20vh;background:radial-gradient(circle,#ff7ab8,transparent 68%);animation-delay:-13s}
-@keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(6vw,-7vh,0) scale(1.22)}}
+#aurora i{
+  position:absolute;display:block;border-radius:50%;
+  mix-blend-mode:screen;will-change:transform;
+  animation:drift 26s ease-in-out infinite alternate;
+}
+#aurora i:nth-child(1){width:92vw;height:92vw;left:-30vw;top:-24vh;
+  background:radial-gradient(circle closest-side,rgba(255,45,143,.50),rgba(255,45,143,.14) 45%,transparent 72%)}
+#aurora i:nth-child(2){width:86vw;height:86vw;right:-28vw;top:14vh;
+  background:radial-gradient(circle closest-side,rgba(146,70,255,.46),rgba(146,70,255,.12) 45%,transparent 72%);animation-delay:-8s}
+#aurora i:nth-child(3){width:80vw;height:80vw;left:-12vw;bottom:-22vh;
+  background:radial-gradient(circle closest-side,rgba(255,120,185,.40),rgba(255,120,185,.10) 45%,transparent 72%);animation-delay:-15s}
+#aurora i:nth-child(4){width:52vw;height:52vw;right:-8vw;bottom:4vh;
+  background:radial-gradient(circle closest-side,rgba(255,196,120,.26),transparent 68%);animation-delay:-21s}
+#aurora i:nth-child(5){width:60vw;height:60vw;left:18vw;top:34vh;
+  background:radial-gradient(circle closest-side,rgba(90,60,255,.30),transparent 70%);animation-delay:-11s}
+@keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(7vw,-8vh,0) scale(1.18)}}
+
+/* two parallax star layers — pure CSS, no canvas, no rAF */
+#stars-bg{position:fixed;inset:-10%;z-index:0;pointer-events:none}
+#stars-bg::before,#stars-bg::after{content:"";position:absolute;inset:0;background-repeat:repeat}
+#stars-bg::before{
+  background-image:
+    radial-gradient(0.58px 0.58px at 78.5% 38.8%, rgba(255,236,246,0.36), transparent 60%),
+    radial-gradient(1.33px 1.33px at 47.6% 62.9%, rgba(255,236,246,0.36), transparent 60%),
+    radial-gradient(0.90px 0.90px at 87.3% 34.8%, rgba(255,236,246,0.77), transparent 60%),
+    radial-gradient(1.40px 1.40px at 80.2% 46.8%, rgba(255,236,246,0.38), transparent 60%),
+    radial-gradient(1.44px 1.44px at 28.3% 14.6%, rgba(255,236,246,0.27), transparent 60%),
+    radial-gradient(0.66px 0.66px at 43.0% 75.0%, rgba(255,236,246,0.66), transparent 60%),
+    radial-gradient(0.86px 0.86px at 56.0% 86.3%, rgba(255,236,246,0.50), transparent 60%),
+    radial-gradient(1.14px 1.14px at 25.8% 20.1%, rgba(255,236,246,0.37), transparent 60%),
+    radial-gradient(0.58px 0.58px at 45.6% 20.6%, rgba(255,236,246,0.28), transparent 60%),
+    radial-gradient(0.74px 0.74px at 15.5% 44.0%, rgba(255,236,246,0.67), transparent 60%),
+    radial-gradient(1.28px 1.28px at 63.6% 3.6%, rgba(255,236,246,0.25), transparent 60%),
+    radial-gradient(0.65px 0.65px at 70.1% 10.4%, rgba(255,236,246,0.77), transparent 60%),
+    radial-gradient(0.82px 0.82px at 36.9% 88.0%, rgba(255,236,246,0.27), transparent 60%),
+    radial-gradient(1.74px 1.74px at 45.0% 2.7%, rgba(255,236,246,0.77), transparent 60%),
+    radial-gradient(0.89px 0.89px at 44.7% 68.7%, rgba(255,236,246,0.33), transparent 60%),
+    radial-gradient(1.28px 1.28px at 26.8% 75.7%, rgba(255,236,246,0.64), transparent 60%),
+    radial-gradient(1.23px 1.23px at 15.0% 37.1%, rgba(255,236,246,0.29), transparent 60%),
+    radial-gradient(0.90px 0.90px at 98.1% 85.6%, rgba(255,236,246,0.28), transparent 60%),
+    radial-gradient(1.18px 1.18px at 91.9% 89.2%, rgba(255,236,246,0.35), transparent 60%),
+    radial-gradient(0.96px 0.96px at 4.8% 1.2%, rgba(255,236,246,0.28), transparent 60%),
+    radial-gradient(1.69px 1.69px at 90.2% 3.7%, rgba(255,236,246,0.25), transparent 60%),
+    radial-gradient(0.67px 0.67px at 41.3% 7.1%, rgba(255,236,246,0.59), transparent 60%),
+    radial-gradient(1.62px 1.62px at 66.4% 66.8%, rgba(255,236,246,0.65), transparent 60%),
+    radial-gradient(1.26px 1.26px at 89.4% 27.4%, rgba(255,236,246,0.29), transparent 60%),
+    radial-gradient(0.54px 0.54px at 76.5% 45.9%, rgba(255,236,246,0.59), transparent 60%),
+    radial-gradient(0.81px 0.81px at 11.3% 85.0%, rgba(255,236,246,0.56), transparent 60%);
+  background-size:460px 460px;
+  animation:stardrift 150s linear infinite;
+}
+#stars-bg::after{
+  background-image:
+    radial-gradient(1.15px 1.15px at 23.8% 57.1%, rgba(255,236,246,0.45), transparent 60%),
+    radial-gradient(0.75px 0.75px at 58.0% 32.4%, rgba(255,236,246,0.72), transparent 60%),
+    radial-gradient(1.69px 1.69px at 3.7% 39.5%, rgba(255,236,246,0.65), transparent 60%),
+    radial-gradient(0.56px 0.56px at 4.6% 56.3%, rgba(255,236,246,0.34), transparent 60%),
+    radial-gradient(1.77px 1.77px at 22.5% 55.6%, rgba(255,236,246,0.46), transparent 60%),
+    radial-gradient(1.11px 1.11px at 79.3% 50.0%, rgba(255,236,246,0.43), transparent 60%),
+    radial-gradient(0.74px 0.74px at 52.1% 5.8%, rgba(255,236,246,0.34), transparent 60%),
+    radial-gradient(0.75px 0.75px at 93.4% 11.7%, rgba(255,236,246,0.65), transparent 60%),
+    radial-gradient(1.03px 1.03px at 60.3% 49.9%, rgba(255,236,246,0.46), transparent 60%),
+    radial-gradient(1.72px 1.72px at 19.8% 31.1%, rgba(255,236,246,0.57), transparent 60%),
+    radial-gradient(1.74px 1.74px at 32.5% 85.8%, rgba(255,236,246,0.63), transparent 60%),
+    radial-gradient(0.85px 0.85px at 69.5% 97.4%, rgba(255,236,246,0.54), transparent 60%),
+    radial-gradient(0.71px 0.71px at 84.5% 53.8%, rgba(255,236,246,0.62), transparent 60%),
+    radial-gradient(0.90px 0.90px at 67.0% 27.9%, rgba(255,236,246,0.68), transparent 60%),
+    radial-gradient(1.07px 1.07px at 87.7% 53.6%, rgba(255,236,246,0.65), transparent 60%),
+    radial-gradient(1.31px 1.31px at 42.4% 42.1%, rgba(255,236,246,0.72), transparent 60%),
+    radial-gradient(0.84px 0.84px at 87.3% 44.2%, rgba(255,236,246,0.76), transparent 60%),
+    radial-gradient(1.25px 1.25px at 90.2% 88.2%, rgba(255,236,246,0.79), transparent 60%);
+  background-size:300px 300px;opacity:.6;
+  animation:stardrift 95s linear infinite reverse;
+}
+@keyframes stardrift{to{transform:translate3d(-460px,230px,0)}}
+
+/* a vignette keeps the eye on the middle of the phone */
+#vig{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 75% at 50% 45%, transparent 42%, rgba(8,2,8,.56) 100%)}
 #grain{
   position:fixed;inset:-50%;z-index:1;pointer-events:none;opacity:.055;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -115,14 +191,14 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 #back[disabled]{opacity:.22;pointer-events:none}
 #next{
   flex:1;height:46px;border-radius:999px;position:relative;overflow:hidden;
-  background:linear-gradient(100deg,var(--pink4),var(--pink),var(--lilac));
-  background-size:220% 100%;animation:shimmer 5s linear infinite;
+  background:linear-gradient(100deg,var(--pink4),var(--pink),var(--lilac),var(--pink),var(--pink4));
+  background-size:200% 100%;animation:shimmer 7s linear infinite;
   color:#2a0418;font:700 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
   box-shadow:0 8px 28px -8px rgba(255,45,143,.65);
   transition:transform .16s var(--ease);
 }
 #next:active{transform:scale(.965)}
-@keyframes shimmer{to{background-position:220% 0}}
+@keyframes shimmer{from{background-position:0% 0}to{background-position:-200% 0}}
 #counter{
   position:fixed;z-index:30;right:16px;bottom:calc(var(--safe-b) + 74px);
   font:400 10px/1 var(--mono);letter-spacing:.2em;color:var(--muted);pointer-events:none;
@@ -169,48 +245,16 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 #floaters span{position:absolute;font-size:22px;opacity:0;animation:floatup linear infinite}
 @keyframes floatup{0%{opacity:0;transform:translateY(0) rotate(0)}12%{opacity:.75}88%{opacity:.75}100%{opacity:0;transform:translateY(-104vh) rotate(300deg)}}
 
-/* ══════════════ S3 · PHOTO WALL ══════════════ */
-.wall{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding-bottom:18px}
-.wall figure{
-  margin:0;position:relative;overflow:hidden;border-radius:15px;
-  border:1px solid var(--line);background:#2a0d20;
-  box-shadow:0 14px 34px -14px rgba(0,0,0,.8);
-  opacity:0;transform:translateY(26px) scale(.95) rotate(var(--r,0deg));
-  transition:opacity .62s var(--ease),transform .62s var(--ease);
-}
-.slide.on .wall figure{opacity:1;transform:rotate(var(--r,0deg))}
-.wall figure:nth-child(1){transition-delay:0.060s}
-.wall figure:nth-child(2){transition-delay:0.115s}
-.wall figure:nth-child(3){transition-delay:0.170s}
-.wall figure:nth-child(4){transition-delay:0.225s}
-.wall figure:nth-child(5){transition-delay:0.280s}
-.wall figure:nth-child(6){transition-delay:0.335s}
-.wall figure:nth-child(7){transition-delay:0.390s}
-.wall figure:nth-child(8){transition-delay:0.445s}
-.wall figure:nth-child(9){transition-delay:0.500s}
-.wall figure:nth-child(10){transition-delay:0.555s}
-.wall figure.wide{grid-column:span 2}
-.wall img{width:100%;height:100%;object-fit:cover;aspect-ratio:3/4;transition:transform .7s var(--ease)}
-.wall figure.wide img{aspect-ratio:16/11}
-.wall figure:active img{transform:scale(1.07)}
-.wall figcaption{
-  position:absolute;left:9px;bottom:8px;right:9px;
-  font:400 9px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;
-  color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.95);pointer-events:none;
-}
-/* lightbox */
-#lb{position:fixed;inset:0;z-index:60;background:rgba(10,3,8,.96);display:none;place-items:center;padding:20px;backdrop-filter:blur(8px)}
-#lb.on{display:grid;animation:fade .3s}
-@keyframes fade{from{opacity:0}}
-#lb img{max-width:100%;max-height:82vh;border-radius:13px;box-shadow:0 24px 70px rgba(0,0,0,.9)}
-#lb p{margin:14px 0 0;font:400 10px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--muted);text-align:center}
+
+
 
 /* ══════════════ S4 · CONSTELLATION ══════════════ */
 #s4{align-items:center;justify-content:flex-start}
-.orbit-stage{position:relative;flex:1;width:100%;min-height:0;display:grid;place-items:center;touch-action:pan-y}
+.orbit-stage{position:relative;flex:1;width:100%;min-height:0;display:grid;place-items:center;touch-action:none;cursor:grab}
+.orbit-stage:active{cursor:grabbing}
 #stars{position:absolute;inset:0;width:100%;height:100%}
 .ring-wrap{position:relative;width:100%;height:100%;display:grid;place-items:center;perspective:900px;perspective-origin:50% 48%}
-.ring{position:relative;width:1px;height:1px;transform-style:preserve-3d;transform:rotateX(-14deg) rotateY(var(--spin,0deg))}
+.ring{position:relative;width:1px;height:1px;transform-style:preserve-3d;transform:rotateX(var(--tilt,-14deg)) rotateY(var(--spin,0deg))}
 .ring figure{
   position:absolute;margin:0;left:50%;top:50%;
   width:var(--cw,112px);height:var(--cw,112px);margin-left:calc(var(--cw,112px) / -2);margin-top:calc(var(--cw,112px) / -2);
@@ -353,8 +397,8 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 @keyframes rise{to{transform:translateY(-118vh) translateX(var(--dx,0px)) rotate(var(--rz,0deg))}}
 #bigbtn{
   position:relative;padding:21px 40px;border-radius:999px;
-  background:linear-gradient(104deg,var(--pink4),var(--pink),var(--lilac),var(--pink4));
-  background-size:300% 100%;animation:shimmer 3.2s linear infinite;
+  background:linear-gradient(104deg,var(--pink4),var(--pink),var(--lilac),var(--pink),var(--pink4));
+  background-size:200% 100%;animation:shimmer 4.5s linear infinite;
   font:800 15px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#2a0418;
   box-shadow:0 16px 46px -10px rgba(255,45,143,.85);
   transition:transform .16s var(--ease);
@@ -367,6 +411,53 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 @keyframes halo{0%{transform:scale(.95);opacity:.9}100%{transform:scale(1.22);opacity:0}}
 #bcount{margin-top:16px;font:400 10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);min-height:12px}
 
+/* ══════════════ MOBILE POLISH ══════════════ */
+/* dvh tracks the browser chrome collapsing on scroll; svh/100% do not, which is
+   what makes a fixed bottom bar jump around on iOS Safari. */
+@supports (height:100dvh){ html,body{height:100dvh} }
+
+.slide{padding-top:calc(var(--safe-t) + 54px);padding-bottom:calc(var(--safe-b) + 98px)}
+
+/* phones: give the content the width back */
+@media (max-width:420px){
+  .slide{padding-left:17px;padding-right:17px}
+  .kicker{letter-spacing:.26em;margin-bottom:11px}
+  .h1{line-height:.86}
+  .body{line-height:1.56}
+  .rot li{font-size:9px;padding:5px 8px}
+  #navbar{padding:12px 15px calc(var(--safe-b) + 13px)}
+  #next{height:50px;font-size:12.5px}         /* 50px clears the 44px tap target */
+  #back{width:50px;height:50px}
+  #counter{bottom:calc(var(--safe-b) + 76px);right:15px}
+  #receipts li{padding:9px 11px;font-size:12.5px}
+  .cal{padding:13px}
+  .cal-grid button{font-size:12px;border-radius:8px}
+  #calsay{padding:13px 14px;font-size:13px}
+}
+/* very small phones (SE and friends) */
+@media (max-width:360px){
+  .h2{font-size:25px}
+  .slide{padding-left:14px;padding-right:14px}
+  .cal-grid{gap:3px}
+}
+/* short screens in landscape: claw back vertical space */
+@media (max-height:620px){
+  .slide{padding-top:calc(var(--safe-t) + 44px);padding-bottom:calc(var(--safe-b) + 84px)}
+  .h1{font-size:clamp(32px,11vw,56px)}
+  .bday-em{font-size:clamp(34px,13vw,60px);margin-bottom:2px}
+  #navbar{padding:9px 15px calc(var(--safe-b) + 10px)}
+  #next,#back{height:42px}
+  #back{width:42px}
+}
+
+/* the constellation is the only photo page now, so let it breathe */
+#s4{padding-left:8px;padding-right:8px}
+#s4 .kicker{margin-bottom:8px}
+#s4 .h2{font-size:clamp(24px,7.4vw,38px)}
+
+/* stop the browser from re-rasterising offscreen slides */
+.slide:not(.on){content-visibility:auto;contain-intrinsic-size:100vw 100vh}
+
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
 }
@@ -378,7 +469,9 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 </head>
 <body>
 
-<div id="aurora"><i></i><i></i><i></i></div>
+<div id="aurora"><i></i><i></i><i></i><i></i><i></i></div>
+<div id="stars-bg"></div>
+<div id="vig"></div>
 <div id="grain"></div>
 
 <audio id="bgm" loop preload="auto" playsinline>
@@ -418,68 +511,14 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
     <ul class="rot rise"><li>emotionally damaging</li><li class="hot">in a good way</li><li>probably</li></ul>
   </section>
 
-  <!-- ══ 3 · PHOTO WALL ══ -->
-  <section class="slide" id="s3">
-    <p class="kicker rise">the evidence locker</p>
-    <h2 class="h2 rise">every photo<br><span class="grad">we didn't delete</span></h2>
-    <div class="scroll rise">
-      <div class="wall">
-        <figure class="wide" style="--r:-.5deg" data-src="assets/img/1.jpg" data-cap="exhibit a · the hair incident">
-          <img src="assets/img/1.jpg" alt="wild hair, hallway, chaos" loading="lazy" decoding="async">
-          <figcaption>exhibit a · the hair incident</figcaption>
-        </figure>
-        <figure style="--r:1deg" data-src="assets/img/2.jpg" data-cap="exhibit b · motion blur era">
-          <img src="assets/img/2.jpg" alt="both of us, blurry" loading="lazy" decoding="async">
-          <figcaption>b · motion blur</figcaption>
-        </figure>
-        <figure style="--r:-1.2deg" data-src="assets/img/3.jpg" data-cap="exhibit c · shaka by the river">
-          <img src="assets/img/3.jpg" alt="shaka by the water" loading="lazy" decoding="async">
-          <figcaption>c · shaka hands</figcaption>
-        </figure>
-        <figure class="wide" style="--r:.6deg" data-src="assets/img/7.jpg" data-cap="exhibit d · absolute silence">
-          <img src="assets/img/7.jpg" alt="shushing, both of us" loading="lazy" decoding="async">
-          <figcaption>exhibit d · absolute silence</figcaption>
-        </figure>
-        <figure style="--r:.8deg" data-src="assets/img/4.jpg" data-cap="exhibit e · synchronised tongues">
-          <img src="assets/img/4.jpg" alt="tongues out, both" loading="lazy" decoding="async">
-          <figcaption>e · synchronised</figcaption>
-        </figure>
-        <figure style="--r:-.7deg" data-src="assets/img/5.jpg" data-cap="exhibit f · peak cinematography">
-          <img src="assets/img/5.jpg" alt="by the water, backs turned" loading="lazy" decoding="async">
-          <figcaption>f · peak cinema</figcaption>
-        </figure>
-        <figure class="wide" style="--r:-.4deg" data-src="assets/img/6.jpg" data-cap="exhibit g · the shush committee">
-          <img src="assets/img/6.jpg" alt="three of us, chaos" loading="lazy" decoding="async">
-          <figcaption>exhibit g · the shush committee</figcaption>
-        </figure>
-        <figure style="--r:1.1deg" data-src="assets/img/8.jpg" data-cap="exhibit h · parrot supervision">
-          <img src="assets/img/8.jpg" alt="sitting by the parrot mural" loading="lazy" decoding="async">
-          <figcaption>h · parrot duty</figcaption>
-        </figure>
-        <figure style="--r:-.9deg" data-src="assets/img/9.jpg" data-cap="exhibit i · unserious behaviour">
-          <img src="assets/img/9.jpg" alt="looking at each other" loading="lazy" decoding="async">
-          <figcaption>i · unserious</figcaption>
-        </figure>
-        <figure class="wide" style="--r:.5deg" data-src="assets/img/10.jpg" data-cap="exhibit j · the bird said no">
-          <img src="assets/img/10.jpg" alt="posing under the parrot" loading="lazy" decoding="async">
-          <figcaption>exhibit j · the bird said no</figcaption>
-        </figure>
-      </div>
-      <div class="marq" style="margin:14px 0 6px"><div>
-        <span>tap a photo to blow it up</span><span>·</span><span>tung tung tung sahur</span><span>·</span><span>six seven</span><span>·</span>
-        <span>tap a photo to blow it up</span><span>·</span><span>tung tung tung sahur</span><span>·</span><span>six seven</span><span>·</span>
-      </div></div>
-    </div>
-  </section>
 
-  <!-- ══ 4 · CONSTELLATION ══ -->
   <section class="slide" id="s4">
     <p class="kicker rise" style="text-align:center;width:100%">your own personal solar system</p>
     <h2 class="h2 rise" style="text-align:center;width:100%;margin-bottom:4px">the <span class="grad">sivalia</span> constellation</h2>
     <div class="orbit-stage rise">
       <canvas id="stars"></canvas>
       <div class="ring-wrap"><div class="ring" id="ring"></div></div>
-      <p class="orbit-hint">drag to spin it · yes it's 3d</p>
+      <p class="orbit-hint">drag it around · yes it's 3d</p>
     </div>
   </section>
 
@@ -503,7 +542,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
       <svg class="plline" aria-hidden="true"><path id="plstring" fill="none" stroke="rgba(255,142,196,.45)" stroke-width="1.5" stroke-linecap="round"/></svg>
       <div id="plbar">
         <div id="plcap"><span id="pltitle"></span><span id="plsub"></span></div>
-        <span id="plcount"><b>01</b> / 10</span>
+        <span id="plcount"><b>01</b> / 11</span>
         <button class="plb" id="plprev" aria-label="previous"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></button>
         <button class="plb" id="plnext" aria-label="next"><svg width="14" height="14" viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></button>
       </div>
@@ -527,7 +566,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
   <!-- ══ 8 · TEXT TWO ══ -->
   <section class="slide" id="s8">
     <p class="kicker rise">page three of three with actual words</p>
-    <h2 class="h2 rise">the <span class="grad">serious bit</span><br>(short, don't worry)</h2>
+    <h2 class="h2 rise">the <span class="grad">serious bit</span><br>(short. like you.)</h2>
     <div class="rise">
       <p class="body">You're the one person I don't have to explain myself to. That's rarer than people think and I'm not going to pretend otherwise just because it's a birthday page.</p>
       <p class="body">Keep being too much. The world has enough people being exactly the right amount.</p>
@@ -569,7 +608,6 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 </nav>
 <div id="counter"></div>
 
-<div id="lb"><div><img id="lbimg" alt=""><p id="lbcap"></p></div></div>
 
 <script>
 (function(){
@@ -593,7 +631,7 @@ slides.forEach(()=> dots.appendChild(document.createElement("b")));
 const dotEls = $$("#dots b");
 
 const nextBtn = $("#next"), backBtn = $("#back"), counter = $("#counter");
-const LABELS = ["next →","next →","next →","next →","next →","next →","next →","next →","next →","again?"];
+const LABELS = ["next →","next →","next →","next →","next →","next →","next →","next →","again?"];
 
 function go(n, dir){
   n = clamp(n, 0, N-1);
@@ -709,18 +747,6 @@ paint();
   host.appendChild(frag);
 })();
 
-/* ══════════════════ S3 · LIGHTBOX ══════════════════ */
-(function(){
-  const lb = $("#lb"), img = $("#lbimg"), cap = $("#lbcap");
-  $$("#s3 .wall figure").forEach(f=>{
-    f.addEventListener("click", ()=>{
-      img.src = f.dataset.src; img.alt = f.querySelector("img").alt;
-      cap.textContent = f.dataset.cap || "";
-      lb.classList.add("on");
-    });
-  });
-  lb.addEventListener("click", ()=> lb.classList.remove("on"));
-})();
 
 /* ══════════════════ S7 · VIDEO (plays only while on screen) ══════════════════ */
 (function(){
@@ -740,14 +766,15 @@ paint();
 (function(){
   const stage = $(".orbit-stage"), cv = $("#stars"), ring = $("#ring"), s4 = $("#s4");
   const ctx = cv.getContext("2d");
-  const PHOTOS = ["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"].map(n=>"assets/img/"+n+".jpg");
-  const CAPS   = ["aura","chaos","shaka","blur","cinema","shush","silence","parrot","unserious","the bird"];
+  // t1 (the hair) is deliberately absent — that one is his, and it lives on the
+  // last polaroid instead.
+  const PHOTOS = ["t2","t3","t4","t5","t6","t7","t8","t9","t10"].map(n=>"assets/img/"+n+".jpg");
 
   // --- the orbiting photo ring (CSS 3D) ---
   PHOTOS.forEach((src,i)=>{
     const f = document.createElement("figure");
     const im = document.createElement("img");
-    im.src = src; im.alt = CAPS[i]; im.loading = "lazy"; im.decoding = "async"; im.draggable = false;
+    im.src = src; im.alt = "photo " + (i+1); im.loading = "lazy"; im.decoding = "async"; im.draggable = false;
     f.appendChild(im);
     ring.appendChild(f);
   });
@@ -769,7 +796,10 @@ paint();
     });
   }
 
-  let spin = 0, vel = 0.14, W = 0, H = 0, dpr = 1, radius = 120, raf = 0, live = false;
+  let spin = 0, vel = 0.14;          // yaw, degrees + degrees/frame
+  let tilt = -14, tvel = 0;          // pitch, degrees + degrees/frame
+  let W = 0, H = 0, dpr = 1, radius = 120, raf = 0, live = false;
+  const TILT_MIN = -62, TILT_MAX = 28;
   const faceSign = new Array(PHOTOS.length).fill(1);   // 1 = front, -1 = showing its back
 
   function size(){
@@ -800,7 +830,9 @@ paint();
 
   function draw(dt){
     spin += vel * dt;
+    tilt  = clamp(tilt + tvel * dt, TILT_MIN, TILT_MAX);
     ring.style.setProperty("--spin", spin.toFixed(2)+"deg");
+    ring.style.setProperty("--tilt", tilt.toFixed(2)+"deg");
 
     // A plane on the far side of the ring is seen from behind, so its photo
     // renders mirrored. Un-mirror it — but only on the frame the sign flips,
@@ -815,7 +847,7 @@ paint();
       }
     }
 
-    const yaw = spin * Math.PI/180, pitch = -9 * Math.PI/180;
+    const yaw = spin * Math.PI/180, pitch = tilt * Math.PI/180;
     const cy = Math.cos(yaw), sy = Math.sin(yaw);
     const cp = Math.cos(pitch), sp = Math.sin(pitch);
     const cx = W/2, cyc = H/2, FOV = 2.6;
@@ -848,29 +880,54 @@ paint();
     raf = live ? requestAnimationFrame(loop) : 0;
     const dt = Math.min(0.05, (now - last)/1000) || 0.016;
     last = now;
-    if (!drag) vel += (0.14 - vel) * Math.min(1, dt*1.6);   // ease back to idle drift
+    if (!drag){
+      vel  += (0.14 - vel) * Math.min(1, dt*0.9);   // ease back to the idle drift
+      tvel *= Math.pow(0.86, dt);                   // pitch just coasts to a stop
+      if (Math.abs(tvel) < 0.004) tvel = 0;
+    }
     draw(dt * 60);
   }
 
-  // drag to spin
+  // drag: horizontal spins, vertical tilts. Velocity is smoothed over the last
+  // few moves so releasing after a slow drag doesn't fling it.
   let drag = null;
   stage.addEventListener("pointerdown", e=>{
-    drag = { x:e.clientX, t:performance.now(), spin:spin };
+    drag = { x:e.clientX, y:e.clientY, t:performance.now(), vx:0, vy:0, moved:false };
+    vel = 0; tvel = 0;
     try{ stage.setPointerCapture(e.pointerId); }catch(_){}
   });
   stage.addEventListener("pointermove", e=>{
     if (!drag) return;
-    const dx = e.clientX - drag.x;
     const now = performance.now();
-    const dt = Math.max(8, now - drag.t);
-    vel = clamp((dx * 0.42) / dt * 16, -9, 9);
-    spin = drag.spin + dx * 0.42;
-    drag.x = e.clientX; drag.t = now; drag.spin = spin;
+    const dt  = Math.max(8, now - drag.t);
+    const dx  = e.clientX - drag.x;
+    const dy  = e.clientY - drag.y;
+    if (!drag.moved && Math.hypot(dx,dy) < 3) return;
+    drag.moved = true;
+    const sx = dx * 0.5;                 // degrees of yaw per px
+    const sy = -dy * 0.32;               // degrees of pitch per px (drag down = look down)
+    spin += sx;
+    tilt  = clamp(tilt + sy, TILT_MIN, TILT_MAX);
+    // exponential moving average → a steady read of how fast they're moving
+    drag.vx = 0.72 * (sx / dt * 16) + 0.28 * drag.vx;
+    drag.vy = 0.72 * (sy / dt * 16) + 0.28 * drag.vy;
+    drag.x = e.clientX; drag.y = e.clientY; drag.t = now;
   });
-  const endDrag = ()=>{ drag = null; };
+  const endDrag = e=>{
+    if (!drag) return;
+    if (drag.moved){                     // hand the momentum over
+      vel  = clamp(drag.vx, -11, 11);
+      tvel = clamp(drag.vy, -7, 7);
+    }
+    drag = null;
+    if (e && e.pointerId != null && stage.hasPointerCapture && stage.hasPointerCapture(e.pointerId))
+      stage.releasePointerCapture(e.pointerId);
+  };
   stage.addEventListener("pointerup", endDrag);
   stage.addEventListener("pointercancel", endDrag);
   stage.addEventListener("pointerleave", endDrag);
+  // double-tap puts it back the way it started
+  stage.addEventListener("dblclick", ()=>{ tilt = -14; tvel = 0; vel = 0.14; });
 
   s4.addEventListener("slideenter", ()=>{
     size();
@@ -1035,20 +1092,7 @@ paint();
   addEventListener("resize", ()=>{ size(); draw(); });
 
   /* the receipts */
-  const RECEIPTS = [
-    ["01","wifi died mid-scroll. i was the hotspot."],
-    ["02","that outfit you were 'definitely' wearing out. you weren't."],
-    ["03","told you the guy was weird. he was weird."],
-    ["04","got you food at an hour food should not exist."],
-    ["05","deleted the post. nobody saw it. nobody."],
-    ["06","phone at 1%. me: charger. you: silence."],
-    ["07","covered for you. not saying what for."],
-    ["08","talked you out of the fringe. twice."],
-    ["09","sat through the whole tiktok. all of it."],
-    ["10","found your charger. it was under you."],
-    ["11","answered at 2am like a 24h call centre."],
-    ["12","and roughly "+(TOTAL-12).toLocaleString()+" more. the archive is extensive."]
-  ];
+  const RECEIPTS = Array.from({length:12},(_,i)=>[String(i+1).padStart(2,"0"), "Sayuren"]);
   rbtn.addEventListener("click", ()=>{
     rbtn.classList.add("gone");
     RECEIPTS.forEach((r,i)=>{
@@ -1075,13 +1119,14 @@ paint();
 
   const SLIDES = [
     {e:"🎀", t:"ALL THE STUFF YOU LIKE", c:"a scientifically accurate list", n:"the list"},
-    {e:"🦉", t:"DRAKE",                  c:"certified lover girl behaviour",  n:"on repeat"},
+    {e:"🌊", t:"WILD COAST",             c:"the drive is half the point",    n:"wild coast"},
+    {e:"🎰", t:"GAMBLING",               c:"up big. down bigger. no notes.", n:"house always wins"},
     {e:"🪵", t:"TUNG TUNG TUNG SAHUR",   c:"the wooden one. we don't talk about it.", n:"brainrot core"},
     {e:"6️⃣", t:"SIX SEVEN",              c:"no further questions, your honour", n:"6 7"},
     {e:"🐕", t:"DOGS",                   c:"every single one. yes, that one too.", n:"all of them"},
     {e:"📱", t:"TIKTOK",                 c:"the algorithm knows you better than i do", n:"doomscroll"},
-    {e:"🪔", t:"THE DIYA",               c:"lit, phone on silent, for once",   n:"lit"},
-    {e:"🌊", t:"THAT ACCENT",            c:"you say it funny and you know it", n:"shame man"},
+    {e:"🪔", t:"THE DIYA",               c:"lit, phone on silent, for once", n:"lit"},
+    {e:"🍟", t:"A BUNNY CHOW AT 1AM",    c:"a decision, every single time", n:"no regrets"},
     {e:"🌅", t:"SUNSET & SAMOOSAS",      c:"a complete and balanced food group", n:"a food group"},
     {img:"assets/img/1.jpg", t:"VAISHNAV", c:"the cousin. the best friend. the problem.", n:"the cousin"}
   ];
@@ -1251,9 +1296,10 @@ paint();
       if (d === 13){
         popped = true;
         say.innerHTML = '<span class="big">HAPPY 16TH 🎂</span>'
-          + 'Tuesday, 13 October 2026. <b>Vaishnav did not actually know your age.</b> '
-          + 'He thought about it for a while, did some maths, gave up, and went with <b>16</b>. '
-          + 'If that is wrong, this website legally self-destructs and he denies everything. '
+          + 'Tuesday, 13 October 2026. <b>Vaishnav (me) did not actually know your age.</b> '
+          + 'I thought about it for a while, did some maths, gave up, and went with <b>16</b>. '
+          + 'If that is wrong, this website legally self-destructs — and I would know, '
+          + '<b>because I coded it.</b>'
           + '<br><br>Either way — happy birthday. 🩷';
         say.scrollIntoView({behavior:"smooth", block:"nearest"});
       } else {

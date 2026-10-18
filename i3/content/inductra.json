@@ -1,0 +1,191 @@
+{
+  "brand": {"name": "Inductra Vaion", "author": "Vaishnav", "credit": "Vaishnav"},
+  "notice": "I³ content pack · live instrument panels are placeholders here",
+  "force_home_on_load": true,
+
+  "intro": {
+    "eyebrow": "I³   Induction · Interference · Intelligence",
+    "title_top": "INDUCTRA",
+    "title_bottom": "VAION",
+    "kicker": "Project overview",
+    "card_title": "Inductra Vaion",
+    "description": "A real-time electromagnetic instrument that resolves magnetic vectors, electric-field activity, RF peaks, and system confidence.",
+    "grid_label": "Hardware",
+    "grid": [
+      {"name": "RASPBERRY PI", "role": "Host + server"},
+      {"name": "QMC5883P", "role": "Magnetometer"},
+      {"name": "ADS1115", "role": "E-field ADC"},
+      {"name": "TINYSA ULTRA", "role": "Spectrum · USB"},
+      {"name": "HT5 ANTENNA", "role": "100 kHz – 6 GHz"},
+      {"name": "RTL-SDR", "role": "IQ receiver · USB"}
+    ]
+  },
+
+  "status": [
+    {"label": "MTDI", "value": "—", "bind": "score", "state": "ok"},
+    {"label": "RF", "value": "—", "bind": "channel", "state": "warn"}
+  ],
+
+  "dock": {
+    "name": "NVTRA",
+    "hint": "Press N to start listening",
+    "placeholder": "Ask NVTRA about the field",
+    "chip": {"label": "MTDI", "value": "—", "bind": "score", "state": "ok"}
+  },
+
+  "pages": [
+    {
+      "path": "/", "type": "home", "label": "Home",
+      "opening": {
+        "kind": "field",
+        "title": "Electromagnetic interference is unwanted electromagnetic energy that flows into other systems.",
+        "tagline": "It leaks from motors, chargers, radios and wiring, rides along cables and through the air, and disturbs whatever it reaches. Inductra Vaion measures it as magnetic, electric and radio-frequency energy, so you can see where it comes from and how strong it is."
+      },
+      "hero": {
+        "title": "Inductra Vaion",
+        "tag_em": "ELECTROMAGNETIC INTELLIGENCE",
+        "tag": "   —   OUR SIXTH SENSE",
+        "description": "A real-time electromagnetic diagnostic instrument built on a Raspberry Pi. It reads a [[QMC5883P three-axis magnetometer]] and an [[ADS1115 electric-field probe]] over [[I²C]], sweeps [[100 kHz to 6 GHz]] with a [[tinySA Ultra]] over USB, resolves the field into [[magnetic vectors]], [[relative E-field activity]] and [[tracked RF peaks]], and adds fine-resolution complex-IQ capture through an [[RTL-SDR]] — translating invisible electromagnetic behaviour into a human sixth sense.",
+        "spec": [
+          {"k": "MAGNETOMETER", "v": "QMC5883P @ 0x2C"}, {"k": "E-FIELD ADC", "v": "ADS1115 @ 0x48"},
+          {"k": "SPECTRUM", "v": "tinySA Ultra · USB"}, {"k": "RF RANGE", "v": "100 kHz – 6 GHz"},
+          {"k": "BUS", "v": "I²C-1  (SDA/SCL)"}, {"k": "IQ RECEIVER", "v": "RTL-SDR · USB"}, {"k": "HOST", "v": "Raspberry Pi"}
+        ]
+      },
+      "modules": {
+        "title": "Instrument Modules",
+        "line": "We call these [[instruments]] because this is [[ART]].",
+        "items": [
+          {"num": "01", "key": "EM FIELD", "role": "em", "title": "Electromagnetic Field", "href": "/em", "accent": "#67cbd5",
+           "desc": "Magnetic (QMC5883P) and reference-scaled electric-field strength (ADS1115).",
+           "live": {"value": "—", "label": "MAGNITUDE", "bind": "module_value"}},
+          {"num": "02", "key": "SPECTRUM", "role": "spectrum", "title": "Spectrum Analysis", "href": "/spectrum", "accent": "#718ee8",
+           "desc": "tinySA Ultra sweep, peak tracker and waterfall over the full HT5 range.",
+           "live": {"value": "—", "label": "PEAK", "bind": "module_secondary"}},
+          {"num": "03", "key": "MTDI", "role": "mtdi", "title": "MTDI Framework", "href": "/mtdi", "accent": "#72b99c",
+           "desc": "Sensor health, system completeness and live Raspberry Pi telemetry.",
+           "live": {"value": "—", "label": "ACTIVE HEALTH", "bind": "score"}},
+          {"num": "04", "key": "SETTINGS", "role": "settings", "title": "Settings", "href": "/settings", "accent": "#9a91bd",
+           "desc": "Light / dark theme, AI keys and data export.", "live": {"value": "THEME", "label": "APPEARANCE"}}
+        ],
+        "globe": {
+          "label": "Interactive Earth with selectable electromagnetic research nodes",
+          "nodes": [
+            {"name": "USA · NIST", "lon": -105.27, "lat": 40.02, "summary": "Developed the calculable standard-field methods — TEM cells and calculable dipole antennas — that let an electric-field probe be read in volts per metre."},
+            {"name": "CANADA · NRC", "lon": -75.70, "lat": 45.42, "summary": "Developed Canada’s primary electrical standards, including the Josephson voltage reference every calibrated voltmeter is traced back to."},
+            {"name": "UNITED KINGDOM · NPL", "lon": -0.34, "lat": 51.43, "summary": "Built the first caesium atomic clock here in 1955, and developed the RF and microwave power standards used for field-strength work."},
+            {"name": "GERMANY · PTB", "lon": 10.53, "lat": 52.30, "summary": "Developed and maintains the quantum Hall resistance standard that realises the ohm, and the magnetic-flux-density standards used to calibrate magnetometers."},
+            {"name": "FRANCE · LNE", "lon": 2.23, "lat": 48.83, "summary": "Developed the calculable capacitor chain that fixes the farad, and France’s reference antennas for radiated field strength."},
+            {"name": "JAPAN · NMIJ/AIST", "lon": 140.10, "lat": 36.06, "summary": "Developed the antenna-factor calibration methods used across Asia to turn an antenna voltage into a stated field strength."},
+            {"name": "SOUTH KOREA · KRISS", "lon": 127.37, "lat": 36.39, "summary": "Developed near-field probe calibration and RF power standards, and the atomic magnetometer work behind low-field sensing."},
+            {"name": "INDIA · CSIR–NPL", "lon": 77.17, "lat": 28.63, "summary": "Developed India’s national electrical and radio-frequency standards, and the EMI/EMC test capability the region certifies against."},
+            {"name": "AUSTRALIA · NMIA", "lon": 151.21, "lat": -33.87, "summary": "Developed Australia’s RF and microwave calibration chain, including the power and attenuation references used for field measurement."},
+            {"name": "BRAZIL · INMETRO", "lon": -43.31, "lat": -22.79, "summary": "Developed Brazil’s electrical metrology chain and the EMC conformity testing South America certifies equipment against."},
+            {"name": "SOUTH AFRICA · CSIR", "lon": 28.28, "lat": -25.75, "summary": "Developed South Africa’s antenna, radar and electromagnetic sensing research — the national capability nearest to this instrument."}
+          ],
+          "links": [[0,1],[0,9],[0,10],[1,2],[2,3],[2,4],[3,4],[3,6],[4,7],[4,10],[6,5],[5,8],[7,6],[7,10],[8,9],[9,10],[2,7],[3,8],[0,2],[5,9]]
+        }
+      }
+    },
+
+    {
+      "path": "/em", "type": "module", "label": "EM Field",
+      "hero": {"title": "EM Field", "tag_em": "MODULE 01", "tag": "   —   MAGNETIC · ELECTRIC · COMBINED",
+               "description": "Magnetic vector from the [[QMC5883P]] and electric-field activity from the [[ADS1115]] probe, each against its own locked baseline."},
+      "blocks": [
+        {"kind": "metrics", "items": [{"label": "Magnitude", "value": "—", "bind": "module_value", "note": "µT"},
+                                       {"label": "MTDI", "value": "—", "bind": "score", "note": "channel trust"}]},
+        {"kind": "slot", "label": "Inductra magnetic / electric panels", "note": "Mounted from inductra.pages.em_page", "height": 360}
+      ]
+    },
+    {
+      "path": "/spectrum", "type": "module", "label": "Spectrum",
+      "hero": {"title": "Spectrum", "tag_em": "MODULE 02", "tag": "   —   TINYSA · RTL-SDR · WI-FI · BLUETOOTH",
+               "description": "Swept coverage from the [[tinySA Ultra]] and fine complex-IQ capture from the [[RTL-SDR]]. RTL-SDR levels are [[dBFS]], never dBm."},
+      "blocks": [{"kind": "slot", "label": "Inductra spectrum workspace", "note": "Mounted from inductra.pages.spectrum_page", "height": 360}]
+    },
+
+    {
+      "path": "/mtdi", "type": "framework", "label": "MTDI", "name": "MTDI",
+      "opening": {
+        "kind": "flow", "title": "MTDI SIGNAL PATH",
+        "tagline": "Scroll to trace each measured channel into the diagnostic fusion layer.",
+        "nodes": [
+          {"x": 0.18, "y": 0.22, "w": 0.25, "title": "MAGNETIC CHANNEL", "copy": "QMC5883P · THREE AXIS · µT", "at": 0.02},
+          {"x": 0.50, "y": 0.22, "w": 0.25, "title": "ELECTRIC CHANNEL", "copy": "ADS1115 · FIELD PROBE · V/m", "at": 0.07},
+          {"x": 0.82, "y": 0.22, "w": 0.25, "title": "RADIO FREQUENCY", "copy": "tinySA · SPECTRUM SWEEP · dBm", "at": 0.12},
+          {"x": 0.31, "y": 0.44, "w": 0.35, "title": "VALIDATION CHAMBER", "copy": "CALIBRATION · FRESHNESS · TRUST", "at": 0.30},
+          {"x": 0.69, "y": 0.44, "w": 0.35, "title": "ENVIRONMENTAL INTELLIGENCE", "copy": "LOCATION BASELINE · CHANNEL HEALTH", "at": 0.36},
+          {"x": 0.50, "y": 0.64, "w": 0.48, "title": "MTDI FUSION LAYER", "copy": "PER-CHANNEL TRUST · MEASURED NOISE · SAMPLE AGE", "at": 0.55, "core": true},
+          {"x": 0.29, "y": 0.83, "w": 0.35, "title": "I³ DASHBOARD", "copy": "LIVE GRAPHS · VECTOR · CONFIDENCE", "at": 0.76},
+          {"x": 0.71, "y": 0.83, "w": 0.35, "title": "NVTRA EXPLANATION", "copy": "PLAIN LANGUAGE · READING CONTEXT", "at": 0.82}
+        ],
+        "links": [[0,3],[1,3],[1,4],[2,4],[3,5],[4,5],[5,6],[5,7]],
+        "footnote": "Aether is a non-functional designation and does not appear in the signal path."
+      },
+      "landing": {
+        "kicker": "MICROPROCESSING TECHNOLOGICAL DIAGNOSTIC INTELLIGENCE",
+        "title": "The instrument’s self-awareness.",
+        "copy": "MTDI separates connection, freshness, stability, completeness and trust. Five pillars surround one diagnostic core; select one to enter it.",
+        "meta": ["5 PILLARS", "8 WEIGHTED FACTORS", "RASPBERRY PI HOST", "LIVE FRAMEWORK"]
+      },
+      "caption": {"title": "FIVE PILLARS · ONE CORE", "text": "Select a pillar to expand it."},
+      "core": {"label": "MTDI", "sub": "Diagnostic constellation", "sphere": true},
+      "pillars": [
+        {"num": "00", "role": "Evidence", "title": "Validation Chamber", "accent": "#2979ff",
+         "desc": "Sensor integrity, stability, freshness and host telemetry.",
+         "blocks": [{"kind": "section", "kicker": "MTDI / Pillar 00", "title": "Validation Chamber", "accent": "#2979ff",
+                     "copy": "Sensor integrity, stability, freshness and host telemetry.",
+                     "blocks": [{"kind": "metrics", "items": [{"label": "MTDI", "value": "—", "bind": "score"}]},
+                                {"kind": "slot", "label": "Inductra validation chamber", "note": "Mounted from inductra.pages.validation_chamber_section", "height": 320}]}]},
+        {"num": "01", "role": "Baselines", "title": "Environmental Intelligence", "accent": "#00e676",
+         "desc": "Locked magnetic and electric environmental references.",
+         "blocks": [{"kind": "section", "kicker": "MTDI / Pillar 01", "title": "Environmental Intelligence", "accent": "#00e676",
+                     "copy": "Each channel learns a reference in a quiet environment, then that reference is [[frozen]]. A baseline that drifts toward a new signal will quietly erase the very change you are trying to see.",
+                     "blocks": [{"kind": "slot", "label": "Inductra baseline panels", "note": "Mounted from inductra.pages.environmental_intelligence_section"}]}]},
+        {"num": "02", "role": "Health", "title": "NVTRA", "accent": "#ffd166",
+         "desc": "Diagnostic identity, completeness and instrument intelligence.",
+         "blocks": [{"kind": "section", "kicker": "MTDI / Pillar 02", "title": "NVTRA", "accent": "#ffd166",
+                     "copy": "Diagnostic identity, completeness and instrument intelligence.",
+                     "blocks": [{"kind": "slot", "label": "Inductra NVTRA panels", "note": "Mounted from inductra.pages.nvtra_field_section"}]}]},
+        {"num": "03", "role": "Meaning", "title": "I³ Philosophy", "accent": "#b388ff",
+         "desc": "Induction, interference and intelligence made visible.",
+         "blocks": [{"kind": "section", "kicker": "MTDI / Pillar 03", "title": "I³ Philosophy", "accent": "#b388ff",
+                     "copy": "I³ is the philosophy of the instrument in visual form: induction as the origin, interference as the target, and intelligence as the meaning layer.",
+                     "blocks": [{"kind": "cards", "cols": 3, "items": [
+                       {"num": "I¹", "title": "Induction", "desc": "The original spark. The magnetic field was the first invisible force the instrument tried to sense.", "accent": "#00e5ff"},
+                       {"num": "I²", "title": "Interference", "desc": "The evolved target. Disturbance and electromagnetic behaviour become measurable.", "accent": "#2979ff"},
+                       {"num": "I³", "title": "Intelligence", "desc": "The conversion layer. Raw readings retain explicit health and trust metadata.", "accent": "#b388ff"}]}]}]},
+        {"num": "04", "role": "Reason", "title": "Aether", "accent": "#ff5252",
+         "desc": "Purpose, persistence and authorship behind the build.",
+         "blocks": [{"kind": "section", "kicker": "MTDI / Pillar 04", "title": "Aether", "accent": "#ff5252",
+                     "copy": ["Aether is the soul layer. It is not a sensor or a formula. It is the part of Inductra Vaion created by failure, obsession, rebuilding and the need to make the invisible visible.",
+                              "MTDI makes it stand. I³ makes it beautiful. NVTRA makes it speak. Aether makes it alive."],
+                     "blocks": [{"kind": "quote", "text": "It started as induction. It became interference. Now it is intelligence."}]}]}
+      ]
+    },
+
+    {
+      "path": "/sixth-sense", "type": "document", "label": "Sixth Sense",
+      "kicker": "SIXTH SENSE",
+      "title": "What the trusted channels mean together.",
+      "copy": "MTDI asks whether the measurements are trustworthy; Sixth Sense explains what the trusted channels mean together.",
+      "sections": [
+        {"title": "Learn, lock, compare", "copy": "Each channel learns a reference in a quiet environment, then that reference is frozen. These never adapt on their own — you ask for a new one explicitly."},
+        {"title": "A score that can be taken apart", "accent": "#00e676",
+         "copy": "MTDI is a weighted index over eight named factors — availability, baseline, signal-to-noise, clipping, timing, transient behaviour, axial consensus and correlation. The weights are visible, the factors are listed, and the confidence is computed from measurable quantities rather than typed in."},
+        {"title": "Nothing claimed beyond the evidence", "accent": "#ffd166",
+         "copy": "Detection limits are derived from each channel’s own measured noise ([[LOD = 3σ]], [[LOQ = 10σ]]). Repeatability is a real repeated measurement, reported as an RSD with a Student’s t 95 % interval."},
+        {"title": "Two independent implementations", "accent": "#b388ff",
+         "copy": "Everything the Python engine computes is recomputed from the same recorded samples by an independent MATLAB toolbox. Two implementations agreeing on one capture is the reason to believe either."},
+        {"title": "D4 analysis engine", "accent": "#00e5ff",
+         "copy": "D4 asks what the field is doing: robust z-scores, cross-sensor consensus, mains harmonics and THD at the ADC’s real sample rate, RF sweep analysis and transient characterisation.",
+         "blocks": [{"kind": "slot", "label": "Inductra D4 readout", "note": "Mounted from inductra.ui (Sixth Sense)"}]}
+      ]
+    },
+
+    {"path": "/settings", "type": "settings", "label": "Settings", "title": "Settings",
+     "copy": "Interface preferences for the instrument.",
+     "rows": [{"title": "Interface", "text": "Rendered by the I³ framework.", "value": "I³ 0.1.0"}]}
+  ]
+}

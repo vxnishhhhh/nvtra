@@ -1,0 +1,86 @@
+{
+  "currency": "ZAR",
+  "source": "Existing NVTRA published package prices in index.html",
+  "packages": [
+    {
+      "id": "basic",
+      "name": "Basic",
+      "price": 499,
+      "maxPages": 1,
+      "includedFeatures": 0
+    },
+    {
+      "id": "standard",
+      "name": "Standard",
+      "price": 1499,
+      "maxPages": 5,
+      "includedFeatures": 4
+    },
+    {
+      "id": "deluxe",
+      "name": "Deluxe Executive",
+      "price": 2400,
+      "maxPages": 100,
+      "includedFeatures": 100
+    }
+  ],
+  "featurePrice": 99,
+  "maintenanceMonthly": 99,
+  "features": [
+    {
+      "id": "booking",
+      "name": "Booking system"
+    },
+    {
+      "id": "catalog",
+      "name": "Product catalogue"
+    },
+    {
+      "id": "blog",
+      "name": "Blog / portfolio"
+    },
+    {
+      "id": "forms",
+      "name": "Contact forms"
+    },
+    {
+      "id": "newsletter",
+      "name": "Newsletter integration"
+    },
+    {
+      "id": "gallery",
+      "name": "Image gallery"
+    },
+    {
+      "id": "faq",
+      "name": "FAQ / accordion"
+    },
+    {
+      "id": "reviews",
+      "name": "Client reviews"
+    }
+  ],
+  "customFeatures": [
+    {
+      "id": "commerce",
+      "name": "E-commerce checkout"
+    },
+    {
+      "id": "seo",
+      "name": "SEO campaign"
+    },
+    {
+      "id": "cms",
+      "name": "Custom CMS"
+    },
+    {
+      "id": "integration",
+      "name": "Custom API integration"
+    },
+    {
+      "id": "spatial",
+      "name": "3D / spatial experience"
+    }
+  ],
+  "note": "Ranges compare the recommended package with the next package upgrade, not a promised quotation. Custom checkout, SEO campaigns, CMS, integrations and advanced motion need a separate scope and are excluded from the displayed amount. Hosting, domains, transaction fees and third-party subscriptions are excluded."
+}

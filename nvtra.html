@@ -666,8 +666,13 @@ footer{background:#09090a;border-top:1px solid var(--border);padding:4rem 5vw 2.
   .nav-links a:not(.nav-cta-wrap){display:none}
 }
 </style>
+<link rel="stylesheet" href="studio.css">
+<link rel="stylesheet" href="platform.css">
+<link rel="stylesheet" href="cinematic.css">
 </head>
 <body>
+<a class="skip-link" href="#page-home">Skip to content</a>
+<div class="reading-progress" aria-hidden="true"></div>
 
 <div id="c-dot"></div>
 <div id="c-ring"></div>
@@ -715,48 +720,87 @@ footer{background:#09090a;border-top:1px solid var(--border);padding:4rem 5vw 2.
     <span class="nav-brand-sub">Noble Vision That Redefines All</span>
   </a>
   <div class="nav-right">
+    <button class="nav-tool" type="button" data-open="search-dialog" aria-label="Search NVTRA">⌕</button>
+    <button class="nav-tool" type="button" data-open="preferences-dialog" aria-label="Appearance and accessibility">Aa</button>
     <div class="nav-links">
       <a href="#" id="nl-home" class="active" onclick="go('home');return false;">Home</a>
       <a href="#" id="nl-work" onclick="go('portfolio');return false;">Work</a>
       <a href="#" id="nl-pricing" onclick="go('pricing');return false;">Pricing</a>
+      <a href="#tools" id="nl-tools" onclick="go('tools');return false;">Explore</a>
+      <a href="#lab" id="nl-lab" onclick="go('lab');return false;">Vision Lab</a>
+      <a href="#dashboard" id="nl-dashboard" onclick="go('dashboard');return false;">My studio</a>
       <a href="#" id="nl-news" onclick="go('news');return false;">News</a>
     </div>
     <!-- Theme Toggle -->
-    <div class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" role="button" tabindex="0" aria-label="Toggle theme">
+    <button type="button" class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Switch to light theme">
       <div class="theme-toggle-thumb" id="theme-thumb">
         <svg viewBox="0 0 24 24" fill="none" id="thumb-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="theme-toggle-bg-icon">
         <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke-linecap="round"/><line x1="12" y1="1" x2="12" y2="3" stroke-linecap="round"/><line x1="12" y1="21" x2="12" y2="23" stroke-linecap="round"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke-linecap="round"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke-linecap="round"/><line x1="1" y1="12" x2="3" y2="12" stroke-linecap="round"/><line x1="21" y1="12" x2="23" y2="12" stroke-linecap="round"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke-linecap="round"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke-linecap="round"/></svg>
       </div>
-    </div>
+    </button>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu <span aria-hidden="true">＋</span></button>
     <a href="#" class="btn-glass" style="padding:.55rem 1.4rem;border-radius:999px;font-size:.62rem" onclick="go('contact');return false;">Start a Project</a>
   </div>
 </nav>
+<nav id="mobile-nav" aria-label="Mobile navigation" hidden><a href="#home">Home</a><a href="#portfolio">Work</a><a href="#pricing">Pricing</a><a href="#tools">Explore</a><a href="#lab">Vision Lab</a><a href="#dashboard">My studio</a><a href="#services">Services</a><a href="#about">About</a><a href="#news">News</a><a href="#contact">Start a project ↗</a></nav>
 
 <!-- ══════ HOME ══════ -->
 <div id="page-home" class="page on">
 
-  <section class="hero">
-    <canvas id="hero-canvas"></canvas>
+  <div class="hero-sequence"><section class="hero">
+    <div class="sculpture-stage"><div class="sculpture-fallback" aria-hidden="true"></div><canvas id="hero-canvas" class="sculpture-canvas" aria-hidden="true"></canvas><div class="sculpture-floor" aria-hidden="true"></div><span class="sculpture-caption">FORM STUDY / 001<br>IDEAS, GIVEN DIMENSION.</span></div>
+    <div class="hero-eyebrow"><span class="studio-signal" aria-hidden="true"></span> Independent web studio <span>Durban · South Africa</span></div>
     <div class="hero-bg-word">NVTRA</div>
     <div class="hero-content">
       <h1 class="hero-headline">
-        <span class="ln">We Build</span>
-        <span class="ln">What Others</span>
-        <span class="ln">Imitate.</span>
+        <span class="ln">Beyond</span>
+        <span class="ln">the ordinary.</span>
+        <span class="hero-title-note">A digital studio for the next chapter.</span>
       </h1>
       <div class="hero-bottom">
-        <p class="hero-desc">NVTRA is an <strong>AI-powered web studio</strong> built on one principle: lock in completely on what you actually need. No bloated agency, no recycled templates — just sharp, custom-coded websites that work.</p>
+        <p class="hero-desc">We design and develop <strong>websites with presence.</strong> Considered identities. Unexpected interactions. Real functionality. Made in Durban, for what comes next.</p>
         <div class="hero-cta-group">
+          <a href="#pricing" class="hero-estimate" onclick="go('pricing');return false;">Design / Development / Digital experiences</a>
           <a href="#" class="btn-glass btn-glass-solid" onclick="go('contact');return false;">Start Your Project →</a>
-          <a href="#" class="btn-ghost-link" onclick="document.getElementById('svc').scrollIntoView({behavior:'smooth'});return false;">See What We Do ↓</a>
+          <a href="#" class="btn-ghost-link" onclick="document.getElementById('home-exhibition').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});return false;">Enter the exhibition ↘</a>
         </div>
       </div>
     </div>
-    <div class="hero-scroll-line"></div>
+    <div class="hero-scroll-line"></div><div class="hero-scene-footer"><span>SCROLL TO EXPLORE</span><span>INDEPENDENT BY DESIGN · NVTRA</span><span>01 / 05</span></div>
+  </section></div>
+
+
+
+<section id="home-exhibition" class="exhibition-sequence" aria-labelledby="exhibition-title"><div class="exhibition-room"><header class="exhibition-heading"><div><span class="cinema-kicker">THE EXHIBITION / THREE STUDIO STUDIES</span><h2 id="exhibition-title">Different worlds.<br><em>One considered approach.</em></h2></div><p>Explore three interactive design studies.<br>Concept explorations, not client commissions.</p></header><div class="exhibition-architecture" aria-hidden="true"><div class="room-wall"></div><div class="room-floor"></div><div class="room-light"></div></div><div class="exhibition-track">
+<button class="exhibit-frame" data-study="corner" aria-label="Explore Corner café design study"><div class="exhibit-art art-corner"><span class="art-brand">corner.</span><span class="art-mini">COFFEE & COMPANY</span><strong>Good things.<br><em>Slowly made.</em></strong><span class="art-orb" aria-hidden="true"></span><small>A NEIGHBOURHOOD MOMENT.</small></div><span class="exhibit-meta"><span><b>Corner</b><small>HOSPITALITY / DESIGN STUDY</small></span><span>01 ↗</span></span></button>
+<button class="exhibit-frame" data-study="forma" aria-label="Explore Forma architecture design study"><div class="exhibit-art art-forma"><span class="art-brand">F O R M A</span><span class="art-mini">SPACES FOR LIVING</span><strong>Less, but<br><em>with meaning.</em></strong><span class="art-architecture" aria-hidden="true"></span><small>LIGHT. SPACE. INTENTION.</small></div><span class="exhibit-meta"><span><b>Forma</b><small>ARCHITECTURE / DESIGN STUDY</small></span><span>02 ↗</span></span></button>
+<button class="exhibit-frame" data-study="orbit" aria-label="Explore Orbit digital product design study"><div class="exhibit-art art-orbit"><span class="art-brand">ORBIT®</span><span class="art-mini">A LITTLE MORE POSSIBLE</span><strong>Outside<br>the <em>expected.</em></strong><span class="art-rings" aria-hidden="true"></span><small>DIGITAL PRODUCT / EXPLORATION</small></div><span class="exhibit-meta"><span><b>Orbit</b><small>DIGITAL PRODUCT / DESIGN STUDY</small></span><span>03 ↗</span></span></button>
+</div><div class="exhibition-bottom"><span class="exhibition-counter" aria-live="polite">01 / 03</span><div class="exhibition-dots" role="group" aria-label="Exhibition position"><button data-exhibit-index="0" aria-label="Show Corner study" aria-pressed="true"></button><button data-exhibit-index="1" aria-label="Show Forma study" aria-pressed="false"></button><button data-exhibit-index="2" aria-label="Show Orbit study" aria-pressed="false"></button></div><span>SCROLL OR SELECT / OPEN TO EXPLORE</span></div></div></section>
+<section class="process-scene" aria-labelledby="process-title"><div class="process-sticky"><div class="process-intro"><span class="cinema-kicker">FROM A THOUGHT TO A THING.</span><h2 id="process-title">An idea.<br><em>Taking shape.</em></h2><p>A continuous conversation between purpose, form and function.</p><nav class="process-scene-tabs" aria-label="Creative process stages"><button data-process-index="0" aria-pressed="true"><span>01</span>Discover</button><button data-process-index="1" aria-pressed="false"><span>02</span>Concept</button><button data-process-index="2" aria-pressed="false"><span>03</span>Design</button><button data-process-index="3" aria-pressed="false"><span>04</span>Develop</button><button data-process-index="4" aria-pressed="false"><span>05</span>Launch</button></nav></div><div class="process-object"><div class="sculpture-fallback" aria-hidden="true"></div><canvas id="process-canvas" class="sculpture-canvas" aria-hidden="true"></canvas><span class="process-coordinate">PURPOSE → FORM → FUNCTION</span></div><div class="process-scene-detail" aria-live="polite"><span class="cinema-kicker" id="process-index">01 / DISCOVER</span><h3 id="process-stage-title">Start with the right questions.</h3><p id="process-stage-copy">Your audience, your ambition, your constraints. We define what the website needs to do before deciding how it should look.</p><span id="process-deliverable">OUTPUT / A SHARED BRIEF</span></div><div class="process-line" aria-hidden="true"><span></span></div></div></section>
+
+  <section class="vision-lab" id="vision-lab" aria-labelledby="lab-title">
+    <div class="lab-heading"><div><div class="sec-label">01 / The Vision Lab</div><h2 id="lab-title">Don't just imagine it.<br><em>Give it a pulse.</em></h2></div><p>A website should feel like you.<br>Explore a direction. Make it yours.<br>We'll take it from here.</p></div>
+    <div class="lab-workbench">
+      <div class="lab-controls">
+        <span class="lab-caption">YOUR CREATIVE DIRECTION</span>
+        <fieldset class="direction-picker"><legend>01 — Choose a character</legend><button type="button" data-direction="editorial" aria-pressed="true"><span>01</span> Editorial <small>Quiet confidence</small></button><button type="button" data-direction="electric" aria-pressed="false"><span>02</span> Electric <small>Impossible to ignore</small></button><button type="button" data-direction="organic" aria-pressed="false"><span>03</span> Organic <small>A more human feeling</small></button></fieldset>
+        <label class="energy-label" for="energy">02 — Set the energy <output id="energy-value" for="energy">50%</output></label><input id="energy" type="range" min="0" max="100" value="50"><div class="range-labels"><span>Understated</span><span>Expressive</span></div>
+        <p class="lab-note">A living moodboard, shaped by you.<br>This is a design exploration, not a template.</p>
+        <button type="button" class="lab-send">Build on this direction <span aria-hidden="true">↗</span></button>
+      </div>
+      <div class="vision-preview" data-direction="editorial" role="group" aria-label="Live design exploration">
+        <canvas id="vision-field" aria-hidden="true"></canvas>
+        <div class="preview-top"><span>YOUR NEXT CHAPTER</span><span class="preview-mark" aria-hidden="true">N / V</span></div>
+        <div class="preview-copy"><span class="preview-kicker">A little less ordinary.</span><h3>Make room<br>for <em>possibility.</em></h3><p>Considered design. Lasting impressions.</p><span class="preview-link">Something good starts here <span>↗</span></span></div>
+        <div class="preview-bottom"><span id="direction-readout">01 / EDITORIAL</span><span>LIVE EXPLORATION <i aria-hidden="true"></i></span></div>
+      </div>
+    </div>
+    <p class="lab-footnote">Three starting points. Endless possibilities. <span>Made with intention, in Durban.</span></p>
   </section>
 
+  <section class="explore-strip" aria-label="Explore the studio"><span>LESS GUESSWORK.<br>MORE POSSIBILITY.</span><a href="#pricing" onclick="go('pricing');return false;">01 / Price your idea ↗</a><a href="#tools" onclick="go('tools');return false;">02 / Try the possibilities ↗</a><a href="#lab" onclick="go('lab');return false;">03 / Build your brief ↗</a></section>
   <!-- SCROLL TILT BANNER + MARQUEE -->
   <div class="scroll-tilt-wrap" id="scroll-tilt-wrap">
     <div class="scroll-tilt-card" id="scroll-tilt-card">
@@ -801,9 +845,9 @@ footer{background:#09090a;border-top:1px solid var(--border);padding:4rem 5vw 2.
     <div class="pax services-pax" id="pax-svc"></div>
     <div class="rv"><div class="sec-label">What We Do</div><h2 class="sec-h">Three things.<br><em>Done right.</em></h2></div>
     <div class="service-rows">
-      <div class="service-row rv d1"><span class="service-num">01</span><div><div class="service-title">Website Design</div><div class="service-desc">Every pixel is intentional. We build identities that command attention — cohesive, distinctive, and built to convert visitors into clients. No generic layouts. No off-the-shelf anything.</div></div><span class="service-arrow">→</span></div>
-      <div class="service-row rv d2"><span class="service-num">02</span><div><div class="service-title">Web Development</div><div class="service-desc">Hand-coded, fast-loading, and built to rank. We write real code — not drag-and-drop. Your site will be mobile-first, SEO-ready, and built to actually perform under real-world conditions.</div></div><span class="service-arrow">→</span></div>
-      <div class="service-row rv d3"><span class="service-num">03</span><div><div class="service-title">We Lock In.</div><div class="service-desc">This isn't a slogan — it's how we operate. When NVTRA takes your project, it becomes the only thing that matters until it's done. Complete focus. Zero distractions. Exactly what most agencies can't offer.</div></div><span class="service-arrow">→</span></div>
+      <div class="service-row rv d1" role="link" tabindex="0" data-service-route="services"><span class="service-num">01</span><div><div class="service-title">Website Design</div><div class="service-desc">Every pixel is intentional. We build identities that command attention — cohesive, distinctive, and built to convert visitors into clients. No generic layouts. No off-the-shelf anything.</div></div><span class="service-arrow">→</span></div>
+      <div class="service-row rv d2" role="link" tabindex="0" data-service-route="services"><span class="service-num">02</span><div><div class="service-title">Web Development</div><div class="service-desc">Hand-coded, fast-loading, and built to rank. We write real code — not drag-and-drop. Your site will be mobile-first, SEO-ready, and built to actually perform under real-world conditions.</div></div><span class="service-arrow">→</span></div>
+      <div class="service-row rv d3" role="link" tabindex="0" data-service-route="about"><span class="service-num">03</span><div><div class="service-title">We Lock In.</div><div class="service-desc">This isn't a slogan — it's how we operate. When NVTRA takes your project, it becomes the only thing that matters until it's done. Complete focus. Zero distractions. Exactly what most agencies can't offer.</div></div><span class="service-arrow">→</span></div>
     </div>
   </section>
 
@@ -924,20 +968,21 @@ footer{background:#09090a;border-top:1px solid var(--border);padding:4rem 5vw 2.
       <p class="sec-p" style="margin-top:1.5rem">Send us a message. We'll respond within 24 hours. No sales pitch — just a direct conversation about your project.</p>
     </div>
     <div class="rr">
-      <div class="contact-form-inline">
-        <div class="cf-row"><input class="cf-input" type="text" placeholder="Your Name"><input class="cf-input" type="email" placeholder="Email Address"></div>
-        <input class="cf-input" type="text" placeholder="Project Type (e.g. Business Website)">
-        <textarea class="cf-input cf-textarea" placeholder="Tell us about your project..."></textarea>
-        <button class="btn-glass btn-glass-solid" style="align-self:flex-start"><span>Send Message →</span></button>
-      </div>
+      <form class="contact-form-inline" id="home-project-form">
+        <div class="cf-row"><input class="cf-input" type="text" name="name" aria-label="Your name" autocomplete="name" required maxlength="100" placeholder="Your Name"><input class="cf-input" type="email" name="email" aria-label="Email address" autocomplete="email" required maxlength="254" placeholder="Email Address"></div>
+        <input class="cf-input" type="text" name="subject" aria-label="Project type" required maxlength="160" placeholder="Project Type (e.g. Business Website)">
+        <textarea class="cf-input cf-textarea" name="message" aria-label="Tell us about your project" required maxlength="4000" placeholder="Tell us about your project..."></textarea>
+        <button class="btn-glass btn-glass-solid" style="align-self:flex-start"><span>Send project enquiry ↗</span></button>
+        <div class="inquiry-context" aria-live="polite"></div><label class="check-label"><input type="checkbox" name="consent" required> I agree that NVTRA may store this enquiry and contact me about my project.</label><label class="check-label"><input type="checkbox" name="emailCopy" checked> Request an email copy of my brief.</label><p class="form-note">Your enquiry is stored securely by the studio. Email status is confirmed separately after submission.</p><p class="form-status" role="status"></p>
+      </form>
     </div>
   </div>
 
   <footer>
     <div class="footer-top">
       <div><div class="footer-brand-name">NVTRA</div><div class="footer-brand-tag">Noble Vision That Redefines All</div><p class="footer-brand-desc">AI-powered web design and development studio. Durban, South Africa. Built to lock in on your vision.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Navigate</div><a href="#" onclick="go('home');return false;">Home</a><a href="#" onclick="go('portfolio');return false;">Work</a><a href="#" onclick="go('pricing');return false;">Pricing</a><a href="#" onclick="go('news');return false;">NVTRA News</a><a href="#" onclick="go('contact');return false;">Contact</a></div>
-      <div class="footer-col"><div class="footer-col-title">Services</div><span>Website Design</span><span>Web Development</span><span>AI Integration</span><span>SEO Architecture</span></div>
+      <div class="footer-col"><div class="footer-col-title">Navigate</div><a href="#services" onclick="go('services');return false;">Services</a><a href="#about" onclick="go('about');return false;">About</a><a href="#" onclick="go('home');return false;">Home</a><a href="#" onclick="go('portfolio');return false;">Work</a><a href="#" onclick="go('pricing');return false;">Pricing</a><a href="#" onclick="go('news');return false;">NVTRA News</a><a href="#" onclick="go('contact');return false;">Contact</a></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><a href="#services" onclick="go('services');return false;">Website Design</a><a href="#services" onclick="go('services');return false;">Web Development</a><a href="#services" onclick="go('services');return false;">AI Integration</a><a href="#services" onclick="go('services');return false;">SEO Architecture</a></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><a href="mailto:nvtra.official@icloud.com">nvtra.official@icloud.com</a><a href="tel:0833599980">083 359 9980</a><a href="#">nvtra.official.com</a><a href="#">TikTok</a><a href="#">Instagram</a></div>
     </div>
     <div class="footer-bottom"><span class="footer-copy">©2026 NVTRA — All Rights Reserved</span><span class="footer-quote">"Power in mind, Greatness defined…"</span></div>
@@ -952,113 +997,13 @@ footer{background:#09090a;border-top:1px solid var(--border);padding:4rem 5vw 2.
     <div class="pricing-header rv">
       <div class="sec-label">Packages</div>
       <h1 class="sec-h">Transparent pricing.<br><em>Real value.</em></h1>
-      <p class="pricing-tagline">"Greatness in Mind. Power Defined." — Delivery: 12–48 hours on all packages</p>
+      <p class="pricing-tagline">Your ambition. Your scope. A clearer starting point. Final price and delivery are confirmed after review.</p>
     </div>
 
-    <div class="pricing-grid">
-
-      <!-- BASIC -->
-      <div class="price-card rv d1">
-        <div class="price-badge">Starter</div>
-        <div class="price-name">Basic</div>
-        <div class="price-desc">Perfect for getting your first professional presence online, fast.</div>
-        <div class="price-amount">
-          <span class="price-currency">R</span>
-          <span class="price-number">499</span>
-        </div>
-        <div class="price-delivery">⚡ Delivery: 12 – 48 hours</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li>1-page website (Home, About, Pricing)</li>
-          <li>Mobile-friendly, responsive NVTRA design</li>
-          <li>NVTRA watermark in footer</li>
-        </ul>
-        <div class="price-addons">
-          <div class="price-addons-title">Add-Ons</div>
-          <ul>
-            <li>Remove NVTRA watermark — R99 once-off</li>
-            <li>Any Deluxe Executive feature — R99 each</li>
-            <li>Ongoing maintenance — R99/month</li>
-          </ul>
-        </div>
-        <a href="#" class="price-cta" onclick="go('contact');return false;">Get Started →</a>
-      </div>
-
-      <!-- STANDARD — featured -->
-      <div class="price-card featured rv d2">
-        <div class="price-trail"></div>
-        <div class="price-badge">Most Popular</div>
-        <div class="price-name">Standard</div>
-        <div class="price-desc">The go-to for growing businesses that need a full, polished multi-page site.</div>
-        <div class="price-amount">
-          <span class="price-currency">R</span>
-          <span class="price-number">1 499</span>
-        </div>
-        <div class="price-delivery">⚡ Delivery: 12 – 48 hours</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li>3–5 pages of your choice: Home, Services, Gallery/Portfolio, About/Our Story, Contact Form</li>
-          <li>1 free design revision</li>
-          <li>Up to 4 Deluxe Executive features included</li>
-          <li>R99 per additional feature</li>
-        </ul>
-        <div class="price-addons">
-          <div class="price-addons-title">Available Features (pick 4 free)</div>
-          <ul>
-            <li>Testimonials · Contact & Forms</li>
-            <li>Social Feed · Blog / Portfolio</li>
-            <li>Booking System · Product Catalog</li>
-            <li>FAQ/Accordion · Gallery · Newsletter</li>
-          </ul>
-        </div>
-        <a href="#" class="price-cta solid" onclick="go('contact');return false;">Start Your Project →</a>
-      </div>
-
-      <!-- DELUXE EXECUTIVE -->
-      <div class="price-card rv d3">
-        <div class="price-badge new">Full Power</div>
-        <div class="price-name">Deluxe Executive</div>
-        <div class="price-desc">End-to-end. Up to 100 pages. Every feature. Priority support. Nothing held back.</div>
-        <div class="price-amount">
-          <span class="price-currency">R</span>
-          <span class="price-number">2 400</span>
-        </div>
-        <div class="price-delivery">⚡ Delivery: 12 – 48 hours</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li>5 – 100 pages, fully custom</li>
-          <li>All Standard features included</li>
-          <li>Priority support & unlimited revisions</li>
-          <li>Every Deluxe Executive feature unlocked</li>
-          <li>Maintenance — R99/month</li>
-        </ul>
-        <div class="price-chips">
-          <span class="price-chip">Testimonials</span>
-          <span class="price-chip">Contact & Forms</span>
-          <span class="price-chip">Social Feed</span>
-          <span class="price-chip">Custom Sections</span>
-          <span class="price-chip">Blog / Portfolio</span>
-          <span class="price-chip">Digital Downloads</span>
-          <span class="price-chip">Image & Video Grid</span>
-          <span class="price-chip">Booking System</span>
-          <span class="price-chip">Product Catalog</span>
-          <span class="price-chip">Pricing Tables</span>
-          <span class="price-chip">Newsletter</span>
-          <span class="price-chip">FAQ / Accordion</span>
-          <span class="price-chip">Infographics</span>
-          <span class="price-chip">Banner Slider</span>
-          <span class="price-chip">Gallery</span>
-          <span class="price-chip">Embedded Media</span>
-          <span class="price-chip">Client Reviews</span>
-          <span class="price-chip">Map Integration</span>
-        </div>
-        <a href="#" class="price-cta" onclick="go('contact');return false;">Go Deluxe →</a>
-      </div>
-
-    </div>
-
+    <div id="cost-estimator" class="platform-loading" role="status">Loading the studio pricing model…</div>
+    <section class="package-reference"><h2>What's behind the numbers.</h2><p>Published packages, side by side. Expand a package for its scope.</p><div id="package-comparison"></div></section>
     <!-- MAINTENANCE TABLE -->
-    <div class="maint-section rv">
+    <div class="maint-section">
       <h2 class="maint-title">What Maintenance Covers</h2>
       <p class="maint-sub">R99/month — available on any package</p>
       <table class="maint-table">
@@ -1079,8 +1024,8 @@ footer{background:#09090a;border-top:1px solid var(--border);padding:4rem 5vw 2.
   <footer>
     <div class="footer-top">
       <div><div class="footer-brand-name">NVTRA</div><div class="footer-brand-tag">Noble Vision That Redefines All</div><p class="footer-brand-desc">AI-powered web design and development studio. Durban, South Africa.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Navigate</div><a href="#" onclick="go('home');return false;">Home</a><a href="#" onclick="go('portfolio');return false;">Work</a><a href="#" onclick="go('pricing');return false;">Pricing</a><a href="#" onclick="go('news');return false;">News</a><a href="#" onclick="go('contact');return false;">Contact</a></div>
-      <div class="footer-col"><div class="footer-col-title">Services</div><span>Website Design</span><span>Web Development</span><span>AI Integration</span><span>SEO Architecture</span></div>
+      <div class="footer-col"><div class="footer-col-title">Navigate</div><a href="#services" onclick="go('services');return false;">Services</a><a href="#about" onclick="go('about');return false;">About</a><a href="#" onclick="go('home');return false;">Home</a><a href="#" onclick="go('portfolio');return false;">Work</a><a href="#" onclick="go('pricing');return false;">Pricing</a><a href="#" onclick="go('news');return false;">News</a><a href="#" onclick="go('contact');return false;">Contact</a></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><a href="#services" onclick="go('services');return false;">Website Design</a><a href="#services" onclick="go('services');return false;">Web Development</a><a href="#services" onclick="go('services');return false;">AI Integration</a><a href="#services" onclick="go('services');return false;">SEO Architecture</a></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><a href="mailto:nvtra.official@icloud.com">nvtra.official@icloud.com</a><a href="tel:0833599980">083 359 9980</a><a href="#">nvtra.official.com</a></div>
     </div>
     <div class="footer-bottom"><span class="footer-copy">©2026 NVTRA — All Rights Reserved</span><span class="footer-quote">"Power in mind, Greatness defined…"</span></div>
@@ -1094,10 +1039,10 @@ footer{background:#09090a;border-top:1px solid var(--border);padding:4rem 5vw 2.
     <div class="port-hero-content">
       <div class="sec-label" style="color:var(--gold)">Our Work</div>
       <h1 class="port-title">Selected<br><em>Projects</em></h1>
-      <div class="port-soon">Coming Soon — Portfolio In Progress</div>
+      <div class="port-soon">Independent work. Published with permission.</div>
     </div>
   </section>
-  <footer><div class="footer-top"><div><div class="footer-brand-name">NVTRA</div><div class="footer-brand-tag">Noble Vision That Redefines All</div><p class="footer-brand-desc">AI-powered web design and development studio.</p></div><div class="footer-col"><div class="footer-col-title">Navigate</div><a href="#" onclick="go('home');return false;">Home</a><a href="#" onclick="go('portfolio');return false;">Work</a><a href="#" onclick="go('news');return false;">News</a><a href="#" onclick="go('contact');return false;">Contact</a></div><div class="footer-col"><div class="footer-col-title">Services</div><span>Website Design</span><span>Web Development</span><span>AI Integration</span><span>SEO Architecture</span></div><div class="footer-col"><div class="footer-col-title">Contact</div><a href="mailto:nvtra.official@icloud.com">nvtra.official@icloud.com</a><a href="tel:0833599980">083 359 9980</a></div></div><div class="footer-bottom"><span class="footer-copy">©2026 NVTRA — All Rights Reserved</span><span class="footer-quote">"Power in mind, Greatness defined…"</span></div></footer>
+  <section class="platform-page portfolio-catalogue" style="padding-top:2rem"><div id="portfolio-filters" class="segmented" aria-label="Project category"></div><div id="public-projects"></div><div class="work-study-intro"><span class="cinema-kicker">EXPLORE THE CRAFT</span><h2>Inside the studio.</h2><p>Interactive concept studies. Select one to inspect its structure and design decisions.</p><div class="work-study-links"><button data-study="corner">01 / Corner <span>Hospitality ↗</span></button><button data-study="forma">02 / Forma <span>Architecture ↗</span></button><button data-study="orbit">03 / Orbit <span>Digital product ↗</span></button></div></div><p class="microcopy">Only projects deliberately published by the studio appear here. Private client work stays private.</p><button class="action secondary" onclick="go('tools')">Try the redesign simulator ↗</button></section><footer><div class="footer-top"><div><div class="footer-brand-name">NVTRA</div><div class="footer-brand-tag">Noble Vision That Redefines All</div><p class="footer-brand-desc">AI-powered web design and development studio.</p></div><div class="footer-col"><div class="footer-col-title">Navigate</div><a href="#services" onclick="go('services');return false;">Services</a><a href="#about" onclick="go('about');return false;">About</a><a href="#" onclick="go('home');return false;">Home</a><a href="#" onclick="go('portfolio');return false;">Work</a><a href="#" onclick="go('news');return false;">News</a><a href="#" onclick="go('contact');return false;">Contact</a></div><div class="footer-col"><div class="footer-col-title">Services</div><a href="#services" onclick="go('services');return false;">Website Design</a><a href="#services" onclick="go('services');return false;">Web Development</a><a href="#services" onclick="go('services');return false;">AI Integration</a><a href="#services" onclick="go('services');return false;">SEO Architecture</a></div><div class="footer-col"><div class="footer-col-title">Contact</div><a href="mailto:nvtra.official@icloud.com">nvtra.official@icloud.com</a><a href="tel:0833599980">083 359 9980</a></div></div><div class="footer-bottom"><span class="footer-copy">©2026 NVTRA — All Rights Reserved</span><span class="footer-quote">"Power in mind, Greatness defined…"</span></div></footer>
 </div>
 
 <!-- ══════ NEWS ══════ -->
@@ -1107,16 +1052,11 @@ footer{background:#09090a;border-top:1px solid var(--border);padding:4rem 5vw 2.
     <div class="news-content">
       <div class="sec-label" style="color:var(--gold);margin-bottom:1.5rem">Newsletter</div>
       <h1 class="news-title">NVTRA<br><em>News</em></h1>
-      <p class="news-sub">Monthly updates from the studio — launches, insights, and what we're building. No spam. Ever.</p>
-      <div class="news-form-v">
-        <input type="text" placeholder="Full Name">
-        <input type="email" placeholder="Email Address">
-        <div class="captcha-row" onclick="this.querySelector('.cap-box').classList.toggle('ticked')"><div class="cap-box"></div><span>I am human</span></div>
-        <button class="btn-glass" style="align-self:flex-start"><span>Subscribe →</span></button>
-      </div>
+      <p class="news-sub">Verified studio updates, published projects and practical notes on building a better website.</p>
+      <a class="btn-glass" href="#about" onclick="go('about');return false;">Meet the studio →</a>
     </div>
   </section>
-  <footer><div class="footer-top"><div><div class="footer-brand-name">NVTRA</div><div class="footer-brand-tag">Noble Vision That Redefines All</div><p class="footer-brand-desc">AI-powered web design and development studio.</p></div><div class="footer-col"><div class="footer-col-title">Navigate</div><a href="#" onclick="go('home');return false;">Home</a><a href="#" onclick="go('portfolio');return false;">Work</a><a href="#" onclick="go('news');return false;">News</a><a href="#" onclick="go('contact');return false;">Contact</a></div><div class="footer-col"><div class="footer-col-title">Services</div><span>Website Design</span><span>Web Development</span><span>AI Integration</span><span>SEO Architecture</span></div><div class="footer-col"><div class="footer-col-title">Contact</div><a href="mailto:nvtra.official@icloud.com">nvtra.official@icloud.com</a><a href="tel:0833599980">083 359 9980</a></div></div><div class="footer-bottom"><span class="footer-copy">©2026 NVTRA — All Rights Reserved</span><span class="footer-quote">"Power in mind, Greatness defined…"</span></div></footer>
+  <footer><div class="footer-top"><div><div class="footer-brand-name">NVTRA</div><div class="footer-brand-tag">Noble Vision That Redefines All</div><p class="footer-brand-desc">AI-powered web design and development studio.</p></div><div class="footer-col"><div class="footer-col-title">Navigate</div><a href="#services" onclick="go('services');return false;">Services</a><a href="#about" onclick="go('about');return false;">About</a><a href="#" onclick="go('home');return false;">Home</a><a href="#" onclick="go('portfolio');return false;">Work</a><a href="#" onclick="go('news');return false;">News</a><a href="#" onclick="go('contact');return false;">Contact</a></div><div class="footer-col"><div class="footer-col-title">Services</div><a href="#services" onclick="go('services');return false;">Website Design</a><a href="#services" onclick="go('services');return false;">Web Development</a><a href="#services" onclick="go('services');return false;">AI Integration</a><a href="#services" onclick="go('services');return false;">SEO Architecture</a></div><div class="footer-col"><div class="footer-col-title">Contact</div><a href="mailto:nvtra.official@icloud.com">nvtra.official@icloud.com</a><a href="tel:0833599980">083 359 9980</a></div></div><div class="footer-bottom"><span class="footer-copy">©2026 NVTRA — All Rights Reserved</span><span class="footer-quote">"Power in mind, Greatness defined…"</span></div></footer>
 </div>
 
 <!-- ══════ CONTACT ══════ -->
@@ -1133,40 +1073,58 @@ footer{background:#09090a;border-top:1px solid var(--border);padding:4rem 5vw 2.
       </div>
     </div>
     <div>
-      <div class="contact-form-inline">
-        <div class="cf-row"><input class="cf-input" type="text" placeholder="Your Name"><input class="cf-input" type="email" placeholder="Email Address"></div>
-        <input class="cf-input" type="text" placeholder="Subject">
-        <textarea class="cf-input cf-textarea" placeholder="Tell us about your project..."></textarea>
-        <button class="btn-glass btn-glass-solid" style="align-self:flex-start"><span>Send Message →</span></button>
-      </div>
+      <form class="contact-form-inline" id="project-form">
+        <div class="cf-row"><input class="cf-input" type="text" name="name" aria-label="Your name" autocomplete="name" required maxlength="100" placeholder="Your Name"><input class="cf-input" type="email" name="email" aria-label="Email address" autocomplete="email" required maxlength="254" placeholder="Email Address"></div>
+        <input class="cf-input" type="text" name="subject" aria-label="Subject" required maxlength="160" placeholder="Subject">
+        <textarea class="cf-input cf-textarea" name="message" aria-label="Tell us about your project" required maxlength="4000" placeholder="Tell us about your project..."></textarea>
+        <button class="btn-glass btn-glass-solid" style="align-self:flex-start"><span>Send project enquiry ↗</span></button>
+        <div class="inquiry-context" aria-live="polite"></div><label class="check-label"><input type="checkbox" name="consent" required> I agree that NVTRA may store this enquiry and contact me about my project.</label><label class="check-label"><input type="checkbox" name="emailCopy" checked> Request an email copy of my brief.</label><p class="form-note">Your enquiry is stored securely by the studio. Email status is confirmed separately after submission.</p><p class="form-status" role="status"></p>
+      </form>
     </div>
   </div>
-  <footer><div class="footer-top"><div><div class="footer-brand-name">NVTRA</div><div class="footer-brand-tag">Noble Vision That Redefines All</div><p class="footer-brand-desc">AI-powered web design and development studio.</p></div><div class="footer-col"><div class="footer-col-title">Navigate</div><a href="#" onclick="go('home');return false;">Home</a><a href="#" onclick="go('portfolio');return false;">Work</a><a href="#" onclick="go('news');return false;">News</a><a href="#" onclick="go('contact');return false;">Contact</a></div><div class="footer-col"><div class="footer-col-title">Services</div><span>Website Design</span><span>Web Development</span><span>AI Integration</span><span>SEO Architecture</span></div><div class="footer-col"><div class="footer-col-title">Contact</div><a href="mailto:nvtra.official@icloud.com">nvtra.official@icloud.com</a><a href="tel:0833599980">083 359 9980</a></div></div><div class="footer-bottom"><span class="footer-copy">©2026 NVTRA — All Rights Reserved</span><span class="footer-quote">"Power in mind, Greatness defined…"</span></div></footer>
+  <footer><div class="footer-top"><div><div class="footer-brand-name">NVTRA</div><div class="footer-brand-tag">Noble Vision That Redefines All</div><p class="footer-brand-desc">AI-powered web design and development studio.</p></div><div class="footer-col"><div class="footer-col-title">Navigate</div><a href="#services" onclick="go('services');return false;">Services</a><a href="#about" onclick="go('about');return false;">About</a><a href="#" onclick="go('home');return false;">Home</a><a href="#" onclick="go('portfolio');return false;">Work</a><a href="#" onclick="go('news');return false;">News</a><a href="#" onclick="go('contact');return false;">Contact</a></div><div class="footer-col"><div class="footer-col-title">Services</div><a href="#services" onclick="go('services');return false;">Website Design</a><a href="#services" onclick="go('services');return false;">Web Development</a><a href="#services" onclick="go('services');return false;">AI Integration</a><a href="#services" onclick="go('services');return false;">SEO Architecture</a></div><div class="footer-col"><div class="footer-col-title">Contact</div><a href="mailto:nvtra.official@icloud.com">nvtra.official@icloud.com</a><a href="tel:0833599980">083 359 9980</a></div></div><div class="footer-bottom"><span class="footer-copy">©2026 NVTRA — All Rights Reserved</span><span class="footer-quote">"Power in mind, Greatness defined…"</span></div></footer>
 </div>
+
+
+<div id="page-tools" class="page"><main class="platform-page">
+  <header class="platform-heading"><span class="sec-label">THE INTERACTION ATELIER</span><h1>Try the<br><em>possibilities.</em></h1><p>Less telling. More doing. Explore what a considered website can become.</p></header>
+  <nav class="section-jumps" aria-label="Explore tools"><a href="#transformation">01 / Transform</a><a href="#health-check">02 / Diagnose</a><a href="#playground">03 / Play</a><a href="#meeting">04 / Meet</a></nav>
+  <section class="tool-section" id="transformation"><div class="section-intro"><span class="sec-label">01 / TRANSFORMATION STUDIO</span><h2>Same business.<br><em>Different feeling.</em></h2><p>An illustrative redesign of a fictional neighbourhood café. Drag the divider to reveal a direction. These are demonstrations, not claimed client results.</p></div>
+    <div class="segmented" role="group" aria-label="Redesign approach"><button data-approach="minimal" aria-pressed="false">Minimal</button><button data-approach="premium" aria-pressed="true">Premium</button><button data-approach="bold" aria-pressed="false">Bold</button></div>
+    <div class="comparison-stage" data-approach="premium"><div class="cafe-before"><div class="old-nav">WELCOME TO CORNER CAFÉ!!</div><div class="old-links">Home | About | Menu | Contact</div><h3>Fresh coffee.<br>Great food.</h3><div class="old-cup">☕</div><p>We are open daily! Come visit us for breakfast and lunch.</p><span class="old-button">VIEW OUR MENU</span><small>Example legacy design</small></div><div class="cafe-after"><div class="cafe-nav"><b>corner.</b><span>COFFEE & COMPANY / DURBAN</span></div><div class="cafe-art" aria-hidden="true"><span></span></div><div class="cafe-copy"><span>YOUR DAILY PAUSE.</span><h3>Good mornings.<br><em>Better company.</em></h3><p>Slow-roasted coffee. Something freshly baked.<br>A little corner to call your own.</p><span class="cafe-cta">Find your favourite ↗</span></div><div class="cafe-bottom"><span>BREWED WITH CARE</span><span>EST. FOR THIS DEMO</span></div></div><div class="comparison-divider" aria-hidden="true"><span>↔</span></div><input id="comparison-slider" type="range" min="0" max="100" value="50" aria-label="Reveal redesigned website" aria-valuetext="50 percent redesigned"><span class="compare-label before-label">BEFORE / DEMO</span><span class="compare-label after-label">AFTER / DEMO</span></div>
+    <p class="microcopy">Use your arrow keys for precise comparison. All approaches are illustrative.</p>
+  </section>
+  <section class="tool-section health-section" id="health-check"><div class="section-intro"><span class="sec-label">02 / WEBSITE HEALTH CHECK</span><h2>Know where<br><em>you stand.</em></h2><p>A real mobile Lighthouse audit through Google PageSpeed Insights. Measured scores, practical opportunities, no fabricated results.</p></div><div class="tool-panel"><form id="health-form"><label for="health-url">Your public website address</label><div class="input-action"><input id="health-url" name="url" type="url" placeholder="https://yourbusiness.co.za" required maxlength="2000"><button class="action" type="submit">Run health check ↗</button></div><p class="microcopy">Your URL is sent to Google for analysis. Runs can take up to 65 seconds. Do not include private or sensitive query parameters.</p></form><div id="health-results" aria-live="polite"><p class="empty-state">Your results will appear here after a completed measurement.</p></div></div></section>
+  <section class="tool-section" id="playground"><div class="section-intro"><span class="sec-label">03 / FEATURE PLAYGROUND</span><h2>Small interactions.<br><em>Big possibilities.</em></h2></div><div class="playground-grid"><article class="tool-panel"><span class="demo-tag">SANDBOX / NO REAL RESERVATION</span><h3>A booking flow.</h3><p>Try choosing an appointment time.</p><div class="demo-slots" role="group" aria-label="Demo appointment times"><button>09:00</button><button>11:30</button><button>14:00</button></div><button id="demo-book" class="action" disabled>Choose a demo time</button><p id="demo-book-status" role="status"></p></article><article class="tool-panel"><span class="demo-tag">SANDBOX / YOUR INPUTS, NOT ANALYTICS</span><h3>A responsive dashboard.</h3><label for="demo-visits">Monthly visitors <output id="demo-visits-value">1,000</output></label><input id="demo-visits" type="range" min="100" max="10000" value="1000" step="100"><label for="demo-rate">Enquiry rate <output id="demo-rate-value">3%</output></label><input id="demo-rate" type="range" min="1" max="10" value="3"><div class="demo-metric"><output id="demo-enquiries">30</output><span>hypothetical enquiries</span></div><div class="demo-bar"><span></span></div></article><article class="tool-panel"><span class="demo-tag">INTERACTION / MOTION STUDY</span><h3>Details that respond.</h3><button class="motion-sample" aria-pressed="false"><span class="motion-orbit" aria-hidden="true"></span><span>Activate the orbit</span></button><p class="microcopy">Toggle a live interaction. Your reduced-motion preference always takes priority.</p></article></div></section>
+  <section class="tool-section" id="meeting"><div class="section-intro"><span class="sec-label">04 / A CONVERSATION, NOT A SALES PITCH</span><h2>Find a time.<br><em>Make a start.</em></h2><p>Reserve a 30-minute studio conversation. Available times are published by NVTRA, shown in Johannesburg time (UTC+2).</p></div><div class="tool-panel"><form id="booking-form"><label for="meeting-date">Meeting date</label><input id="meeting-date" type="date"><div id="meeting-slots" class="slot-list"></div><label for="meeting-note">What would you like to discuss?</label><textarea id="meeting-note" maxlength="1000" rows="3"></textarea><button class="action" type="submit">Reserve selected time ↗</button><p id="booking-status" role="status"></p></form></div></section>
+</main></div>
+<div id="page-lab" class="page"><main class="platform-page"><header class="platform-heading"><span class="sec-label">VISION LAB / YOUR NEXT CHAPTER</span><h1>Make it<br><em>unmistakably you.</em></h1><p>Five small steps. One considered direction. Your choices stay in this browser session until you submit them.</p></header><div id="brief-builder"></div></main></div>
+<div id="page-login" class="page"><main class="platform-page auth-page"><div class="auth-story"><span class="sec-label">YOUR PRIVATE STUDIO</span><h1>A little closer<br>to <em>what's next.</em></h1><p>Your ideas, enquiries, meetings and accepted projects. Together in one place.</p><span class="auth-monogram" aria-hidden="true">N/V</span></div><div class="tool-panel auth-panel"><div class="segmented" role="group" aria-label="Account action"><button data-auth-mode="login" aria-pressed="true">Sign in</button><button data-auth-mode="register" aria-pressed="false">Create account</button></div><form id="auth-form"><label id="auth-name-label" hidden>Your name<input name="name" autocomplete="name" maxlength="100"></label><label>Email address<input type="email" name="email" autocomplete="email" required maxlength="254"></label><label>Password <span class="microcopy">12+ characters for new accounts</span><input type="password" name="password" autocomplete="current-password" required maxlength="128"></label><button class="action" type="submit">Sign in ↗</button><button type="button" class="text-button" id="forgot-password">Forgot your password?</button><p id="auth-status" role="status"></p><p class="microcopy">Your email identifies your account. Projects are assigned by the studio after acceptance, never automatically by an email match.</p></form></div></main></div>
+<div id="page-reset" class="page"><main class="platform-page narrow-page"><span class="sec-label">ACCOUNT RECOVERY</span><h1>A fresh start.</h1><form id="reset-form" class="tool-panel"><label>New password<input name="password" type="password" minlength="12" maxlength="128" autocomplete="new-password" required></label><button class="action">Change password</button><p role="status"></p></form></main></div>
+<div id="page-dashboard" class="page"><main class="platform-page"><header class="platform-heading dashboard-heading"><div><span class="sec-label">YOUR PRIVATE STUDIO</span><h1>Room for<br><em>what's next.</em></h1></div><button class="text-button" id="logout" hidden>Sign out ↗</button></header><div id="dashboard-content" aria-live="polite"></div></main></div>
+<div id="page-project" class="page"><main class="platform-page"><button class="text-button" onclick="go('dashboard')">← Back to my studio</button><div id="project-content" aria-live="polite"></div></main></div>
+<div id="page-admin" class="page"><main class="platform-page"><header class="platform-heading"><span class="sec-label">STUDIO OPERATIONS / PRIVATE</span><h1>Behind<br><em>the scenes.</em></h1></header><div id="admin-content"></div></main></div>
+<div id="page-services" class="page"><main class="platform-page"><header class="platform-heading"><span class="sec-label">CAPABILITIES</span><h1>Thought through.<br><em>Built to work.</em></h1><p>From the first impression to the last interaction. Explore the work behind a website that feels right.</p></header><div id="service-details"></div><section class="tool-section"><span class="sec-label">THE PROCESS</span><h2>A clear path<br><em>from idea to launch.</em></h2><div class="process-timeline"><details open><summary><span>01</span> Listen & define</summary><p>We discuss your audience, goals, content and constraints. Scope, price and delivery are agreed before work begins.</p></details><details><summary><span>02</span> Shape & design</summary><p>Explore the visual direction, then review designs through your private project portal.</p></details><details><summary><span>03</span> Build & refine</summary><p>Develop the experience, test real interactions and gather your feedback at each review milestone.</p></details><details><summary><span>04</span> Launch & support</summary><p>Approve the final milestone, prepare deployment and decide on ongoing maintenance.</p></details></div></section><section class="tool-section"><h2>A few good questions.</h2><div id="faq-list"></div></section></main></div>
+<div id="page-about" class="page"><main class="platform-page"><header class="platform-heading"><span class="sec-label">INDEPENDENT / DURBAN, SOUTH AFRICA</span><h1>Noble vision.<br><em>Human intention.</em></h1><p>NVTRA is a web design and development studio founded by Vaishnav Singh, building considered digital experiences for small and growing South African businesses.</p></header><section class="about-manifesto"><span>OUR APPROACH</span><p>Make the complex feel simple.<br>Make the ordinary feel considered.<br>Make every interaction <em>earn its place.</em></p></section><section class="tool-section"><span class="sec-label">THE STUDIO JOURNAL</span><h2>Things actually<br><em>happening.</em></h2><p>Published studio updates and milestones. No simulated launches or invented client activity.</p><div class="public-activity"></div></section></main></div>
+<dialog aria-label="Search NVTRA" id="search-dialog" class="studio-dialog"><div class="dialog-top"><span>SEARCH THE STUDIO</span><button data-close aria-label="Close search">×</button></div><label class="sr-only" for="site-search">Search services, projects, FAQs and articles</label><input id="site-search" type="search" placeholder="What are you looking for?" autocomplete="off"><p class="microcopy">Services · Projects · FAQs · Articles &nbsp; / &nbsp; Ctrl or ⌘ K</p><div id="search-results" aria-live="polite"></div></dialog>
+<dialog aria-label="Appearance and accessibility" id="preferences-dialog" class="studio-dialog"><div class="dialog-top"><span>MAKE YOURSELF AT HOME</span><button data-close aria-label="Close preferences">×</button></div><h2>Your viewing preferences.</h2><form id="preferences-form"><label>Appearance<select name="theme"><option value="dark">Dark</option><option value="light">Light</option></select></label><label>Accent colour<select name="accent"><option value="gold">Warm gold</option><option value="sage">Quiet sage</option><option value="violet">Soft violet</option></select></label><label>Interface density<select name="density"><option value="comfortable">Comfortable</option><option value="compact">Compact</option></select></label><label>Text size<select name="text"><option value="100">Default</option><option value="112">Larger</option><option value="125">Largest</option></select></label><label>Motion<select name="motion"><option value="system">Follow device preference</option><option value="reduce">Reduce motion</option></select></label><label class="check-label"><input name="contrast" type="checkbox"> Increase contrast</label><button class="text-button" type="reset">Reset preferences</button></form></dialog>
+<button class="support-launcher" data-open="support-dialog" aria-label="Open studio support"><span aria-hidden="true">✦</span> Ask NVTRA</button>
+<dialog aria-label="Studio support" id="support-dialog" class="studio-dialog"><div class="dialog-top"><span>STUDIO SUPPORT</span><button data-close aria-label="Close support">×</button></div><h2>A little guidance.</h2><p class="microcopy" id="assistant-mode">Answers from the studio FAQ. Gemini is used only when configured.</p><div id="support-answer" aria-live="polite"><p>Ask about pricing, maintenance, design or getting started.</p></div><form id="assistant-form"><label class="sr-only" for="assistant-message">Your question</label><div class="input-action"><input id="assistant-message" maxlength="1200" required placeholder="What would you like to know?"><button class="action">Ask ↗</button></div><p class="microcopy">When AI is enabled, your question is sent to Google. Don't share private project details or passwords. AI answers can be wrong; confirm project terms with the studio.</p></form></dialog>
+<dialog aria-label="The quiet corner" id="easter-dialog" class="studio-dialog easter-dialog"><button data-close aria-label="Close hidden studio">×</button><span class="sec-label">YOU FOUND THE QUIET CORNER.</span><div class="secret-constellation" aria-hidden="true">✦<span>✧</span>✦<span>✧</span>✦</div><h2>Great things begin<br>with <em>curiosity.</em></h2><p>Keep looking. Keep making.<br>— NVTRA</p></dialog>
+<dialog id="study-dialog" class="studio-dialog study-dialog" aria-label="Interactive studio case study"><button type="button" class="study-close" data-close aria-label="Close design study">Close ×</button><div id="study-content"></div></dialog>
+<div id="toast" role="status" class="toast" hidden></div>
 
 <!-- end -->
 
 <script>
-/* ══ CURSOR ══ */
-const dot=document.getElementById('c-dot'),ring=document.getElementById('c-ring');
-let mx=-200,my=-200,rx=-200,ry=-200;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
-document.addEventListener('mouseover',e=>{
-  document.body.classList.toggle('hov',!!e.target.closest('a,button,.service-row,.why-cell,.orbital-node,.theme-toggle,.btn-glass'));
-});
-(function tick(){
-  dot.style.left=mx+'px';dot.style.top=my+'px';
-  rx+=(mx-rx)*.11;ry+=(my-ry)*.11;
-  ring.style.left=rx+'px';ring.style.top=ry+'px';
-  requestAnimationFrame(tick);
-})();
-
 /* ══ THEME TOGGLE ══ */
 function toggleTheme(){
   const html=document.documentElement;
   const isDark=html.getAttribute('data-theme')==='dark';
   const next=isDark?'light':'dark';
   html.setAttribute('data-theme',next);
+  document.getElementById('theme-toggle').setAttribute('aria-label', 'Switch to '+(next==='dark'?'light':'dark')+' theme');
+  try { localStorage.setItem('nvtra-theme',next); } catch {}
   // swap icon
   const icon=document.getElementById('thumb-icon');
   if(next==='light'){
@@ -1183,87 +1141,6 @@ function toggleTheme(){
   }
 }
 
-/* ══ WEBGL SHADER HERO ══ */
-(function initShader(){
-  const canvas=document.getElementById('hero-canvas');
-  if(!canvas)return;
-  const gl=canvas.getContext('webgl')||canvas.getContext('experimental-webgl');
-  if(!gl)return;
-
-  const vert=`attribute vec2 a_pos;void main(){gl_Position=vec4(a_pos,0,1);}`;
-  const frag=`
-    precision highp float;
-    uniform vec2 u_res;
-    uniform float u_time;
-    #define TWO_PI 6.2831853072
-    void main(){
-      vec2 uv=(gl_FragCoord.xy*2.0-u_res)/min(u_res.x,u_res.y);
-      float t=u_time*0.04;
-      float lw=0.0025;
-      vec3 col=vec3(0.0);
-      for(int j=0;j<3;j++){
-        for(int i=0;i<5;i++){
-          float fi=float(i);float fj=float(j);
-          col[j]+=lw*fi*fi/abs(fract(t-0.012*fj+fi*0.012)*5.0-length(uv)+mod(uv.x+uv.y,0.22));
-        }
-      }
-      // tint towards gold
-      col.r=col.r*0.9+col.g*0.35;
-      col.g=col.g*0.6;
-      col.b=col.b*0.4;
-      gl_FragColor=vec4(col,1.0);
-    }
-  `;
-
-  function compile(type,src){
-    const s=gl.createShader(type);
-    gl.shaderSource(s,src);gl.compileShader(s);return s;
-  }
-  const prog=gl.createProgram();
-  gl.attachShader(prog,compile(gl.VERTEX_SHADER,vert));
-  gl.attachShader(prog,compile(gl.FRAGMENT_SHADER,frag));
-  gl.linkProgram(prog);gl.useProgram(prog);
-
-  const buf=gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
-  const loc=gl.getAttribLocation(prog,'a_pos');
-  gl.enableVertexAttribArray(loc);
-  gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-
-  const uRes=gl.getUniformLocation(prog,'u_res');
-  const uTime=gl.getUniformLocation(prog,'u_time');
-  let t=0,rafId=null,stopped=false;
-  // shader: t*0.05 drives the pattern — full period = 1/0.05 = 20 shader units
-  // at 0.15/frame that's 20/0.15 = ~133 frames ≈ 2.2s — exactly one pass
-  const INCREMENT = 0.15;
-  const STOP_AT   = 20;
-
-  function resize(){
-    const hero=canvas.parentElement;
-    canvas.width=hero.offsetWidth;canvas.height=hero.offsetHeight;
-    gl.viewport(0,0,canvas.width,canvas.height);
-    gl.uniform2f(uRes,canvas.width,canvas.height);
-  }
-  resize();
-  window.addEventListener('resize',resize,{passive:true});
-
-  (function loop(){
-    if(stopped)return;
-    t+=INCREMENT;
-    gl.uniform1f(uTime,t);
-    gl.drawArrays(gl.TRIANGLES,0,6);
-    if(t>=STOP_AT){
-      stopped=true;
-      canvas.style.transition='opacity 1.5s ease';
-      canvas.style.opacity='0';
-      setTimeout(()=>{canvas.style.display='none'},1600);
-      return;
-    }
-    rafId=requestAnimationFrame(loop);
-  })();
-})();
-
 /* ══ PARALLAX ══ */
 const PAX={
   'pax-svc':0.25,'pax-stmt':0.30,'pax-why':0.18,
@@ -1271,6 +1148,7 @@ const PAX={
   'pax-pricing':0.25,'pbg':0.25,'nbg':0.25,
 };
 function runParallax(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   const sy=window.scrollY;
   for(const[id,spd]of Object.entries(PAX)){
     const el=document.getElementById(id);
@@ -1280,25 +1158,35 @@ function runParallax(){
     el.style.transform=`translateY(${sy*spd*0.4}px)`;
   }
 }
-window.addEventListener('scroll',()=>{runParallax();},{passive:true});
+let parallaxPending=false;
+window.addEventListener('scroll',()=>{if(parallaxPending)return;parallaxPending=true;requestAnimationFrame(()=>{parallaxPending=false;runParallax()});},{passive:true});
 runParallax();
 
 /* ══ ROUTING ══ */
-function go(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
-  document.getElementById('page-'+id).classList.add('on');
+function go(id, updateHistory=true){
+  const target=document.getElementById('page-'+id.split('?')[0]);
+  if(!target)return;
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('on',p===target));
   window.scrollTo({top:0,behavior:'instant'});
-  ['home','work','pricing','news'].forEach(k=>{
-    const el=document.getElementById('nl-'+k);
-    if(el)el.classList.toggle('active',k===id);
+  document.querySelectorAll('.nav-links a').forEach(el=>{
+    const active=el.id==='nl-'+(id==='portfolio'?'work':id);
+    el.classList.toggle('active',active);
+    if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');
   });
-  setTimeout(initReveal,80);
-  setTimeout(runParallax,50);
+  if(updateHistory && location.hash!=='#'+id)history.pushState(null,'','#'+id);
+  document.getElementById('mobile-nav').hidden=true;
+  document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');
+  document.querySelector('.skip-link').href='#page-'+id;
+  target.setAttribute('tabindex','-1');target.focus({preventScroll:true});
+  initReveal();runParallax();
+  document.dispatchEvent(new Event('nvtra:route'));
 }
 
 /* ══ REVEAL ══ */
+let revealObserver;
 function initReveal(){
-  const io=new IntersectionObserver(entries=>{
+  if(revealObserver)revealObserver.disconnect();
+  const io=revealObserver=new IntersectionObserver(entries=>{
     entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{threshold:.1});
   document.querySelectorAll('.rv,.rl,.rr').forEach(el=>{
@@ -1307,5 +1195,8 @@ function initReveal(){
 }
 initReveal();
 </script>
+<script src="studio.js"></script>
+<script src="platform.js"></script>
+<script src="cinematic.js"></script>
 </body>
 </html>

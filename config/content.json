@@ -1,0 +1,19 @@
+{
+  "faqs": [
+    {"title":"How much does a website cost?","body":"Published packages start at R499 for Basic, R1,499 for Standard and R2,400 for Deluxe Executive. Use the estimator for a package range. Custom integrations need a confirmed quote.","page":"pricing"},
+    {"title":"Can you rebuild my current website?","body":"Yes. Share your current URL and goals in an enquiry. Try the transformation simulator for illustrative design directions, then request a measured health check.","page":"tools"},
+    {"title":"Do you offer maintenance?","body":"Optional maintenance is listed at R99 per month. Hosting, domains and third-party subscriptions are separate.","page":"pricing"},
+    {"title":"How do I start a project?","body":"Create a brief in Vision Lab or send a project enquiry. An accepted project appears in your private portal once the studio assigns it to your account.","page":"contact"},
+    {"title":"Where is NVTRA based?","body":"NVTRA is based in Durban, South Africa. Meeting times are displayed in Africa/Johannesburg time.","page":"about"},
+    {"title":"Will my enquiry email be delivered?","body":"Enquiries are stored by the server. Email delivery is reported separately and depends on configured SMTP. Your confirmation always shows the actual delivery state.","page":"contact"}
+  ],
+  "services": [
+    {"title":"Website design","body":"Editorial layouts, responsive design and a visual identity shaped around your business.","page":"services"},
+    {"title":"Web development","body":"Custom websites, forms, booking systems and interactive experiences.","page":"services"},
+    {"title":"SEO architecture","body":"Search-friendly structure, semantic content and accessible foundations. Campaigns require a separate scope.","page":"services"}
+  ],
+  "articles": [
+    {"title":"What makes a useful website brief?","body":"Start with your audience, your main business goal and the action visitors should take. Add your required pages, existing brand material, budget and desired timeline. Vision Lab can organise these choices for you.","page":"lab"},
+    {"title":"Understanding a website health check","body":"Lighthouse scores are lab measurements, not a guarantee of every visitor's experience. Compare repeated runs using the same device profile and investigate the underlying audits.","page":"tools"}
+  ]
+}

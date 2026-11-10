@@ -1,0 +1,44 @@
+const {chromium}=require('playwright');
+(async()=>{
+ const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH ? {executablePath:process.env.CHROMIUM_PATH} : {}),args:['--no-sandbox']});
+ const page=await browser.newPage({viewport:{width:1440,height:1000}});
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto((process.env.NVTRA_URL || 'http://127.0.0.1:8080'));
+ await page.locator('#vision-lab').scrollIntoViewIfNeeded();
+ 
+ await page.getByRole('button',{name:'02 Electric'}).click();
+ await page.locator('#energy').fill('80');
+ await page.getByRole('button',{name:'Build on this direction'}).click();
+ if(!await page.locator('#project-form [name=subject]').inputValue().then(s=>s.includes('Electric')))throw Error('Brief missing');
+ if(!await page.locator('#project-form [name=message]').inputValue().then(s=>s.includes('80%')))throw Error('Energy missing');
+ await page.goBack();
+ if(!await page.locator('#page-home').isVisible())throw Error('History failed');
+ await page.getByRole('button',{name:'Switch to light theme'}).click();await page.reload();
+ if(await page.locator('html').getAttribute('data-theme')!=='light')throw Error('Theme persistence');
+ await page.setViewportSize({width:390,height:844});
+ await page.getByRole('button',{name:'Menu'}).click();
+ await page.locator('#mobile-nav').getByRole('link',{name:'Work',exact:true}).click();
+ if(!await page.locator('#page-portfolio').isVisible())throw Error('Mobile routing');
+ if(await page.locator('#nl-work').getAttribute('aria-current')!=='page')throw Error('Work active');
+ await page.goto((process.env.NVTRA_URL || 'http://127.0.0.1:8080')+'/#home');
+ await page.locator('#vision-lab').scrollIntoViewIfNeeded();
+ 
+ if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Mobile overflow');
+ await page.emulateMedia({reducedMotion:'reduce'});await page.reload();
+ if(await page.locator('.hero-headline .ln').first().evaluate(e=>getComputedStyle(e).opacity)!=='1')throw Error('Reduced-motion content hidden');
+ await page.goto((process.env.NVTRA_URL || 'http://127.0.0.1:8080')+'/nvtra.html#pricing');
+ if(!await page.locator('#page-pricing').isVisible())throw Error('Alias route');
+ await page.goto((process.env.NVTRA_URL || 'http://127.0.0.1:8080')+'/#contact');
+ const form=page.locator('#project-form');
+ if(await form.evaluate(f=>f.checkValidity()))throw Error('Empty form accepted');
+ await form.locator('[name=name]').fill('Test Visitor');
+ await form.locator('[name=email]').fill('test@example.com');
+ await form.locator('[name=subject]').fill('Test project');
+ await form.locator('[name=message]').fill('A website for a local business.');
+ if(await form.evaluate(f=>f.checkValidity()))throw Error('Consent was not required');
+ await form.locator('[name=consent]').check();
+ if(!await form.evaluate(f=>f.checkValidity()))throw Error('Valid consented form rejected');
+ if(errors.length)throw Error(errors.join('\n'));
+ console.log('PASS: desktop lab, brief handoff, history, theme persistence, mobile navigation, overflow, reduced motion, alias routing, contact validation and consent; no JS errors.');
+ await browser.close();
+})().catch(e=>{console.error(e);process.exit(1)});

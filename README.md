@@ -12,9 +12,11 @@ python3.12 -m venv .venv
 
 See [operations and deployment](docs/OPERATIONS.md) for administrator setup, private storage, credentials, email, health checks and HTTPS deployment. MTDI Studio is read-only; all changes and runtime files belong in NVTRA.
 
-## Deploy
+## View the frontend and deploy for free
 
-[Deploy on Render](https://render.com/deploy?repo=https://github.com/vxnishhhhh/nvtra) — see the [Render setup guide](docs/RENDER.md). The Blueprint uses a paid service and persistent disk; review the price in Render before creating it.
+Download [preview.html](preview.html) with GitHub's **Download raw file** button and open it in a browser. This self-contained interactive preview needs no server or installation. The preview clearly labels features that need the connected backend; it never fakes accounts or submitted enquiries.
+
+[Free hosting instructions](docs/FREE-HOSTING.md) cover the complete PythonAnywhere backend and optional GitHub Pages preview. No paid Render service or disk is configured. Free hosting and external APIs have quotas; do not enable billing or buy upgrades. PythonAnywhere requires periodic renewal of its free web app in the dashboard.
 
 ## Features
 
@@ -30,7 +32,7 @@ See [operations and deployment](docs/OPERATIONS.md) for administrator setup, pri
 - Real meeting reservations, separate labelled feature demos, instant search, viewing preferences, accessibility controls and a small Easter egg.
 - Gemini support when a server key is configured, with an explicit FAQ fallback otherwise.
 
-External AI, live audits and email need the configuration described in the operations guide. No credentials, client projects, fake testimonials, availability or announcements are seeded. The complete client portal is tested against temporary accounts and data.
+External AI, live audits and email need the free-tier accounts/network configuration described in the free-hosting and operations guides. No credentials, client projects, fake testimonials, availability or announcements are seeded. The complete client portal is tested against temporary accounts and data.
 
 ## Code map
 
@@ -53,3 +55,5 @@ The platform test starts its own isolated server and temporary database, exercis
 The backend suite covers session invalidation, cross-origin rejection, private-data isolation, upload controls, booking races, price recalculation, honest email/AI/audit states, one-time password-reset tokens, administrator publishing and rate limits. External-provider success responses in unit tests are mocked; they do not establish live provider availability.
 
 Run `node tests/cinematic.cjs` against a running instance to check the WebGL/fallback renderer, gallery, studies, responsive scenes and expanded live brief controls.
+
+Rebuild the standalone preview after frontend or public configuration changes with `python scripts/build_preview.py`. Its contents are generated only from public assets. `node tests/preview.cjs` checks its offline interactions and verifies it sends no backend requests.

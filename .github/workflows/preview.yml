@@ -1,0 +1,30 @@
+name: Publish free design preview
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build only the public design preview
+        run: |
+          mkdir -p /tmp/nvtra-pages
+          python3 scripts/build_preview.py --output /tmp/nvtra-pages/index.html
+          touch /tmp/nvtra-pages/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: /tmp/nvtra-pages
+      - name: Deploy preview
+        id: deployment
+        uses: actions/deploy-pages@v4

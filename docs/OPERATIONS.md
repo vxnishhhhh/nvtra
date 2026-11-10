@@ -12,7 +12,7 @@ python3.12 -m venv .venv
 .venv/bin/waitress-serve --listen=127.0.0.1:8080 --threads=8 --max-request-body-size=7340032 app:application
 ```
 
-The default public origin is `http://127.0.0.1:8080`. If using another address or port, set `NVTRA_PUBLIC_URL` to that exact origin before starting. Mutating requests must originate from it. `python server.py --port 8080` is an alternative local development runner. Static-only hosting no longer supports the application's accounts and forms.
+The default public origin is `http://127.0.0.1:8080`. If using another address or port, set `NVTRA_PUBLIC_URL` to that exact origin before starting. Mutating requests must originate from it. `python server.py --port 8080` is an alternative local development runner. Static-only hosting displays the clearly labelled standalone preview; full accounts and private storage use the free PythonAnywhere WSGI deployment in [FREE-HOSTING.md](FREE-HOSTING.md).
 
 `GET /api/config`, `GET /api/session`, and the homepage should return 200. Account registration, pricing, briefs, enquiries, private projects, local meeting reservations, search and FAQ support do not need paid external services.
 
@@ -50,7 +50,7 @@ Configuration is read from process environment variables. `.env.example` documen
 
 ### Gemini support
 
-Set `GEMINI_API_KEY` securely on the server. Create your own key through [Google AI Studio](https://aistudio.google.com/apikey); available free quotas and billing terms are controlled by Google, not this application. The code does not contain or generate a free key. `GEMINI_MODEL` defaults to `gemini-2.5-flash` and can be changed to a model supported by your account.
+Set `GEMINI_API_KEY` securely on the server. Create your own key through [Google AI Studio](https://aistudio.google.com/apikey); use a project without billing enabled and a model available on Google’s free tier. Quotas and model availability are controlled by Google. Do not enable billing to resolve a quota failure; keep the FAQ fallback instead. The code does not contain or generate a free key. `GEMINI_MODEL` defaults to `gemini-2.5-flash` and can be changed to a model supported by your account.
 
 Allow HTTPS to `generativelanguage.googleapis.com`. Only the visitor's current question plus public studio facts are sent. The key is never exposed to the browser. When configuration is absent or the provider fails, the interface explicitly identifies the deterministic FAQ fallback. Gemini output is plain text, never executable HTML.
 
@@ -70,11 +70,11 @@ Password-reset links expire after 30 minutes, are single-use and invalidate all 
 
 ## HTTPS deployment
 
-Run Waitress behind a trusted HTTPS reverse proxy, with `NVTRA_PUBLIC_URL=https://your-real-domain` and the private volume mounted. Keep the backend on a loopback/private listener. Use a single application process for the current SQLite/in-memory throttling design. Configure request size limits, a 75+ second upstream timeout for audits, and public-edge rate limiting; do not trust forwarded client IP headers from arbitrary callers. Scale to a shared rate limiter and managed database before deploying multiple app processes or replicas.
+For the free PythonAnywhere deployment, use its existing WSGI server with the generated entry point; Waitress is only for local/self-hosted execution. For another self-hosted deployment, run Waitress behind a trusted HTTPS reverse proxy, with `NVTRA_PUBLIC_URL=https://your-real-domain` and the private volume mounted. Keep the backend on a loopback/private listener. Use a single application process for the current SQLite/in-memory throttling design. Configure request size limits, a 75+ second upstream timeout for audits, and public-edge rate limiting; do not trust forwarded client IP headers from arbitrary callers. Scale to a shared rate limiter and managed database before deploying multiple app processes or replicas.
 
 The app sets a restrictive static-file allowlist, nosniff, frame-denial and a CSP. Existing inline legacy scripts/styles still require `unsafe-inline`; moving them to external modules is a future CSP-hardening step. Use CSP-aware changes when adding external embeds.
 
-No hosting provider or public domain was supplied, and nothing was deployed. Production email delivery, provider credentials, HTTPS cookies on the actual domain, backups, and real client operation must be verified on that deployment.
+The selected no-subscription host is PythonAnywhere Beginner/free. Follow [FREE-HOSTING.md](FREE-HOSTING.md); the earlier paid Render configuration was removed. A free account/domain still needs to be connected, and no public backend has been deployed from this workspace. Production email delivery, provider credentials, HTTPS cookies on the actual domain, backups, and real client operation must be verified on that deployment.
 
 ## Pricing model
 

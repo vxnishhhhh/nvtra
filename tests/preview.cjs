@@ -9,7 +9,7 @@ const {readFileSync}=require('node:fs');
   const p=await b.newPage({viewport:{width:1440,height:1000},acceptDownloads:true});const errors=[],requests=[];
   p.on('pageerror',e=>errors.push(e.message));p.on('request',r=>{if(r.url().includes('/api/'))requests.push(r.url())});
   // Test truly standalone: fonts and images may fall back, no remote dependency needed.
-  await p.route(/^https?:/,r=>r.request().url()==='https://nvtra-preview.test/'?r.fulfill({contentType:'text/html',body:readFileSync(resolve(__dirname,'../preview.html'),'utf8')}):r.abort());
+  await p.route(/^https?:/,r=>r.request().url()==='https://nvtra-preview.test/'?r.fulfill({contentType:'text/html',body:readFileSync(resolve(process.env.NVTRA_PREVIEW_FILE||resolve(__dirname,'../preview.html')),'utf8')}):r.abort());
   await p.goto('https://nvtra-preview.test/');await p.locator('.preview-notice').waitFor();
   await p.evaluate(()=>go('pricing'));await p.locator('#estimate-form').waitFor();await p.locator('#estimate-form [name=pages]').fill('8');assert.match(await p.locator('#estimate-live').innerText(),/2[\s,]?400/);
   const estimate=p.waitForEvent('download');await p.locator('#estimate-save').click();assert.equal((await estimate).suggestedFilename(),'nvtra-direction.json');

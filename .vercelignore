@@ -1,0 +1,16 @@
+.git/
+.data/
+.venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+.env
+.env.*
+node_modules/
+app.py
+server.py
+requirements.txt
+tests/
+docs/
+.github/
+dist-vercel/

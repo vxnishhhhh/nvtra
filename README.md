@@ -18,6 +18,8 @@ Download [preview.html](preview.html) with GitHub's **Download raw file** button
 
 [Free hosting instructions](docs/FREE-HOSTING.md) cover the complete PythonAnywhere backend and optional GitHub Pages preview. No paid Render service or disk is configured. Free hosting and external APIs have quotas; do not enable billing or buy upgrades. PythonAnywhere requires periodic renewal of its free web app in the dashboard.
 
+For the existing Vercel URL, [Vercel deployment instructions](docs/VERCEL.md) explain the explicit static build and the remaining backend connection.
+
 ## Features
 
 - Cinematic 3D hero, scroll-driven exhibition, explorable studio studies and five-stage process scene, with mobile and reduced-motion fallbacks.

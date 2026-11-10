@@ -1,0 +1,23 @@
+# Render Blueprint: one Python service with a persistent private disk.
+# Starter service and disk are billable; review Render's price before creating.
+services:
+  - type: web
+    name: nvtra
+    runtime: python
+    plan: starter
+    numInstances: 1
+    buildCommand: pip install -r requirements.txt
+    startCommand: python render_start.py
+    healthCheckPath: /api/config
+    autoDeploy: false
+    disk:
+      name: nvtra-private-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.12
+      - key: NVTRA_DATA_DIR
+        value: /var/data/nvtra
+      - key: NVTRA_INQUIRY_EMAIL
+        value: nvtra.official@icloud.com

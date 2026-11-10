@@ -27,3 +27,7 @@ The environment configuration draft includes NVTRA installation/startup instruct
 The new design passed 15 backend tests, the complete isolated Waitress browser workflow, and the existing UI regression suite. A dedicated browser suite verified the WebGL sculpture and unavailable-WebGL fallback, exhibition navigation, study region controls, five process stages, seven new brief settings and session persistence, custom 3D scope, package exploration, 768px/390px layouts, mobile preview jumps and reduced motion. Desktop homepage, exhibition, Vision Lab and mobile homepage renders were inspected. No live client records were created.
 
 A save/dashboard timing issue found during regression testing was fixed by refreshing an already-open dashboard when a save completes. Automated contrast checks also prompted corrections to the original homepage’s pale information section.
+
+## Render preparation
+
+The Render Blueprint defines a single paid Python service and 1 GB persistent disk. Four startup checks passed (generated HTTPS origin/port, custom domain override, invalid-origin rejection, and required storage/valid port), bringing the backend/startup suite to 19 passing tests. The actual `render_start.py` process was also launched locally with Render-like environment variables and an isolated temporary data directory: `/api/config` returned 200, HTTPS security headers were present, and SQLite initialized in the selected directory. No Render account was connected, service created, or public deployment verified here.

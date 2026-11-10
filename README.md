@@ -12,6 +12,10 @@ python3.12 -m venv .venv
 
 See [operations and deployment](docs/OPERATIONS.md) for administrator setup, private storage, credentials, email, health checks and HTTPS deployment. MTDI Studio is read-only; all changes and runtime files belong in NVTRA.
 
+## Deploy
+
+[Deploy on Render](https://render.com/deploy?repo=https://github.com/vxnishhhhh/nvtra) — see the [Render setup guide](docs/RENDER.md). The Blueprint uses a paid service and persistent disk; review the price in Render before creating it.
+
 ## Features
 
 - Cinematic 3D hero, scroll-driven exhibition, explorable studio studies and five-stage process scene, with mobile and reduced-motion fallbacks.
